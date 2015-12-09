@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fun with Highcharts!</title>
+
+	<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+
+	h1 {
+		text-align: center;
+	}
+
+	section.container, section.g-container {
+		width: 100%;
+	}
+
+	section.lg-container {
+		width: 80%;
+	}
+
+	.g-wrap {
+		display: inline-block;
+		/*width: 20%;*/
+	}
+
+	</style>
+
+</head>
+<body>
+
+<h1>Fun with Highcharts!</h1>
+
+<h2>Line Charts:</h2>
+<section class="lg-container">
+	<div id="line-graph" style="width:100%; height:400px;"></div>
+</section>
+
+<h2>Area Charts:</h2>
+<section class="container">
+	<div id="ac-wrap"></div>
+</section>
+
+<h2>Column and Bar Charts:</h2>
+<section class="container">
+	<div id="cnb-wrap"></div>
+</section>
+
+<h2>Pie Charts:</h2>
+<section class="container">
+	<div id="pie-wrap"></div>
+</section>
+
+<!-- <h2>Scatter and Bubble Charts:</h2>
+<section class="container">
+	<div id="snb-wrap"></div>
+</section>
+
+<h2>Combinations:</h2>
+<section class="container">
+	<div id="comb-wrap"></div>
+</section> -->
+
+<h2>Dynamic Charts:</h2>
+<section class="container">
+	<div id="dyno-wrap"></div>
+</section>
+
+<!-- <h2>3D Charts:</h2>
+<section class="container">
+	<div id="3d-wrap"></div>
+</section> -->
+
+<h2>Gauges:</h2>
+<section class="g-container">
+	<div class="g-wrap">
+		<div id="ppue-gauge" style="width: 300px; height: 200px; float: left"></div>
+	</div>
+	<div class="g-wrap">
+		<div id="tcue-gauge" style="width: 300px; height: 200px; float: left"></div>
+	</div>
+	<div class="g-wrap">
+		<div id="lue-gauge" style="width: 300px; height: 200px; float: left"></div>
+	</div>
+	<div class="g-wrap">
+		<div id="ckm-gauge" style="width: 300px; height: 200px; float: left"></div>
+	</div>
+	<div class="g-wrap">
+		<div id="csm-gauge" style="width: 300px; height: 200px; float: left"></div>
+	</div>
+</section>
+
+<!-- <h2>Heat and Tree Maps:</h2>
+<section class="container">
+	<div id="hnt-wrap"></div>
+</section>
+
+<h2>Polar Chart:</h2>
+<section class="container">
+	<div id="pole-wrap"></div>
+</section>
+
+<h2>Spiderweb:</h2>
+<section class="container">
+	<div id="web-wrap"></div>
+</section>
+
+<h2>Wind Rose:</h2>
+<section class="container">
+	<div id="rose-wrap"></div>
+</section>
+
+<h2>Box Plot:</h2>
+<section class="container">
+	<div id="box-wrap"></div>
+</section>
+
+<h2>Error Bar:</h2>
+<section class="container">
+	<div id="err-wrap"></div>
+</section>
+
+<h2>Waterfall:</h2>
+<section class="container">
+	<div id="wf-wrap"></div>
+</section>
+
+<h2>Funnel and Pyramid Charts:</h2>
+<section class="container">
+	<div id="fnp-wrap"></div>
+</section>
+
+<h2>Polygon Series:</h2>
+<section class="container">
+	<div id="poly-wrap"></div>
+</section>
+
+<h2>General Drawing:</h2>
+<section class="container">
+	<div id="gen-wrap"></div>
+</section> -->
+
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->    
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+	<script src="http://code.highcharts.com/modules/solid-gauge.src.js"></script>
+
+	<script type="text/javascript">
+
+
+// LINE GRAPHS
+//--------------------------------------------------------------------------//
+$(function () {
+	$('#line-graph').highcharts({
+		chart: {
+			type: 'line'
+		},
+		colors: ['#ea3d65', '#33b4d0'],
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			categories:  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		},
+		yAxis: {
+			floor: 0,
+			ceiling: 100,
+			tickInterval: 20,
+			// minorTickInterval: 10,
+			title: {
+				text: 'MEGAWATTS'
+			},
+			labels: {
+				formatter: function() {
+					return this.value + '%';
+				}
+				// format: '{value}%'
+			}
+		},
+		plotOptions: {
+		    line: {
+		        dataLabels: {
+		            enabled: false
+		        },
+		    }
+		},
+		series: [{
+			name: 'PHX01',
+			data: [10.0, 15.0, 15.0, 5.0, 35.0, 39.0, 21.0, 36.0, 20.0, 41.0, 39.0, 77.0]
+		}, {
+			name: 'HAM01',
+			data: [28.0, 35.0, 49.0, 39.0, 43.0, 60.0, 70.0, 61.0, 75.0, 75.0, 80.0, 90.0]
+		}],
+		tooltip: {
+		    formatter: function() {
+		        return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '%</b>, in series '+ this.series.name;
+		    }
+		}
+	});
+
+
+	// $('#container').highcharts({
+	//     chart: {
+	//         type: 'line'
+	//     },
+	//     title: {
+	//         text: 'Monthly Average Temperature'
+	//     },
+	//     subtitle: {
+	//         text: 'Source: WorldClimate.com'
+	//     },
+	//     xAxis: {
+	//         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	//     },
+	//     yAxis: {
+	//         title: {
+	//             text: 'Temperature (°C)'
+	//         }
+	//     },
+	//     plotOptions: {
+	//         line: {
+	//             dataLabels: {
+	//                 enabled: true
+	//             },
+	            
+	//         }
+	//     },
+	//     series: [{
+	//         name: 'Tokyo',
+	//         data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+	//     }, {
+	//         name: 'London',
+	//         data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+	//     }]
+	// });
+
+
+
+// Area Charts
+//--------------------------------------------------------------------------//
+	$('#ac-wrap').highcharts({
+
+       chart: {
+            type: 'area'
+        },
+        title: {
+            text: 'US and USSR nuclear stockpiles'
+        },
+        subtitle: {
+            text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">' +
+                'thebulletin.metapress.com</a>'
+        },
+        xAxis: {
+            allowDecimals: false,
+            labels: {
+                formatter: function () {
+                    return this.value; // clean, unformatted number for year
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Nuclear weapon states'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value / 1000 + 'k';
+                }
+            }
+        },
+        tooltip: {
+            pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+        },
+        plotOptions: {
+            area: {
+                pointStart: 1940,
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'USA',
+            data: [null, null, null, null, null, 6, 11, 32, 110, 235, 369, 640,
+                1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,
+                27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342, 26662,
+                26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
+                24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586,
+                22380, 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950,
+                10871, 10824, 10577, 10527, 10475, 10421, 10358, 10295, 10104]
+        }, {
+            name: 'USSR/Russia',
+            data: [null, null, null, null, null, null, null, null, null, null,
+                5, 25, 50, 120, 150, 200, 426, 660, 869, 1060, 1605, 2471, 3322,
+                4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478,
+                15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049,
+                33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000,
+                35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
+                21000, 20000, 19000, 18000, 18000, 17000, 16000]
+        }]
+
+	});
+
+
+// Column and Bar Charts
+//--------------------------------------------------------------------------//
+
+    // $('#cnb-wrap').highcharts({
+    //     chart: {
+    //         type: 'bar'
+    //     },
+    //     title: {
+    //         text: 'Fruit Consumption'
+    //     },
+    //     xAxis: {
+    //         categories: ['Apples', 'Bananas', 'Oranges']
+    //     },
+    //     yAxis: {
+    //         title: {
+    //             text: 'Fruit eaten'
+    //         }
+    //     },
+    //     series: [{
+    //         name: 'Jane',
+    //         data: [1, 0, 4]
+    //     }, {
+    //         name: 'John',
+    //         data: [5, 7, 3]
+    //     }]
+    // });
+
+	$('#cnb-wrap').highcharts({
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: 'Pie, Oh My!'
+		},
+		xAxis: {
+		    title: {
+		        text: 'Fruit Number'
+		    },
+		    tickInterval: 1
+		},
+		yAxis: {
+		    title: {
+		        text: 'Fruit eaten'
+		    },
+		    tickInterval: 2
+		},
+		series: [{
+		    name: 'Jane',
+		    data: [1, 9, 4]
+		}, {
+		    name: 'John',
+		    data: [5, 7, 3]
+		}]
+	});
+
+
+// Pie Charts
+//--------------------------------------------------------------------------//
+    // Radialize the colors
+    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+        return {
+            radialGradient: {
+                cx: 0.5,
+                cy: 0.3,
+                r: 0.7
+            },
+            stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    });
+
+	// Build the chart
+	$('#pie-wrap').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares. January, 2015 to May, 2015'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    },
+                    connectorColor: 'silver'
+                }
+            }
+        },
+        series: [{
+            name: "Brands",
+            data: [
+                {name: "Microsoft Internet Explorer", y: 56.33},
+                {
+                    name: "Chrome",
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                },
+                {name: "Firefox", y: 10.38},
+                {name: "Safari", y: 4.77}, {name: "Opera", y: 0.91},
+                {name: "Proprietary or Undetectable", y: 0.2}
+            ]
+        }]
+	});
+
+
+// Scatter and Bubble Charts
+//--------------------------------------------------------------------------//
+	// $('#snb-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Combinations
+//--------------------------------------------------------------------------//
+	// $('#comb-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Dynamic Charts
+//--------------------------------------------------------------------------//
+	$('#dyno-wrap').highcharts({
+		// data goes here
+	});
+
+
+// 3D Charts
+//--------------------------------------------------------------------------//
+	// $('#3d-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+
+// GAUGES
+//--------------------------------------------------------------------------//
+
+	var gaugeOptions = {
+	    chart: {
+	        type: 'solidgauge'
+	    },
+		credits: {
+		    enabled: false
+		},
+	    title: null,
+	    pane: {
+	        center: ['50%', '85%'],
+	        size: '100%',
+	        startAngle: -90,
+	        endAngle: 90,
+	        background: {
+	            backgroundColor: '#EEE',
+	            innerRadius: '60%',
+	            outerRadius: '100%',
+	            shape: 'arc'
+	        }
+	    },
+	    tooltip: {
+	        enabled: false
+	    },
+	    // the value axis
+	    yAxis: {
+	        minColor: '#FFFFFF',
+	        maxColor: '#000000',
+	        tickInterval: 1,
+	        minorTickWidth: 0,
+	        tickWidth: 0,
+	        title: {
+	            y: -70
+	        },
+	        labels: {
+	        	enabled: true,
+	        	style: {"color":"#fff"},
+	        	x: 0, y: -4,
+	        }
+	    },
+	    plotOptions: {
+	        solidgauge: {
+	            dataLabels: {
+	                y: -30,
+	                borderWidth: 0,
+	                useHTML: true
+	            }
+	        }
+	    }
+	};
+
+	$('#ppue-gauge').highcharts(Highcharts.merge(gaugeOptions, {
+		pane: {
+			background: {
+				backgroundColor: '#64bd5f'
+			}
+		},
+		yAxis: {
+	        minColor: '#3e763b',
+	        maxColor: '#3e763b',
+		    min: 0,
+		    max: 5,
+		    title: {
+		        text: 'pPUE'
+		    }
+		},
+		series: [{
+		    name: 'pPUE',
+		    data: [1.15],
+		    dataLabels: {
+		        format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+		            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
+		               '<span style="font-size:12px;color:silver"> kWh</span></div>'
+		    },
+		    tooltip: {
+		        valueSuffix: ' kWh'
+		    }
+		}]
+	}));
+
+	$('#tcue-gauge').highcharts(Highcharts.merge(gaugeOptions, {
+		pane: {
+			background: {
+				backgroundColor: '#f89630'
+			}
+		},
+		yAxis: {
+	        minColor: '#e27000',
+	        maxColor: '#e27000',
+		    min: 0,
+		    max: 5,
+		    title: {
+		        text: 'TCUE'
+		    }
+		},
+		series: [{
+		    name: 'TCUE',
+		    data: [2.15],
+		    dataLabels: {
+		        format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+		            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
+		               '<span style="font-size:12px;color:silver">%</span></div>'
+		    },
+		    tooltip: {
+		        valueSuffix: ' kWh'
+		    }
+		}]
+	}));
+
+
+	$('#lue-gauge').highcharts(Highcharts.merge(gaugeOptions, {
+		pane: {
+			background: {
+				backgroundColor: '#64bd5f'
+			}
+		},
+		yAxis: {
+	        minColor: '#3e763b',
+	        maxColor: '#3e763b',
+		    min: 0,
+		    max: 5,
+		    title: {
+		        text: 'LUE'
+		    }
+		},
+		series: [{
+		    name: 'LUE',
+		    data: [1.29],
+		    dataLabels: {
+		        format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+		            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
+		               '<span style="font-size:12px;color:silver"> kWh</span></div>'
+		    },
+		    tooltip: {
+		        valueSuffix: ' kWh'
+		    }
+		}]
+	}));
+
+
+	$('#ckm-gauge').highcharts(Highcharts.merge(gaugeOptions, {
+		pane: {
+			background: {
+				backgroundColor: '#cf191e'
+			}
+		},
+		yAxis: {
+	        minColor: '#9b070b',
+	        maxColor: '#9b070b',
+		    min: 0,
+		    max: 8,
+		    tickInterval: 2,
+		    title: {
+		        text: 'Cost-kW-Month'
+		    }
+		},
+		series: [{
+		    name: 'Cost-kW-Month',
+		    data: [4.2],
+		    dataLabels: {
+		        format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+		            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
+		               '<span style="font-size:12px;color:silver"> $kWh</span></div>'
+		    },
+		    tooltip: {
+		        valueSuffix: ' kWh'
+		    }
+		}]
+	}));
+
+
+	$('#csm-gauge').highcharts(Highcharts.merge(gaugeOptions, {
+		pane: {
+			background: {
+				backgroundColor: '#f89630'
+			}
+		},
+		yAxis: {
+	        minColor: '#e27000',
+	        maxColor: '#e27000',
+		    min: 0,
+		    max: 8,
+		    tickInterval: 2,
+		    title: {
+		        text: 'Cost-Server-Month'
+		    }
+		},
+		series: [{
+		    name: 'Cost-Server-Month',
+		    data: [3.05],
+		    dataLabels: {
+		        format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+		            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +
+		               '<span style="font-size:12px;color:silver"> $kWh</span></div>'
+		    },
+		    tooltip: {
+		        valueSuffix: ' kWh'
+		    }
+		}]
+	}));
+
+
+// Heat and Tree Maps
+//--------------------------------------------------------------------------//
+	// $('#hnt-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Polar Chart
+//--------------------------------------------------------------------------//
+	// $('#pole-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Spiderweb
+//--------------------------------------------------------------------------//
+	// $('#web-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Wind Rose
+//--------------------------------------------------------------------------//
+	// $('#rose-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Box Plot
+//--------------------------------------------------------------------------//
+	// $('#box-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Error Bar
+//--------------------------------------------------------------------------//
+	// $('#err-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Waterfall
+//--------------------------------------------------------------------------//
+	// $('#wf-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Funnel and Pyramid Charts
+//--------------------------------------------------------------------------//
+	// $('#fnp-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// Polygon Series
+//--------------------------------------------------------------------------//
+	// $('#poly-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+// General Drawing
+//--------------------------------------------------------------------------//
+	// $('#gen-wrap').highcharts({
+	// 	// data goes here
+	// });
+
+
+
+});
+
+	</script>
+
+</body>
+</html>
