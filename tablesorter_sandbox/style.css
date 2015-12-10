@@ -1,0 +1,14 @@
+body {
+	/*background-color: teal;*/
+}
+
+/* REQUIRED in CUSTOM THEMES!
+ This is the only definition that MUST BE added to any custom themes.
+ This is how rows are hidden by filtering (included in provided themes) */
+.tablesorter .filtered {
+  display: none;
+}
+
+table, td, th {
+	border: 1px solid #000;
+}
