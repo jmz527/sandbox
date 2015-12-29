@@ -176,10 +176,33 @@
 		</tbody>
 	</table>
 
+	<div id="pager" class="pager">
+
+		<span class="pagedisplay"></span>
+		<nav class="pagesize">
+			# per page:
+			<a href="#" class="current">10</a> |
+			<a href="#">25</a> |
+			<a href="#">50</a> |
+			<a href="#">100</a>
+		</nav><br />
+		<nav class="pagenav">
+			<ul class="pagination">
+				<span><li><a class="prev">Prev&nbsp;</a></li></span>
+				<span class="pagecount"></span>
+				<span><li>&nbsp;<a class="next">Next</a></li></span>
+			</ul>
+		</nav>
+
+	</div>
+
+
 <!-- SCRIPTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="jquery.tablesorter.js"></script>
+<script src='jquery.tablesorter.pager.js'></script>
+<script src='pager-custom-controls.js'></script>
 <script src="jquery.tablesorter.widgets.js"></script>
 <script src="script.js"></script>
 

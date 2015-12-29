@@ -12,3 +12,23 @@ body {
 table, td, th {
 	border: 1px solid #000;
 }
+
+.pagedisplay {
+	display: inline-block;
+	float: left;
+}
+
+.pagesize {
+	display: inline-block;
+	float: right;
+}
+
+.pagenav {
+	display: block;
+	text-align: center;
+}
+
+ul.pagination li {
+	display: inline-block;
+	margin-right: 5px;
+}
