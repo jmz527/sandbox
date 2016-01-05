@@ -1,0 +1,27 @@
+document.write("
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Partials Test</title>
+	<style type="text/css">
+
+header {
+	background-color: teal;
+	height: 100px;
+}
+
+main {
+	background-color: purple;
+	height: 400px;
+}
+
+footer {
+	background-color: indigo;
+	height: 200px;
+}
+
+	</style>
+</head>
+<body>
+	<header></header>
+")
