@@ -6,3 +6,6 @@ Repo for testing out new shit
 - bootstrap sandbox
 - guillotine sandbox
 - templer sandbox
+- js partials sandbox
+- tablesorter sandbox
+- requirejs sandbox
