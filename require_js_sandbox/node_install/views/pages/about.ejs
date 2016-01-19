@@ -34,4 +34,12 @@
 	</footer>
 	
 </body>
+<script data-main="js/common" src="modules/requirejs/require.js"></script>
+<script type="text/javascript">
+require(['common'], function(){
+	// Load up this pages script, once the 'common' script has loaded
+	require(['page/about']);
+});
+</script>
+
 </html>
