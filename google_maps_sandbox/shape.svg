@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="30px" viewBox="0 0 20 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.4.4 (395) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="OCC-PortfolioHealth" sketch:type="MSArtboardGroup" transform="translate(-1042.000000, -576.000000)" fill="#BBBBBB">
+            <g id="-Panel-Map" sketch:type="MSLayerGroup" transform="translate(410.000000, 450.000000)">
+                <g id="map-northamerica" transform="translate(20.000000, 20.000000)" sketch:type="MSShapeGroup">
+                    <g id="icon-map-pin" transform="translate(112.000000, 92.000000)">
+                        <path d="M510.018839,14 C504.528516,14 500.061806,18.4475803 500.061806,23.9143255 C500.061806,26.1161456 501.473871,29.7058672 504.378452,34.8886724 C506.433032,38.5543897 508.453806,41.6109208 508.53871,41.7392077 L510.018839,43.9731478 L511.498903,41.7392719 C511.583871,41.6109208 513.604774,38.554454 515.659097,34.8887366 C518.563806,29.7058672 519.975742,26.1162099 519.975742,23.9143897 C519.975806,18.4475803 515.509097,14 510.018839,14 L510.018839,14 Z M510.018839,28.9865739 C507.168387,28.9865739 504.857548,26.6856959 504.857548,23.8473876 C504.857548,21.0090792 507.168387,18.7082013 510.018839,18.7082013 C512.86929,18.7082013 515.180129,21.0090792 515.180129,23.8473876 C515.180129,26.6856959 512.869226,28.9865739 510.018839,28.9865739 L510.018839,28.9865739 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
