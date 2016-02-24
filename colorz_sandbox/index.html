@@ -24,42 +24,27 @@
 	var toColor = function ( d ) {
 		var c = Number(d).toString(16);
 		return "#" + ( "000000".substr( 0, 6 - c.length ) + c.toUpperCase() );
-	},
-	white = 0xFFFFFF,
-	red = 0xFF0000,
-	green = 0x00FF00,
-	result = toColor( white - red - green );
-
-	// console.log( result ); // logs the expected result: "#0000FF"
+	};
 
 	// Takes a HEX color and returns numeric value
 	var colorValue = function(c) {
 		var d = parseInt((c[0]==='#'?c.slice(1):c), 16);
 		return d
-	},
-	// num = colorValue('#33B4D0');
-	// console.log(num);
-
-	num1 = colorValue('#33B4D0');
-	num2 = colorValue('#E8F5F8');
+	};
+	// num1 = colorValue('#33B4D0');
 	// console.log(num1);
-	// console.log(num2);
-
-	diff = (num1/num2);
-	// console.log(diff);
-
 
 	// http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color-or-rgb-and-blend-colors
 	function LightenDarkenColor(col,amt) {
-		var num = parseInt(col,16);
+		var num = colorValue(col);
 		var r = (num >> 16) + amt;
 		var b = ((num >> 8) & 0x00FF) + amt;
 		var g = (num & 0x0000FF) + amt;
 		var newColor = g | (b << 8) | (r << 16);
-		return newColor.toString(16);
+		return toColor(newColor);
 	}
-	var l = LightenDarkenColor('33B4D0', 10);
-	console.log(l);
+	// var l = LightenDarkenColor('#33B4D0', 95);
+	// console.log(l);
 
 
 
@@ -68,24 +53,23 @@
 
 	html = html + '<div>';
 
+	// First forEach loop returns colored text
 	colorArry.forEach(function(c) {
 		// console.log(c);
-		html = html + '<p style="color:'+c+';">Hello</p>';
+		html = html + '<p style="color:'+c+';">Pod</p>';
 	});
 	// console.log(html);
 
-	html = html + '</div>';
-	html = html + '<div>';
+	html = html + '</div><div>';
 
+	// Second forEach loop returns colored text with light background-color
 	colorArry.forEach(function(c) {
-		var d, diff = 0.2219527723267738;
-		// console.log(colorValue(c));
+		var d;
 
-		// d = Math.round(colorValue(c)/diff);
-		d = toColor(Math.round(colorValue(c)/diff));
-		// console.log(d);
+		d = LightenDarkenColor(c, 47);
+		console.log(d);
 
-		html = html + '<p style="color:'+c+';background-color:'+d+';">Hello</p>';
+		html = html + '<p style="color:'+c+';background-color:'+d+';">Pod</p>';
 	});
 	// console.log(html);
 
