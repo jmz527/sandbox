@@ -49,30 +49,33 @@
 
 
 	var colorArry = [ '#33B4D0', '#64D0A1', '#6F8AD0', '#D08896', '#D0CE5D', '#68D070', '#D07449', '#9C82D0', '#D04F63'];
-	var html = "";
+	var newArry = [];
+	colorArry.forEach(function(c) {
+		newArry.push(LightenDarkenColor(c, -50));
+	});
+	colorArry = colorArry.concat(newArry);
+	// console.log(newArry);
+	console.log(colorArry);
 
+
+
+
+	var html = "";
 	html = html + '<div>';
 
 	// First forEach loop returns colored text
 	colorArry.forEach(function(c) {
-		// console.log(c);
 		html = html + '<p style="color:'+c+';">Pod</p>';
 	});
-	// console.log(html);
-
 	html = html + '</div><div>';
 
 	// Second forEach loop returns colored text with light background-color
 	colorArry.forEach(function(c) {
 		var d;
-
 		d = LightenDarkenColor(c, 47);
 		console.log(d);
-
 		html = html + '<p style="color:'+c+';background-color:'+d+';">Pod</p>';
 	});
-	// console.log(html);
-
 	html = html + '</div>';
 
 	var results = document.getElementById('color-wrap');
