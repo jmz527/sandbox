@@ -23,62 +23,37 @@ function handleFileSelect(e) {
 
 		tmp_files.push(file);
 	}	
-	console.log(tmp_files);
+	// console.log(tmp_files);
 
+	newFormData();
+	setRemoveListeners();
+}
 
+function newFormData() {
 	var data = new FormData();
 	var count = 0;
-
 	selDiv.innerHTML = "";
 
 	$.each(tmp_files, function(i, file) {
-		// console.log(i);
-		// console.log(file);
-
-		if(rmvd_files.indexOf(file.name)== -1) {
+		if(rmvd_files.indexOf(file)== -1) {
 			data.append(count, file);
+			selDiv.innerHTML += file.name + " <a href='#' data-index-num='"+i+"' class='rmvd'>X</a><br/>";
 			count++;
 		}
 	});
+	// console.log(data);
+}
 
-	console.log(data);
-
-
-
-	for (var i = 0; i < files.length; i++) {
-		var f = files[i];
-
-		console.log(f.name);
-		tmp_files.push(f);
-
-		selDiv.innerHTML += f.name + " <a href='#' data-index-num='"+i+"' class='rmvd'>X</a><br/>";
-	}
-
+function setRemoveListeners() {
 	var xs = document.getElementsByClassName("rmvd");
-	// console.log(xs);
 
 	$(xs).click(function(e) {
-
 		var index = e.target.dataset.indexNum;
-		// console.log(index);
-		// console.log(tmp_files);
-		// console.log(tmp_files[index]);
 
 		rmvd_files[index] = tmp_files[index];
 		// console.log(rmvd_files);
-
+		newFormData();
+		setRemoveListeners();
 	});
-	// console.log(tmp_files);
 }
 
-
-
-
-
-
-
-
-$(document).ready(function() {
-
-
-});
