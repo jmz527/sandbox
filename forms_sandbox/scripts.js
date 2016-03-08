@@ -5,6 +5,7 @@ files = $(fileInput)[0].files;
 
 var tmp_files = new Array();
 var rmvd_files = new Array();
+var data;
 
 document.addEventListener("DOMContentLoaded", init, false);
 
@@ -36,12 +37,11 @@ function newFormData() {
 
 	$.each(tmp_files, function(i, file) {
 		if(rmvd_files.indexOf(file)== -1) {
-			data.append(count, file);
+			data.set(count, file);
 			selDiv.innerHTML += file.name + " <a href='#' data-index-num='"+i+"' class='rmvd'>X</a><br/>";
 			count++;
 		}
 	});
-	// console.log(data);
 }
 
 function setRemoveListeners() {
@@ -56,4 +56,11 @@ function setRemoveListeners() {
 		setRemoveListeners();
 	});
 }
+
+$('#form-submit').click(function(e) {
+	e.preventDefault();
+
+	console.log('DATA:');
+	console.log(data);
+})
 
