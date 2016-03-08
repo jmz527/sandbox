@@ -5,6 +5,8 @@ files = $(fileInput)[0].files;
 
 var tmp_files = new Array();
 var rmvd_files = new Array();
+var form_files = new Array();
+var data;
 
 document.addEventListener("DOMContentLoaded", init, false);
 
@@ -25,23 +27,22 @@ function handleFileSelect(e) {
 	}	
 	// console.log(tmp_files);
 
-	newFormData();
+	newFormFiles();
 	setRemoveListeners();
 }
 
-function newFormData() {
-	var data = new FormData();
+function newFormFiles() {
 	var count = 0;
+	form_files = [];
 	selDiv.innerHTML = "";
 
 	$.each(tmp_files, function(i, file) {
 		if(rmvd_files.indexOf(file)== -1) {
-			data.append(count, file);
+			form_files[count] = file;
 			selDiv.innerHTML += file.name + " <a href='#' data-index-num='"+i+"' class='rmvd'>X</a><br/>";
 			count++;
 		}
 	});
-	// console.log(data);
 }
 
 function setRemoveListeners() {
@@ -52,8 +53,31 @@ function setRemoveListeners() {
 
 		rmvd_files[index] = tmp_files[index];
 		// console.log(rmvd_files);
-		newFormData();
+		newFormFiles();
 		setRemoveListeners();
 	});
 }
+
+$('#form-submit').click(function(e) {
+	e.preventDefault();
+
+	var data = new FormData();
+
+	form_files.forEach(function(file) {
+		data.append(file.name, file);
+	});
+
+	$.ajax({
+		type: "POST",
+		// url: "http://google.com",
+		cache: false,
+		enctype: 'multipart/form-data',
+		processData: false,
+		data: data,
+		success: function (data) {
+			alert('success!');
+			// alert(data);
+		}
+	});
+})
 
