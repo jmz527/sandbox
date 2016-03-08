@@ -29,6 +29,7 @@ function handleFileSelect(e) {
 
 	newFormFiles();
 	setRemoveListeners();
+	$('#attachments-input').val('');
 }
 
 function newFormFiles() {
@@ -67,17 +68,19 @@ $('#form-submit').click(function(e) {
 		data.append(file.name, file);
 	});
 
-	$.ajax({
-		type: "POST",
-		// url: "http://google.com",
-		cache: false,
-		enctype: 'multipart/form-data',
-		processData: false,
-		data: data,
-		success: function (data) {
-			alert('success!');
-			// alert(data);
-		}
-	});
-})
+	console.log(form_files);
+
+	// $.ajax({
+	// 	type: "POST",
+	// 	// url: "http://google.com",
+	// 	cache: false,
+	// 	enctype: 'multipart/form-data',
+	// 	processData: false,
+	// 	data: data,
+	// 	success: function (data) {
+	// 		alert('success!');
+	// 		// alert(data);
+	// 	}
+	// });
+});
 
