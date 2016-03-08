@@ -67,11 +67,6 @@ $('#form-submit').click(function(e) {
 		data.append(file.name, file);
 	});
 
-	// var xhr = new XMLHttpRequest;
-	// xhr.open('POST', '/', true);
-	// xhr.send(data);
-
-
 	$.ajax({
 		type: "POST",
 		// url: "http://google.com",
