@@ -76,10 +76,10 @@ $('#form-submit').click(function(e) {
 	// 	cache: false,
 	// 	enctype: 'multipart/form-data',
 	// 	processData: false,
+	// 	contentType: false,
 	// 	data: data,
 	// 	success: function (data) {
 	// 		alert('success!');
-	// 		// alert(data);
 	// 	}
 	// });
 });
