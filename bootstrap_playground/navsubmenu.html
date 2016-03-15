@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SUBMENU TEST</title>
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<style type="text/css">
+
+
+li.dropdown button {
+	background-color: #777;
+	border-radius: 0;
+	display: inline-block;
+	height: 24px;
+	min-width: 100px;
+	line-height: 0.9;
+}
+
+li.dropdown button:after {
+	display:block;
+	content:" ";
+	float:right;
+	width:0;
+	height:0;
+	border-color:transparent;
+	border-style:solid;
+	border-width:5px 0 5px 5px;
+	border-left-color:#cccccc;
+	margin-top:1px;
+	margin-right:-6px;
+}
+
+
+
+
+div.occ-nav-menu-offset, div.menu-button-wrap, #normal-dropdown {
+	margin: 50px 0 0 50px;
+}
+div.menu-button-wrap {
+	display: block;
+	padding: 0 15px 0 0;
+}
+
+button.menu-button {
+	background-color: #777;
+	border: none;
+	display: inline-block;
+	float: left;
+	font-size: 24px;
+	position: relative;
+	padding: 0 0 0 0;
+	line-height: 50px;
+	height: 50px;
+	width: 50px;
+	z-index: 2222;
+}
+button.menu-button:before { content: '\2630'; }
+button.menu-button.active:before {
+	content: '\00D7';
+	font-size: 42px;
+	line-height: 46px;
+}
+
+/*button:focus { outline: none; }*/
+/*div.occ-nav-menu-offset { margin: -20px 20px 20px -20px; }*/
+nav.occ-nav-menu {
+	background-color: #555;
+	display: none;
+	padding: 70px 20px 15px 20px;
+	position: absolute;
+	width: 250px;
+	z-index: 1111;
+}
+nav.occ-nav-menu ul {
+	clear: both;
+	display: block;
+	list-style-type: none;
+	margin: 0;
+	padding: 8px 0 0 0;
+}
+nav.occ-nav-menu ul li {
+	border-bottom: 1px solid #777;
+	margin-top: 5px;
+	padding-bottom: 4px;
+}
+nav.occ-nav-menu ul li a { color: #ddd; }
+nav.occ-nav-menu ul li.active { font-weight: bold; }
+nav.occ-nav-menu ul li.active a { color: #fff; }
+nav.occ-nav-menu ul li.dropdown-header {
+	color: #fff;
+	padding: 0;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: normal;
+	margin-top: 15px;
+	padding-bottom: 7px;
+}
+
+.nav-submenu { position:relative; }
+.nav-submenu>.nav-menu {
+	top:0;
+	left:100%;
+	margin-top:-6px;
+	margin-left:-1px;
+	-webkit-border-radius:0 6px 6px 6px;
+	-moz-border-radius:0 6px 6px 6px;
+	border-radius:0 6px 6px 6px;
+	background-color: #555;
+	display: none;
+	/*position: relative;*/
+}
+.nav-submenu:hover>.nav-menu { display:block; }
+.nav-submenu>a:after {
+	display:block;
+	content:" ";
+	float:right;
+	width:0;
+	height:0;
+	border-color:transparent;
+	border-style:solid;
+	border-width:5px 0 5px 5px;
+	border-left-color:#cccccc;
+	margin-top:5px;
+	margin-right:-10px;
+}
+.nav-submenu:hover>a:after { border-left-color:#ffffff; }
+/*.nav-submenu.pull-left { float:none; }*/
+/*.nav-submneu.pull-left>.nav-menu {
+	left:-100%;
+	margin-left:10px;
+	-webkit-border-radius:6px 0 6px 6px;
+	-moz-border-radius:6px 0 6px 6px;
+	border-radius:6px 0 6px 6px;
+}*/
+
+	</style>
+</head>
+<body>
+
+
+<main class="container">
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="occ-nav-menu-offset">
+				<nav class="occ-nav-menu">
+					<ul class="nav-menu">
+						<li class="dropdown-header">PORTFOLIO PAGES</li>
+						<li><a href="../PerformanceDashboard/index.html">Performance Monitor</a></li>
+						<li><a href="../PortfolioPerformance/index.html">Performance KPIs</a></li>
+						<li><a href="../Billing/index.html">Client Usage / Billing</a></li>
+						<li class="dropdown-header">SITE SPECIFIC</li>
+						<li class="nav-submenu dropdown">
+<!-- 							<form id="siteSelectionForm">
+								<input type="hidden" name="filter" value="DFW">
+							</form> -->
+							<!-- <a tabindex="-1" href="#">More options</a> -->
+							<button class="btn dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
+								<span class="pull-left">DFW</span>
+								<!-- <i class="fa fa-caret-down fa-lg pull-right"></i> -->
+							</button>
+							<ul class="nav-menu dropdown-menu" id="drop5">
+								<li><a tabindex="-1" href="#">Second level</a></li>
+								<li class="nav-submenu dropdown">
+									<!-- <a href="#">More..</a> -->
+									<button class="btn dropdown-toggle" type="button" id="menu6" data-toggle="dropdown">
+										<span class="pull-left">More...</span>
+									</button>
+									<ul class="nav-menu dropdown-menu" id="drop6">
+										<li><a href="#">3rd level</a></li>
+										<li><a href="#">3rd level</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Second level</a></li>
+								<li><a href="#">Second level</a></li>
+							</ul>
+						</li>
+						<li><a href="../SiteHealth/index.html">Site Monitor</a></li>
+						<li><a href="../SitePerformance/index.html">Site Performance</a></li>
+						<li><a href="../SiteElectricalOneLine/index.html">Site Electrical OneLine</a></li>
+						<li><a href="../SiteElectricalCapacityReview/index.html">Site Electrical Capacity Review</a></li>
+						<li><a href="../SiteMechanicalCapacityReview/index.html">Site Mechanical Capacity Review</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="menu-button-wrap">
+				<button class="menu-button"></button>
+			</div>
+		</div>
+
+
+
+
+		<div class="col-xs-6">
+			<div class="dropdown pull-left" id="normal-dropdown">
+				<form id="siteSelectionForm">
+					<input type="hidden" name="filter" value="Warning" id="hip">
+				</form>
+				<button class="btn dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
+					<span class="pull-left">DFW</span>
+					<i class="fa fa-caret-down fa-lg pull-right"></i>
+				</button>
+				<ul class="dropdown-menu singleselect-menu pull-right" id="drop5">
+					<li><a href="#">DFW</a></li>
+					<li><a href="#">PHX</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</main>
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->    
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			//Nav Menu Event listeners
+			$('button.menu-button').click(function(){
+				$(this).toggleClass('active'); //Toggle the "Active" class to switch button content, hamburger <-> times
+				$('nav.occ-nav-menu').slideToggle(); //Slides the main nav menu down
+			});
+
+		});
+	</script>
+</body>
+</html>
