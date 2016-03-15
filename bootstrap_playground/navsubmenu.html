@@ -20,7 +20,33 @@
 	<style type="text/css">
 
 
-div.occ-nav-menu-offset, div.menu-button-wrap {
+li.dropdown button {
+	background-color: #777;
+	border-radius: 0;
+	display: inline-block;
+	height: 24px;
+	min-width: 100px;
+	line-height: 0.9;
+}
+
+li.dropdown button:after {
+	display:block;
+	content:" ";
+	float:right;
+	width:0;
+	height:0;
+	border-color:transparent;
+	border-style:solid;
+	border-width:5px 0 5px 5px;
+	border-left-color:#cccccc;
+	margin-top:1px;
+	margin-right:-6px;
+}
+
+
+
+
+div.occ-nav-menu-offset, div.menu-button-wrap, #normal-dropdown {
 	margin: 50px 0 0 50px;
 }
 div.menu-button-wrap {
@@ -94,7 +120,7 @@ nav.occ-nav-menu ul li.dropdown-header {
 	border-radius:0 6px 6px 6px;
 	background-color: #555;
 	display: none;
-	position: relative;
+	/*position: relative;*/
 }
 .nav-submenu:hover>.nav-menu { display:block; }
 .nav-submenu>a:after {
@@ -111,69 +137,89 @@ nav.occ-nav-menu ul li.dropdown-header {
 	margin-right:-10px;
 }
 .nav-submenu:hover>a:after { border-left-color:#ffffff; }
-.nav-submenu.pull-left { float:none; }
-.nav-submneu.pull-left>.nav-menu {
+/*.nav-submenu.pull-left { float:none; }*/
+/*.nav-submneu.pull-left>.nav-menu {
 	left:-100%;
 	margin-left:10px;
 	-webkit-border-radius:6px 0 6px 6px;
 	-moz-border-radius:6px 0 6px 6px;
 	border-radius:6px 0 6px 6px;
-}
+}*/
 
 	</style>
 </head>
 <body>
-	<div class="occ-nav-menu-offset">
-		<nav class="occ-nav-menu">
-			<ul class="nav-menu">
-				<li class="dropdown-header">PORTFOLIO PAGES</li>
-				<li><a href="../PerformanceDashboard/index.html">Performance Monitor</a></li>
-				<li><a href="../PortfolioPerformance/index.html">Performance KPIs</a></li>
-				<li><a href="../Billing/index.html">Client Usage / Billing</a></li>
-				<li class="dropdown-header">SITE SPECIFIC</li>
-<!-- 				<li>
-					<div class="dropdown pull-left">
-						<form id="siteSelectionForm">
-							<input type="hidden" name="filter" value="Warning" id="hip">
-						</form>
-						<button class="btn dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
-							<span class="pull-left">DFW</span>
-							<i class="fa fa-caret-down fa-lg pull-right"></i>
-						</button>
-						<ul class="dropdown-menu singleselect-menu pull-right" id="drop5">
-							<li><a href="#">DFW</a></li>
-							<li><a href="#">PHX</a></li>
-						</ul>
-					</div>
-				</li> -->
 
 
-				<li class="nav-submenu">
-					<a tabindex="-1" href="#">More options</a>
+<main class="container">
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="occ-nav-menu-offset">
+				<nav class="occ-nav-menu">
 					<ul class="nav-menu">
-						<li><a tabindex="-1" href="#">Second level</a></li>
-						<li class="nav-submenu">
-							<a href="#">More..</a>
-							<ul class="nav-menu">
-								<li><a href="#">3rd level</a></li>
-								<li><a href="#">3rd level</a></li>
+						<li class="dropdown-header">PORTFOLIO PAGES</li>
+						<li><a href="../PerformanceDashboard/index.html">Performance Monitor</a></li>
+						<li><a href="../PortfolioPerformance/index.html">Performance KPIs</a></li>
+						<li><a href="../Billing/index.html">Client Usage / Billing</a></li>
+						<li class="dropdown-header">SITE SPECIFIC</li>
+						<li class="nav-submenu dropdown">
+<!-- 							<form id="siteSelectionForm">
+								<input type="hidden" name="filter" value="DFW">
+							</form> -->
+							<!-- <a tabindex="-1" href="#">More options</a> -->
+							<button class="btn dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
+								<span class="pull-left">DFW</span>
+								<!-- <i class="fa fa-caret-down fa-lg pull-right"></i> -->
+							</button>
+							<ul class="nav-menu dropdown-menu" id="drop5">
+								<li><a tabindex="-1" href="#">Second level</a></li>
+								<li class="nav-submenu dropdown">
+									<!-- <a href="#">More..</a> -->
+									<button class="btn dropdown-toggle" type="button" id="menu6" data-toggle="dropdown">
+										<span class="pull-left">More...</span>
+									</button>
+									<ul class="nav-menu dropdown-menu" id="drop6">
+										<li><a href="#">3rd level</a></li>
+										<li><a href="#">3rd level</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Second level</a></li>
+								<li><a href="#">Second level</a></li>
 							</ul>
 						</li>
-						<li><a href="#">Second level</a></li>
-						<li><a href="#">Second level</a></li>
+						<li><a href="../SiteHealth/index.html">Site Monitor</a></li>
+						<li><a href="../SitePerformance/index.html">Site Performance</a></li>
+						<li><a href="../SiteElectricalOneLine/index.html">Site Electrical OneLine</a></li>
+						<li><a href="../SiteElectricalCapacityReview/index.html">Site Electrical Capacity Review</a></li>
+						<li><a href="../SiteMechanicalCapacityReview/index.html">Site Mechanical Capacity Review</a></li>
 					</ul>
-				</li>
-				<li><a href="../SiteHealth/index.html">Site Monitor</a></li>
-				<li><a href="../SitePerformance/index.html">Site Performance</a></li>
-				<li><a href="../SiteElectricalOneLine/index.html">Site Electrical OneLine</a></li>
-				<li><a href="../SiteElectricalCapacityReview/index.html">Site Electrical Capacity Review</a></li>
-				<li><a href="../SiteMechanicalCapacityReview/index.html">Site Mechanical Capacity Review</a></li>
-			</ul>
-		</nav>
+				</nav>
+			</div>
+			<div class="menu-button-wrap">
+				<button class="menu-button"></button>
+			</div>
+		</div>
+
+
+
+
+		<div class="col-xs-6">
+			<div class="dropdown pull-left" id="normal-dropdown">
+				<form id="siteSelectionForm">
+					<input type="hidden" name="filter" value="Warning" id="hip">
+				</form>
+				<button class="btn dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
+					<span class="pull-left">DFW</span>
+					<i class="fa fa-caret-down fa-lg pull-right"></i>
+				</button>
+				<ul class="dropdown-menu singleselect-menu pull-right" id="drop5">
+					<li><a href="#">DFW</a></li>
+					<li><a href="#">PHX</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
-	<div class="menu-button-wrap">
-		<button class="menu-button"></button>
-	</div>
+</main>
 
 <!-- SCRIPTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->    
