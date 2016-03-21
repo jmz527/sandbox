@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<title>Awesomplete Sandbox</title>
+	<link rel="stylesheet" href="awesomplete-gh-pages/prism/prism.css" />
+	<link rel="stylesheet" href="awesomplete-gh-pages/awesomplete.css" />
+	<link rel="stylesheet" href="awesomplete-gh-pages/style.css" />
+
+	<script src="awesomplete-gh-pages/awesomplete.js"></script>
+	<script src="awesomplete-gh-pages/index.js"></script>
+
+</head>
+<body>
+
+<header>
+	<h1>Awesomplete</h1>
+</header>
+
+
+<!-- <section>
+	<h2>Using Datalist</h2>
+	<label>
+		<input class="awesomplete" list="mylist" />
+		<datalist id="mylist">
+			<option>Ada</option>
+			<option>Java</option>
+			<option>JavaScript</option>
+			<option>Brainfuck</option>
+			<option>LOLCODE</option>
+			<option>Node.js</option>
+			<option>Ruby on Rails</option>
+		</datalist>
+	</label>
+</section> -->
+
+<section>
+	<h2>Using Init Function</h2>
+	<label>
+		<input class="awesomplete" id="myinput"></input>
+	</label>
+</section>
+
+
+<script type="text/javascript">
+	
+var input = document.getElementById("myinput");
+
+// Show label but insert value into the input:
+var initTest = new Awesomplete(input, {
+	list: [
+		{ label: "Belarus", value: "BY", url: "http://sanger.dk/" },
+		{ label: "China", value: "CN", url: "http://sanger.dk/" },
+		{ label: "United States", value: "US", url: "http://sanger.dk/" }
+	],
+
+});
+
+// window.addEventListener("awesomplete-select", function(e) {
+// 	// e.preventDefault();
+
+// 	var selection = $(initTest)._list[0].url;
+// 	console.log(selection);
+// }, false);
+
+$(input);
+
+// .on("awesomplete-select", function(text, input) {
+// 	console.log(text);
+// 	console.log(input);
+// });
+
+
+</script>
+
+</body>
+</html>

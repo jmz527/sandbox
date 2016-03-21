@@ -206,7 +206,7 @@ nav.occ-nav-menu ul li.dropdown-header {
 		<div class="col-xs-6">
 			<div class="dropdown pull-left" id="normal-dropdown">
 				<form id="siteSelectionForm">
-					<input type="hidden" name="filter" value="Warning" id="hip">
+					<input type="hidden" name="filter" value="DFW" id="hip">
 				</form>
 				<button class="btn dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
 					<span class="pull-left">DFW</span>
@@ -234,6 +234,13 @@ nav.occ-nav-menu ul li.dropdown-header {
 				$(this).toggleClass('active'); //Toggle the "Active" class to switch button content, hamburger <-> times
 				$('nav.occ-nav-menu').slideToggle(); //Slides the main nav menu down
 			});
+
+			//Dropdown Menu's
+			$('.dropdown li a').click(function() {
+				$(this).parents('.dropdown').find('.btn span').html($(this).text());
+				$(this).parents('.dropdown').find('form input').val($(this).text());
+			});
+
 
 		});
 	</script>
