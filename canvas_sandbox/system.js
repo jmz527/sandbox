@@ -36,8 +36,9 @@ var Engine = { //main Engine object
 		Engine.Canvas.height = 600;
 		$('body').append(Engine.Canvas);
 
-		Engine.AddClick(); //start the main click event
-		Engine.StartIncrement(); //start the auto coins	
+		// Engine.AddClick(); //start the main click event
+		// Engine.StartIncrement(); //start the auto coins	
+
 		Engine.Canvas.Context = Engine.Canvas.getContext('2d');
 		Engine.GameLoop();
 	},
@@ -65,15 +66,23 @@ var Engine = { //main Engine object
 	},
 	Draw: function() { //this is where we will draw all the information for the game!
 		Engine.Canvas.Context.clearRect(0,0,Engine.Canvas.width,Engine.Canvas.height); //clear the frame
+
+		Engine.Pattern(0, 0, 860, 660, "https://mdn.mozillademos.org/files/222/Canvas_createpattern.png");
+
+		for (var y = 20; y < 560; y+= 40) {
+			for (var x = 20; x < 760; x+= 40) {
+				Engine.Rect(x, y, 20, 20, "teal");
+			}	
+		}
 		
 		/** click button! **/
-		Engine.Rect(Engine.Elements.ClickBox.x, Engine.Elements.ClickBox.y, Engine.Elements.ClickBox.w, Engine.Elements.ClickBox.h, "silver"); //use the Rect function to draw the click button!
-		Engine.Text("CLICK ME", 330, 210, "Calibri", 28, "orange"); //click button text
+		// Engine.Rect(Engine.Elements.ClickBox.x, Engine.Elements.ClickBox.y, Engine.Elements.ClickBox.w, Engine.Elements.ClickBox.h, "silver"); //use the Rect function to draw the click button!
+		// Engine.Text("CLICK ME", 330, 210, "Calibri", 28, "orange"); //click button text
 		
 		/** display/hud **/
-		Engine.Text(Engine.Player.Coins + " Coins", 16, 32, "Calibri", 20, "blue"); //coin display
-		Engine.Text(Engine.Player.PerClick + " Coins per click", 16, 56, "Calibri", 20, "blue"); //per click display
-		Engine.Text(Engine.Player.PerIncrement + " Coins every " + (Engine.Player.Increment / 1000) + "secs", 16, 80, "Calibri", 20, "blue"); //increment display
+		// Engine.Text(Engine.Player.Coins + " Coins", 16, 32, "Calibri", 20, "blue"); //coin display
+		// Engine.Text(Engine.Player.PerClick + " Coins per click", 16, 56, "Calibri", 20, "blue"); //per click display
+		// Engine.Text(Engine.Player.PerIncrement + " Coins every " + (Engine.Player.Increment / 1000) + "secs", 16, 80, "Calibri", 20, "blue"); //increment display
 		
 		Engine.GameLoop(); //re-iterate back to gameloop
 	},
@@ -97,6 +106,15 @@ var Engine = { //main Engine object
 		}
 		Engine.Canvas.Context.font = size + "px " + font;
 		Engine.Canvas.Context.fillText(text,x,y);
+	},
+	Pattern: function(x, y, w, h, src) {
+		var img = new Image();
+		img.src = src;
+		// img.onLoad() {
+			var pattern = Engine.Canvas.Context.createPattern(img, 'repeat');
+			Engine.Canvas.Context.fillStyle = pattern;
+			Engine.Canvas.Context.fillRect(x, y, w, h);
+		// };
 	}
 };
 
