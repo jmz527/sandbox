@@ -1,3 +1,5 @@
+// http://incremental.barriereader.co.uk/
+
 var Engine = { //main Engine object
 
 	//VARIABLES
@@ -5,12 +7,23 @@ var Engine = { //main Engine object
 	Player: { //player object
 		Coins: 0, //how many coins player has
 		PerClick: 1, //how many coins per click
-		PerIncrement: 0, //how many coins per increment
+		PerIncrement: 1, //how many coins per increment
 		Increment: 2000 //2sec increment
 	},
 	Canvas: { //canvas object
 		Element: null, //canvas element
 		Context: null //will be 2d context
+	},
+	Timers: { //this holds all sorts of timers
+		Increment: null, //this is the main coin increment
+	},
+
+	/** elements **/
+	Elements: { //this holds the elements
+		ClickBox: { //this is our main click element
+			x: 320, y: 180, //position
+			w: 128, h: 128 //size
+		}
 	},
 
 
@@ -23,30 +36,67 @@ var Engine = { //main Engine object
 		Engine.Canvas.height = 600;
 		$('body').append(Engine.Canvas);
 
+		Engine.AddClick(); //start the main click event
+		Engine.StartIncrement(); //start the auto coins	
 		Engine.Canvas.Context = Engine.Canvas.getContext('2d');
 		Engine.GameLoop();
+	},
+
+	/** event handlers **/
+	StartIncrement: function() { //automatic coins
+		Engine.Timers.Increment = setInterval(function() { //set the Timer as an interval
+			Engine.Player.Coins += Engine.Player.PerIncrement;
+		}, Engine.Player.Increment); //set to the players increment time
+	},
+	AddClick: function() { //the click function
+		$(Engine.Canvas).on('click', function(m) { //we add a click to the Engine.Canvas object (note the 'm')
+			if (m.pageX >= Engine.Elements.ClickBox.x && m.pageX <= (Engine.Elements.ClickBox.x + Engine.Elements.ClickBox.w)) { //check to see if the click is within the box X co-ordinates
+				if (m.pageY >= Engine.Elements.ClickBox.y && m.pageY <= (Engine.Elements.ClickBox.y + Engine.Elements.ClickBox.h)) { //check to see if the click is within the box Y co-ordinates
+					Engine.Player.Coins += Engine.Player.PerClick; //increase the coins by the PerClick amount!
+				}
+			}
+			return false;
+		});
 	},
 
 	GameRunning: null,
 	Update: function() {
 		Engine.Draw();
 	},
-	Draw: function() {
-		Engine.Canvas.Context.clearRect(0, 0, Engine.Canvas.width, Engine.Canvas.height);
-		Engine.Rect(50, 64, 128, 32, "red");
-		Engine.GameLoop();
+	Draw: function() { //this is where we will draw all the information for the game!
+		Engine.Canvas.Context.clearRect(0,0,Engine.Canvas.width,Engine.Canvas.height); //clear the frame
+		
+		/** click button! **/
+		Engine.Rect(Engine.Elements.ClickBox.x, Engine.Elements.ClickBox.y, Engine.Elements.ClickBox.w, Engine.Elements.ClickBox.h, "silver"); //use the Rect function to draw the click button!
+		Engine.Text("CLICK ME", 330, 210, "Calibri", 28, "orange"); //click button text
+		
+		/** display/hud **/
+		Engine.Text(Engine.Player.Coins + " Coins", 16, 32, "Calibri", 20, "blue"); //coin display
+		Engine.Text(Engine.Player.PerClick + " Coins per click", 16, 56, "Calibri", 20, "blue"); //per click display
+		Engine.Text(Engine.Player.PerIncrement + " Coins every " + (Engine.Player.Increment / 1000) + "secs", 16, 80, "Calibri", 20, "blue"); //increment display
+		
+		Engine.GameLoop(); //re-iterate back to gameloop
 	},
 	GameLoop: function() {
 		Engine.GameRunning = setTimeout(function() {
+			// console.log('test');
 			requestAnimFrame(Engine.Update, Engine.Canvas);
 		}, 10);
 	},
 
+	/** drawing routines **/
 	Rect: function(x, y, w, h, col) {
 		if (col.length > 0) {
 			Engine.Canvas.Context.fillStyle = col;
 		}
 		Engine.Canvas.Context.fillRect(x, y, w, h);
+	},
+	Text: function(text, x, y, font, size, col) { //the text, x position, y position, font (arial, verdana etc), font size and colour
+		if (col.length > 0) { //if you have included a colour
+			Engine.Canvas.Context.fillStyle = col; //add the colour!
+		}
+		Engine.Canvas.Context.font = size + "px " + font;
+		Engine.Canvas.Context.fillText(text,x,y);
 	}
 };
 
