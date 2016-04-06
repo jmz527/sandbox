@@ -42,27 +42,22 @@ window.onload = function() {
 	var tick = null; //this is a new variable so we can pause/stop the game
 
 	var tick = function() {
-
 		setTimeout(function() {
 
 			context.clearRect(0, 0, 100, 100); //clear the frame
 
 			if (sx >= 900) { sx = 0; }
-
 			sprite.onload = function() {
 				context.drawImage(sprite, sx, sy, swidth, sheight, cx, cy, 100, 100);
 			}
 			context.drawImage(sprite, sx, sy, swidth, sheight, cx, cy, 100, 100);
 
 			sx += 100;
-
 			// console.log('tick');
 			requestAnimationFrame(tick);
 
 		}, 100);
-
 	}
-
 	tick();
 }
 
