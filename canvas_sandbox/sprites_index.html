@@ -37,6 +37,8 @@ window.onload = function() {
 	var sy = 0;
 	var swidth = 100;
 	var sheight = 100;
+	var width = 100;
+	var height = 100;
 	sprite.src = "assets/sprites/coin.png";
 
 	var tick = null; //this is a new variable so we can pause/stop the game
@@ -48,9 +50,9 @@ window.onload = function() {
 
 			if (sx >= 900) { sx = 0; }
 			sprite.onload = function() {
-				context.drawImage(sprite, sx, sy, swidth, sheight, cx, cy, 100, 100);
+				context.drawImage(sprite, sx, sy, swidth, sheight, cx, cy, width, height);
 			}
-			context.drawImage(sprite, sx, sy, swidth, sheight, cx, cy, 100, 100);
+			context.drawImage(sprite, sx, sy, swidth, sheight, cx, cy, width, height);
 
 			sx += 100;
 			// console.log('tick');
