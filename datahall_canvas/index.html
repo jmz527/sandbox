@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DataHall Canvas Test</title>
+
+	<style type="text/css">
+
+	body { background-color: #ccc; }
+
+	/*h1 { text-align: center; }*/
+
+	canvas { background-color: #fff; }
+
+	div.canvas-container {
+		width: 900px;
+		height: 500px;
+		/*padding: 0 15%;*/
+	}
+
+	canvas#canvas { width: 100%; height: 100%; }
+
+	</style>
+</head>
+<body>
+	<h1>DataHall Canvas Test</h1>
+	<div class="canvas-container">
+		<canvas id="canvas"></canvas>
+	</div>
+
+	<script type="text/javascript">
+
+var dataHall = new Object();
+
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+
+function renderCanvas() {
+	context.clearRect(0, 0, 900, 500);
+
+	rx = 0;
+
+	for (var i = 0; i < 30; i++) {
+		rx = 30 * i;
+		Rect(rx, 0, 20, 500, 'lightblue');
+	}
+
+	// context.fillStyle = 'lightblue';
+	// context.fillRect(0, 0, 50, 500);
+}
+renderCanvas();
+
+
+function Rect(x,y,w,h,col,opac) {
+	if (col.length > 0) { //if you have included a colour
+		context.fillStyle = col; //add the colour!
+	}
+	if (opac > 0) { //if opacity exists
+		context.globalAlpha = opac; //reset opacity
+	}
+	context.fillRect(x,y,w,h); //draw the rectangle
+	context.globalAlpha = 1.0;
+}
+
+
+
+
+	</script>
+</body>
+</html>
