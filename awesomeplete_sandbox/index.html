@@ -50,21 +50,49 @@ var input = document.getElementById("myinput");
 // Show label but insert value into the input:
 var initTest = new Awesomplete(input, {
 	list: [
-		{ label: "Belarus", value: "BY", url: "http://sanger.dk/" },
-		{ label: "China", value: "CN", url: "http://sanger.dk/" },
-		{ label: "United States", value: "US", url: "http://sanger.dk/" }
+		{ label: "Belarus", value: "http://reddit.com/" },
+		{ label: "China", value: "http://sanger.dk/" },
+		{ label: "United States", value: "http://sanger.dk/" }
 	],
+	// data: function(item, input) {
+	// 	return { label: item.label, value: item.value };
+	// },
+	// replace: function(text) {
+	// 	// console.log(this.input.value);
+	// 	// console.log(text);
+	// 	this.input.value = text;
+	// }
 
 });
 
-// window.addEventListener("awesomplete-select", function(e) {
-// 	// e.preventDefault();
+window.addEventListener("awesomplete-select", function(e) {
+	// e.preventDefault();
 
-// 	var selection = $(initTest)._list[0].url;
-// 	console.log(selection);
-// }, false);
+	var arr = $(initTest)._list;
+	var url = e.text.value;
 
-$(input);
+	// function findUrl(arr) {
+	// 	arr.forEach(function(item) {
+	// 		// console.log(item.label);
+	// 		// console.log(e.text.label);
+
+	// 		if (e.text.label === item.label) {
+	// 			// console.log(item.url);
+	// 			url = item.url;
+	// 		}
+	// 	});
+	// };
+	// findUrl(arr);
+
+	// console.log(e.text.value);
+	// console.log((url)?'true':'false');
+	
+	if (url) {
+		window.location.replace(url);
+	}
+}, false);
+
+// $(input);
 
 // .on("awesomplete-select", function(text, input) {
 // 	console.log(text);
