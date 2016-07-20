@@ -24,7 +24,7 @@ function handleFileSelect(e) {
 		file = files[i];
 
 		tmp_files.push(file);
-	}	
+	}
 	// console.log(tmp_files);
 
 	newFormFiles();
