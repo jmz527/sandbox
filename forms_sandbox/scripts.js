@@ -1,5 +1,6 @@
 var selDiv = "", fileInput, files;
 
+
 fileInput = document.getElementById("attachments-input");
 files = $(fileInput)[0].files;
 
@@ -59,6 +60,13 @@ function setRemoveListeners() {
 	});
 }
 
+$(document).ready(function(){
+    u = 'http://localhost:8000';
+    jQuery.get(u, function(res){
+      $("#data").html(res.responseText)
+    });
+});
+
 $('#form-submit').click(function(e) {
 	e.preventDefault();
 
@@ -70,17 +78,29 @@ $('#form-submit').click(function(e) {
 
 	console.log(form_files);
 
-	// $.ajax({
-	// 	type: "POST",
-	// 	// url: "http://google.com",
-	// 	cache: false,
-	// 	enctype: 'multipart/form-data',
-	// 	processData: false,
-	// 	contentType: false,
-	// 	data: data,
-	// 	success: function (data) {
-	// 		alert('success!');
-	// 	}
-	// });
+// var data = {"name":"John Doe"}
+// $.ajax({
+//     dataType : "json",
+//     contentType: "application/json; charset=utf-8",
+//     data : JSON.stringify(data),
+//     success : function(result) {
+//         alert(result.success); // result is an object which is created from the returned JSON
+//     },
+// });
+
+	$.ajax({
+		type: "POST",
+		// url: 'http://localhost:8000',
+		cache: false,
+		enctype: 'multipart/form-data',
+		processData: false,
+		// contentType: false,
+    dataType : "json",
+    contentType: "application/json; charset=utf-8",
+    data : JSON.stringify(data),
+		success: function (data) {
+			alert('success!');
+		}
+	});
 });
 
