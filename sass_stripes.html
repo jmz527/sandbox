@@ -1,0 +1,189 @@
+<!DOCTYPE html lang="en">
+<html>
+  <head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>SASS LOOPS</title>
+    <meta name="description" content="">
+    <meta name="author" content="JMZ527">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT + ICONS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"><!-- Compiled and minified CSS -->
+
+    <style>
+
+ul { margin: 0; }
+
+#root { width: 50%; background-color: teal;}
+
+.asset-row {
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+
+.odd { background-color: #f7f7f7; }
+.even { background-color: #333333; }
+
+
+.material-icons {
+  display: inline-block;
+  vertical-align: middle;
+}
+.asset-delete-icon { float: right; }
+    </style>
+
+  </head>
+  <body>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div id="root">
+
+      <div class="row assets-inner">
+        <div class="assets-tree-container">
+          <div class="assets-container">
+            <div>
+              <div>
+                <div class="asset-row asset-root level-0 has-children even" draggable="true" style="font-weight: bold; display: block;">
+                    <i class="material-icons">language</i>  <i class="material-icons">add</i>Assets
+                  <div></div>
+                </div>
+              </div>
+              <ul class="asset-children-container">
+                <li class="asset-row-container group">
+                  <div>
+                    <div>
+                      <div class="asset-row level-1 has-children odd" draggable="true" style="font-weight: normal; display: block;">
+                          <i class="material-icons">language</i>  <i class="material-icons">add</i>Alice<i class="material-icons asset-delete-icon">delete</i>
+                      </div>
+                    </div>
+                    <ul class="asset-children-container">
+                      <li class="asset-row-container group">
+                        <div>
+                          <div>
+                            <div class="asset-row level-2 has-children even" draggable="true" style="font-weight: normal; display: block;">
+                                <i class="material-icons">language</i>  <i class="material-icons">add</i>Alligator<i class="material-icons asset-delete-icon">delete</i>
+                            </div>
+                          </div>
+                          <ul class="asset-children-container">
+                            <li class="asset-row-container group">
+                              <div>
+                                <div>
+                                  <div class="asset-row level-3 no-children odd" draggable="true" style="font-weight: normal; display: block;">
+                                    <div></div>  <i class="material-icons">add</i>Armenia<i class="material-icons asset-delete-icon">delete</i>
+                                  </div>
+                                </div>
+                                <ul class="asset-children-container"></ul>
+                              </div>
+                            </li>
+                            <li class="asset-row-container group">
+                              <div>
+                                <div>
+                                  <div class="asset-row level-3 no-children even" draggable="true" style="font-weight: normal; display: block;">
+                                    <div></div>  <i class="material-icons">add</i>Belarus<i class="material-icons asset-delete-icon">delete</i>
+                                  </div>
+                                </div>
+                                <ul class="asset-children-container"></ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li class="asset-row-container group">
+                        <div>
+                          <div>
+                            <div class="asset-row level-2 no-children odd" draggable="true" style="font-weight: normal; display: block;">
+                              <div></div>  <i class="material-icons">add</i>Billiards<i class="material-icons asset-delete-icon">delete</i>
+                            </div>
+                          </div>
+                          <ul class="asset-children-container"></ul>
+                        </div>
+                      </li>
+                      <li class="asset-row-container group">
+                        <div>
+                          <div>
+                            <div class="asset-row level-2 has-children even" draggable="true" style="font-weight: normal; display: block;">
+                                <i class="material-icons">language</i>  <i class="material-icons">add</i>Cobra<i class="material-icons asset-delete-icon">delete</i>
+                            </div>
+                          </div>
+                          <ul class="asset-children-container">
+                            <li class="asset-row-container group">
+                              <div>
+                                <div>
+                                  <div class="asset-row level-3 has-children odd" draggable="true" style="font-weight: normal; display: block;">
+                                      <i class="material-icons">language</i>  <i class="material-icons">add</i>Asparagus<i class="material-icons asset-delete-icon">delete</i>
+                                  </div>
+                                </div>
+                                <ul class="asset-children-container">
+                                  <li class="asset-row-container group">
+                                    <div>
+                                      <div>
+                                        <div class="asset-row level-4 no-children even" draggable="true" style="font-weight: normal; display: block;">
+                                          <div></div>  <i class="material-icons">add</i>All Quiet on the Western Front<i class="material-icons asset-delete-icon">delete</i>
+                                        </div>
+                                      </div>
+                                      <ul class="asset-children-container"></ul>
+                                    </div>
+                                  </li>
+                                  <li class="asset-row-container group">
+                                    <div>
+                                      <div>
+                                        <div class="asset-row level-4 has-children odd" draggable="true" style="font-weight: normal; display: block;">
+                                            <i class="material-icons">language</i>  <i class="material-icons">add</i>Bambi<i class="material-icons asset-delete-icon">delete</i>
+                                        </div>
+                                      </div>
+                                      <ul class="asset-children-container">
+                                        <li class="asset-row-container group">
+                                          <div>
+                                            <div>
+                                              <div class="asset-row level-5 no-children even" draggable="true" style="font-weight: normal; display: block;">
+                                                <div></div>  <i class="material-icons">add</i>Abba<i class="material-icons asset-delete-icon">delete</i>
+                                              </div>
+                                            </div>
+                                            <ul class="asset-children-container"></ul>
+                                          </div>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- SCRIPTS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script><!-- Compiled and minified JavaScript -->
+
+    <!-- End Document
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
