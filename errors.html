@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+	<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Errors</title>
+
+	<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+	<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+
+body {
+	background-color: teal;
+}
+
+  </style>
+
+	<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+	<!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  </head>
+  <body>
+	<header></header>
+	<main class="main">
+		
+		
+	</main>
+	<footer></footer>
+
+	<!-- SCRIPTS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script>
+
+  var num = "string";
+
+  // console.log(nub);
+
+  // num.method();
+
+  // var arr = new Array(-1);
+
+	// console.log('hello world"');
+
+	console.group('Da Group');
+		console.log('hello');
+		console.info('facts');
+		console.warn('tisk tisk');
+		console.error('shits on fire, yo');
+	console.groupEnd();
+
+	console.table({
+		"one": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+		"two": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+		"three": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+	});
+	console.assert(true, 'Assertion is true');
+
+	try {
+		// Try to execute this code
+		throw new Error('message');
+		console.log('try');
+	} catch (exception) {
+		// If there is an exception, run this code
+		console.log('catch');
+	} finally {
+		// This always gets executed
+		console.log('finally');
+	}
+
+	
+
+  </script>
+
+	<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  </body>
+</html>
