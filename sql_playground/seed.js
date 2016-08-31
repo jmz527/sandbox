@@ -1,27 +1,45 @@
-var pg = require('pg');
 
-// instantiate a new client
-// the client will read connection information from
-// the same environment variables used by postgres cli tools
-var client = new pg.Client();
+var sqlite3 = require('sqlite3').verbose(),
+    fs = require("fs"),
+    db = new sqlite3.Database('data.db');
 
-// connect to our database
-client.connect(function (err) {
-  if (err) throw err;
+if (fs.existsSync('data.json')) {
+  var data, db, assets=[], duplicateEntries = 0, invalidEntries = 0;
+      data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+      // console.log(data.length + ' objects within JSON array.');
+      console.log(data.assets);
 
-  // execute a query on our database
-  client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
-    if (err) throw err;
+}
 
-    // just print the result to the console
-    console.log(result.rows[0]); // outputs: { name: 'brianc' }
 
-    // disconnect the client
-    client.end(function (err) {
-      if (err) throw err;
-    });
-  });
-});
+
+
+
+
+// var pg = require('pg');
+
+// // instantiate a new client
+// // the client will read connection information from
+// // the same environment variables used by postgres cli tools
+// var client = new pg.Client();
+
+// // connect to our database
+// client.connect(function (err) {
+//   if (err) throw err;
+
+//   // execute a query on our database
+//   client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
+//     if (err) throw err;
+
+//     // just print the result to the console
+//     console.log(result.rows[0]); // outputs: { name: 'brianc' }
+
+//     // disconnect the client
+//     client.end(function (err) {
+//       if (err) throw err;
+//     });
+//   });
+// });
 
 
 
