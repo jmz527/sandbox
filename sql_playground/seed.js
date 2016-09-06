@@ -4,10 +4,50 @@ var sqlite3 = require('sqlite3').verbose(),
     db = new sqlite3.Database('data.db');
 
 if (fs.existsSync('data.json')) {
-  var data, db, assets=[], duplicateEntries = 0, invalidEntries = 0;
+  var data, db, assets=[], points=[], duplicateEntries = 0, invalidEntries = 0;
       data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
       // console.log(data.length + ' objects within JSON array.');
-      console.log(data.assets);
+      // console.log(data.assets);
+
+      newAsset(data.assets);
+
+      // console.log(data.assets.points);
+      // console.log(data.assets.children);
+
+
+
+  // Assets
+  function newAsset(arr) {
+    arr.forEach(function(asset) {
+      // console.log(asset);
+
+      // assets.push(asset);
+
+
+
+      if (asset.points.length>0) {
+        newPoint(asset.points);
+      }
+
+      if (asset.children.length>0) {
+        newAsset(asset.children);
+      }
+
+    });
+  }
+
+  // Points
+  function newPoint(arr) {
+    arr.forEach(function(point) {
+      // console.log(point);
+
+
+      points.push(point);
+    });
+  }
+
+  // console.log(assets);
+  // console.log(points);
 
 }
 
