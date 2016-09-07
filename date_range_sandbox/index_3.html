@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+  <link rel="stylesheet" href="jquery/daterangepicker.css">
+
+  <!-- Include Required Prerequisites -->
+  <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+  <!-- Include Date Range Picker -->
+  <script type="text/javascript" src="jquery/jquery.daterangepicker.js"></script>
+
+</head>
+<body class="container">
+
+<div class="col-xs-6 col-xs-offset-3">
+  <h1>JQUERY DATE RANGE PICKER!!!</h1>
+  <form>
+    <input id="daterange" class="form-control" type="text" name="daterange" value="01/01/2015 - 01/31/2015">
+    <input class="form-control" type="submit" name="submit">
+  </form>
+</div>
+
+
+<script type="text/javascript">
+  $('#daterange').dateRangePicker();
+</script>
+</body>
+</html>
