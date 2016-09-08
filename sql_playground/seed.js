@@ -1,27 +1,85 @@
-var pg = require('pg');
 
-// instantiate a new client
-// the client will read connection information from
-// the same environment variables used by postgres cli tools
-var client = new pg.Client();
+var sqlite3 = require('sqlite3').verbose(),
+    fs = require("fs"),
+    db = new sqlite3.Database('data.db');
 
-// connect to our database
-client.connect(function (err) {
-  if (err) throw err;
+if (fs.existsSync('data.json')) {
+  var data, db, assets=[], points=[], duplicateEntries = 0, invalidEntries = 0;
+      data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+      // console.log(data.length + ' objects within JSON array.');
+      // console.log(data.assets);
 
-  // execute a query on our database
-  client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
-    if (err) throw err;
+      newAsset(data.assets);
 
-    // just print the result to the console
-    console.log(result.rows[0]); // outputs: { name: 'brianc' }
+      // console.log(data.assets.points);
+      // console.log(data.assets.children);
 
-    // disconnect the client
-    client.end(function (err) {
-      if (err) throw err;
+
+
+  // Assets
+  function newAsset(arr) {
+    arr.forEach(function(asset) {
+      // console.log(asset);
+
+      // assets.push(asset);
+
+
+
+      if (asset.points.length>0) {
+        newPoint(asset.points);
+      }
+
+      if (asset.children.length>0) {
+        newAsset(asset.children);
+      }
+
     });
-  });
-});
+  }
+
+  // Points
+  function newPoint(arr) {
+    arr.forEach(function(point) {
+      // console.log(point);
+
+
+      points.push(point);
+    });
+  }
+
+  // console.log(assets);
+  // console.log(points);
+
+}
+
+
+
+
+
+
+// var pg = require('pg');
+
+// // instantiate a new client
+// // the client will read connection information from
+// // the same environment variables used by postgres cli tools
+// var client = new pg.Client();
+
+// // connect to our database
+// client.connect(function (err) {
+//   if (err) throw err;
+
+//   // execute a query on our database
+//   client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
+//     if (err) throw err;
+
+//     // just print the result to the console
+//     console.log(result.rows[0]); // outputs: { name: 'brianc' }
+
+//     // disconnect the client
+//     client.end(function (err) {
+//       if (err) throw err;
+//     });
+//   });
+// });
 
 
 

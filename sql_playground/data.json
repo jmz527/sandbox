@@ -2146,12 +2146,12 @@
                                 "unitClass": "Electric Potential",
                                 "value": 110,
                                 "clonePoint": {"userKey": 0, "assetKey": null}
-                              },
+                              }
 
                             ],
                             "acceptsNewPoints": false,
                             "collectData": true,
-                            "children": [],
+                            "children": []
                           }
                         ]
                       }
