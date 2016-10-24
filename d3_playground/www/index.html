@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+
+<!-- FONTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<!-- FAVICONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </head>
+  <body>
+
+
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+
+  <script>
+
+      //Width and height
+      var w = 500;
+      var h = 100;
+      var barPadding = 1;
+      var scale = d3.scaleLinear()
+                    .domain([0, 500])
+                    .range([0, 100]);
+
+      d3.csv("bills.csv", function(data) {
+        // console.log(data);
+
+        // var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+        //         11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+
+        // var dataset = data;
+
+        // console.log(dataset);
+
+        var dataset = data.map(function(d) {
+          return d.Electricity;
+        });
+
+
+        //Create SVG element
+        var svg = d3.select("body")
+              .append("svg")
+              .attr("width", w)
+              .attr("height", h);
+
+        svg.selectAll("rect")
+           .data(dataset)
+           .enter()
+           .append("rect")
+           .attr("x", function(d, i) {
+              return i * (w / dataset.length);
+           })
+           .attr("y", function(d) {
+              return h - scale(d);
+           })
+           .attr("width", ((w / dataset.length) / 2) - barPadding)
+           .attr("height", function(d) {
+              return scale(d);
+           })
+           .attr("fill", '#58cfe9');
+
+        // svg.selectAll("rect")
+        //    .data(dataset)
+        //    .enter()
+        //    .append("rect")
+        //    .attr("x", function(d, i) {
+        //       return (i * (w / dataset.length)) + ((w / dataset.length) / 2);
+        //    })
+        //    .attr("y", function(d) {
+        //       return h - (d.Gas / 5);
+        //    })
+        //    .attr("width", ((w / dataset.length) / 2) - barPadding)
+        //    .attr("height", function(d) {
+        //       return d.Gas / 5;
+        //    })
+        //    .attr("fill", '#ccc');
+
+      });
+
+
+  </script>
+
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
