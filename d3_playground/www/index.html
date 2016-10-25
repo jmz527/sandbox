@@ -20,81 +20,62 @@
 
 <!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
+  <link href="style.css" rel="stylesheet">
 
 <!-- Primary Page Layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   </head>
   <body>
 
-
-
 <!-- SCRIPTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3.v3.js"></script>
 
   <script>
 
-      //Width and height
-      var w = 500;
-      var h = 100;
-      var barPadding = 1;
-      var scale = d3.scaleLinear()
-                    .domain([0, 500])
-                    .range([0, 100]);
+      //Variables
+      var w, h, padding, dataset, xScale, yScale, xAxis, yAxis, svg, xPosition, yPosition;
+
+      w = 685;
+      h = 200;
+      padding = 20;
 
       d3.csv("bills.csv", function(data) {
-        // console.log(data);
 
-        // var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-        //         11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
-
-        // var dataset = data;
-
-        // console.log(dataset);
-
-        var dataset = data.map(function(d) {
+        elec_set = data.map(function(d) {
           return d.Electricity;
         });
 
+        gas_set = data.map(function(d) {
+          return d.Gas;
+        });
 
-        //Create SVG element
-        var svg = d3.select("body")
-              .append("svg")
-              .attr("width", w)
-              .attr("height", h);
+        console.log(elec_set);
+        console.log(gas_set);
 
-        svg.selectAll("rect")
-           .data(dataset)
-           .enter()
-           .append("rect")
-           .attr("x", function(d, i) {
-              return i * (w / dataset.length);
-           })
-           .attr("y", function(d) {
-              return h - scale(d);
-           })
-           .attr("width", ((w / dataset.length) / 2) - barPadding)
-           .attr("height", function(d) {
-              return scale(d);
-           })
-           .attr("fill", '#58cfe9');
+        xScale = d3.scale.linear()
+          .domain([0, elec_set.length])
+          .range([padding, w - padding * 2]);
 
-        // svg.selectAll("rect")
-        //    .data(dataset)
-        //    .enter()
-        //    .append("rect")
-        //    .attr("x", function(d, i) {
-        //       return (i * (w / dataset.length)) + ((w / dataset.length) / 2);
-        //    })
-        //    .attr("y", function(d) {
-        //       return h - (d.Gas / 5);
-        //    })
-        //    .attr("width", ((w / dataset.length) / 2) - barPadding)
-        //    .attr("height", function(d) {
-        //       return d.Gas / 5;
-        //    })
-        //    .attr("fill", '#ccc');
+        yScale = d3.scale.linear()
+          .domain([0, d3.max(elec_set, function(d) { return d[1]; })])
+          .range([0, 200]);
+
+        xAxis = d3.svg.axis()
+          .scale(xScale)
+          .orient("bottom");
+
+        svg = d3.select("body")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h);
+
+
+        //Create X axis
+        svg.append("g")
+          .attr("class", "axis")
+          .attr("transform", "translate(0," + (h - padding) + ")")
+          .call(xAxis);
 
       });
 
