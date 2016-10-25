@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+
+<!-- FONTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<!-- FAVICONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="style.css" rel="stylesheet">
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </head>
+  <body>
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://d3js.org/d3.v3.js"></script>
+
+  <script>
+
+      //Variables
+      var w, h, padding, dataset, xScale, yScale, xAxis, yAxis, svg, xPosition, yPosition;
+
+      w = 685;
+      h = 200;
+      padding = 20;
+
+      d3.csv("bills.csv", function(data) {
+
+        elec_set = data.map(function(d) {
+          return d.Electricity;
+        });
+
+        gas_set = data.map(function(d) {
+          return d.Gas;
+        });
+
+        console.log(elec_set);
+        console.log(gas_set);
+
+        xScale = d3.scale.linear()
+          .domain([0, elec_set.length])
+          .range([padding, w - padding * 2]);
+
+        yScale = d3.scale.linear()
+          .domain([0, d3.max(elec_set, function(d) { return d[1]; })])
+          .range([0, 200]);
+
+        xAxis = d3.svg.axis()
+          .scale(xScale)
+          .orient("bottom");
+
+        svg = d3.select("body")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h);
+
+
+        //Create X axis
+        svg.append("g")
+          .attr("class", "axis")
+          .attr("transform", "translate(0," + (h - padding) + ")")
+          .call(xAxis);
+
+      });
+
+
+  </script>
+
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
