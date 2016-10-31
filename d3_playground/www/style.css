@@ -2,7 +2,7 @@
   background-color: teal;
 }*/
 
-.axis path,
+/*.axis path,
 .axis line {
     fill: none;
     stroke: black;
@@ -48,4 +48,32 @@ rect:hover {
   font-family: sans-serif;
   font-size: 16px;
   line-height: 20px;
+}
+*/
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.title {
+  font: bold 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
 }
