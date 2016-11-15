@@ -3,8 +3,6 @@
    // your page initialization code here
    // the DOM will be available here
 
-
-
     //Variables
     var w, h, dataset, xScale, yScale, xAxis, yAxis, svg, xPosition, yPosition;
 
@@ -12,34 +10,42 @@
     w = 600;
     h = 250;
 
-    // dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-    //         11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+    d3.csv("./assets/data/bills.csv", function(error, data) {
+      if (error) throw error;
 
-    d3.csv("./assets/data/bills.csv", function(data) {
+      console.log('data', data);
 
       dataset = data.map(function(d) {
         return d.Electricity;
       });
 
+      console.log('dataset', dataset);
+
       xScale = d3.scale.ordinal()
-              .domain(d3.range(dataset.length))
-              .rangeRoundBands([0, w], 0.05);
+                .domain(d3.range(data.length))
+                .rangeRoundBands([0, w], 0.05);
 
       yScale = d3.scale.linear()
-              .domain([0, d3.max(dataset)])
-              .range([0, h]);
+                .domain([0, d3.max(dataset)])
+                .range([0, h]);
 
-      xAxis = d3.svg.axis();
-      xAxis.scale(xScale);
-      xAxis.orient("bottom");
+      xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient("bottom");
 
-      yAxis = d3.svg.axis();
+      yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .innerTickSize(-w)
+                .outerTickSize(0)
+                .tickPadding(10)
+                .tickFormat(d3.format(".2s"));
 
       //Create SVG element
-      svg = d3.select("#viz2")
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h);
+      svg = d3.select("#viz2").append("svg")
+              .attr("width", w)
+              .attr("height", h);
+
 
       //Create bars
       svg.selectAll("rect")
@@ -70,15 +76,10 @@
             .select("#value")
             .text(d);
 
-          //Show the tooltip
-          d3.select("#tooltip").classed("hidden", false);
-
+            d3.select("#tooltip").classed("hidden", false); //Show the tooltip
          })
          .on("mouseout", function() {
-
-          //Hide the tooltip
-          d3.select("#tooltip").classed("hidden", true);
-
+            d3.select("#tooltip").classed("hidden", true); //Hide the tooltip
          });
 
       //Create labels
@@ -100,10 +101,7 @@
          .attr("font-size", "11px")
          .attr("fill", "white");
 
-
-
     });
-
 
 
 })();
