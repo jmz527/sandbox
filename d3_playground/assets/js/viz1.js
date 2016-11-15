@@ -1,133 +1,143 @@
 // self executing function here
 (function() {
-   // your page initialization code here
-   // the DOM will be available here
+	// your page initialization code here
+	// the DOM will be available here
 
 
+	//Variables
+	var margin, width, height, x0, x1, y0, xAxis, yAxis, svg, electGroup, gasGroup, xPosition, yPosition;
 
-    //Width and height
-    w = 685;
-    h = 200;
-    padding = 30;
+	//Width and height
+    margin = {top: 20, right: 20, bottom: 30, left: 40};
+	width = 600 - margin.left - margin.right;
+	height = 250 - margin.top - margin.bottom;
 
-    var dataset = [
-          [5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
-          [410, 12], [475, 44], [25, 67], [85, 21], [220, 88],
-          [600, 150]
-          ];
+	d3.csv("./assets/data/bills.csv", function(error, data) {
+	  if (error) throw error;
 
-    //Create scale functions
-    var xScale = d3.scale.linear()
-             .domain([0, d3.max(dataset, function(d) { return d[0]; })])
-             .range([padding, w - padding * 2]);
+	var dataset = { elect: [], electBen: [], gas: [], gasBen: [] };
+	var dates = [];
 
-    var yScale = d3.scale.linear()
-             .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-             .range([h - padding, padding]);
+	data.forEach(function(d, i) {
+		dataset.elect.push(d.Electricity);
+		dataset.electBen.push(d.ElectricBenchmark);
+		dataset.gas.push(d.Gas);
+		dataset.gasBen.push(d.GasBenchmark);
 
-    var rScale = d3.scale.linear()
-             .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-             .range([2, 5]);
+		dates.push("2014-"+i+"-21");
+	});
 
-    //Define X axis
-    var xAxis = d3.svg.axis()
-            .scale(xScale)
-            .orient("bottom")
-            .ticks(5);
+	var max = d3.max([  d3.max(dataset.elect), d3.max(dataset.electBen),
+						d3.max(dataset.gas), d3.max(dataset.gasBen) ]);
 
-    //Define Y axis
-    var yAxis = d3.svg.axis()
-            .scale(yScale)
-            .orient("left")
-            .ticks(5)
-            .innerTickSize(-w)
-            .outerTickSize(0)
-            .tickPadding(10);
+	// console.log('dates', dates);
+	// console.log('dataset', dataset);
+	// console.log('max:', max);
 
-    //Create SVG element
-    var svg = d3.select("#viz1")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h);
+	x0 = d3.scale.ordinal().domain(dates);
 
-    //Create circles
-    svg.selectAll("circle")
-     .data(dataset)
-     .enter()
-     .append("circle")
-     .attr("cx", function(d) {
-        return xScale(d[0]);
-     })
-     .attr("cy", function(d) {
-        return yScale(d[1]);
-     })
-     .attr("r", function(d) {
-        return rScale(d[1]);
-     });
+    x1 = d3.scale.ordinal()
+      			.domain(dates)
+				.rangeRoundBands([margin.left, width], 0.05);
 
-    //Create labels
-    svg.selectAll("text")
-     .data(dataset)
-     .enter()
-     .append("text")
-     .text(function(d) {
-        return d[0] + "," + d[1];
-     })
-     .attr("x", function(d) {
-        return xScale(d[0]);
-     })
-     .attr("y", function(d) {
-        return yScale(d[1]);
-     })
-     .attr("font-family", "sans-serif")
-     .attr("font-size", "11px")
-     .attr("fill", "red");
+	y0 = d3.scale.linear()
+				.domain([0, max])
+				.range([height, 0]);
 
-    // //Create circles
-    // svg.selectAll("circle")
-    //    .data(dataset)
-    //    .enter()
-    //    .append("circle")
-    //    .attr("cx", function(d) {
-    //       return xScale(d[0]);
-    //    })
-    //    .attr("cy", function(d) {
-    //       return yScale(d[1]);
-    //    })
-    //    .attr("r", function(d) {
-    //       return rScale(d[1]);
-    //    });
+	xAxis = d3.svg.axis()
+				.scale(x1)
+				.orient("bottom");
 
-    // //Create labels
-    // svg.selectAll("text")
-    //    .data(dataset)
-    //    .enter()
-    //    .append("text")
-    //    .text(function(d) {
-    //       return d[0] + "," + d[1];
-    //    })
-    //    .attr("x", function(d) {
-    //       return xScale(d[0]);
-    //    })
-    //    .attr("y", function(d) {
-    //       return yScale(d[1]);
-    //    })
-    //    .attr("font-family", "sans-serif")
-    //    .attr("font-size", "11px")
-    //    .attr("fill", "red");
+	yAxis = d3.svg.axis()
+				.scale(y0)
+				.orient("left")
+				.innerTickSize(- width + margin.left)
+				.outerTickSize(0)
+				.tickPadding(10);
+
+	//Create SVG element
+	svg = d3.select("#viz1").append("svg")
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.top + margin.bottom);
 
     //Create X axis
     svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(0," + (h - padding) + ")")
+    .attr("transform", "translate(0," + (height + margin.top) + ")")
     .call(xAxis);
 
     //Create Y axis
     svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(" + padding + ",0)")
-    .call(yAxis);
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .call(yAxis)
+	.append("text")
+	.attr("transform", "rotate(-90)")
+	.attr("y", -6)
+	.attr("dy", -30)
+	.style("text-anchor", "end")
+	.text("Cost ($)");
 
+	electGroup = svg.selectAll("g.elect")
+					.data(dates)
+					.enter()
+					.append("g")
+					.attr("class", "elect")
+					.attr("transform", function(d) { return "translate("+( x1(d) )+",0)" });
+
+
+	gasGroup = svg.selectAll("g.gas")
+					.data(dates)
+					.enter()
+					.append("g")
+					.attr("class", "gas")
+					.attr("transform", function(d) { return "translate("+( x1(d) )+",0)" });
+
+
+	//Create bars
+	svg.selectAll("rect.elect")
+		.data(dataset.elect)
+		.enter()
+		.append("rect")
+		.attr("class", "elect")
+		.attr("x", function(d, i) { return x0(i) })
+		.attr("y", function(d) { return height - y0(d) + margin.top })
+		.attr("width", x0.rangeBand() / 2)
+		.attr("height", function(d) { return y0(d) })
+		.attr("fill", '#58cfe9');
+
+	// //Create bars
+	// svg.selectAll("rect.gas")
+	// 	.data(dataset.gas)
+	// 	.enter()
+	// 	.append("rect")
+	// 	.attr("class", "gas")
+	// 	.attr("x", function(d, i) { return x0(i) + (x0.rangeBand() / 2) })
+	// 	.attr("y", function(d) { return height - y0(d) + margin.top })
+	// 	.attr("width", x0.rangeBand() / 2)
+	// 	.attr("height", function(d) { return y0(d) })
+	// 	.attr("fill", '#ccc');
+
+      // //Create labels
+      // svg.selectAll("text")
+      //    .data(dataset.elect)
+      //    .enter()
+      //    .append("text")
+      //    .text(function(d) {
+      //       return d;
+      //    })
+      //    .attr("text-anchor", "middle")
+      //    .attr("x", function(d, i) {
+      //       return x0(i) + x0.rangeBand() / 2;
+      //    })
+      //    .attr("y", function(d) {
+      //       return height - y0(d) + 14;
+      //    })
+      //    .attr("font-family", "sans-serif")
+      //    .attr("font-size", "11px")
+      //    .attr("fill", "white");
+
+	});
 
 
 })();

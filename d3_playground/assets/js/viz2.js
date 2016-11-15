@@ -13,10 +13,15 @@
     d3.csv("./assets/data/bills.csv", function(error, data) {
       if (error) throw error;
 
-      console.log('data', data);
+    var dataset = { elect: [], electBen: [], gas: [], gasBen: [] };
 
-      dataset = data.map(function(d) {
-        return d.Electricity;
+      // console.log('data', data);
+
+      data.forEach(function(d) {
+        dataset.elect.push(d.Electricity);
+        dataset.electBen.push(d.ElectricBenchmark);
+        dataset.gas.push(d.Gas);
+        dataset.gasBen.push(d.GasBenchmark);
       });
 
       console.log('dataset', dataset);
@@ -26,7 +31,7 @@
                 .rangeRoundBands([0, w], 0.05);
 
       yScale = d3.scale.linear()
-                .domain([0, d3.max(dataset)])
+                .domain([0, d3.max(dataset.elect)])
                 .range([0, h]);
 
       xAxis = d3.svg.axis()
@@ -49,7 +54,7 @@
 
       //Create bars
       svg.selectAll("rect")
-         .data(dataset)
+         .data(dataset.elect)
          .enter()
          .append("rect")
          .attr("x", function(d, i) {
@@ -84,7 +89,7 @@
 
       //Create labels
       svg.selectAll("text")
-         .data(dataset)
+         .data(dataset.elect)
          .enter()
          .append("text")
          .text(function(d) {
