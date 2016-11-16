@@ -51,6 +51,31 @@ div#viz1 .tick line{
   opacity: 0.2;
 }
 
+#tooltip1 {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  padding: 10px;
+  background-color: white;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+#tooltip1.hidden {
+  display: none;
+}
+
+#tooltip1 p {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+}
 
 
 
@@ -77,7 +102,7 @@ div#viz2 rect:hover {
   fill: orange;
 }
 
-div#viz2 #tooltip {
+#tooltip2 {
   position: absolute;
   width: 200px;
   height: auto;
@@ -92,11 +117,11 @@ div#viz2 #tooltip {
   pointer-events: none;
 }
 
-div#viz2 #tooltip.hidden {
+#tooltip2.hidden {
   display: none;
 }
 
-div#viz2 #tooltip p {
+#tooltip2 p {
   margin: 0;
   font-family: sans-serif;
   font-size: 16px;

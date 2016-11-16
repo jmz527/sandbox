@@ -70,21 +70,21 @@
          .attr("fill", '#58cfe9')
          .on("mouseover", function(d) {
 
-          //Get this bar's x/y values, then augment for the tooltip
-          xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
-          yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+            //Get this bar's x/y values, then augment for the tooltip
+            xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
+            yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
 
-          //Update the tooltip position and value
-          d3.select("#tooltip")
+            //Update the tooltip position and value
+            d3.select("#tooltip2")
             .style("left", xPosition + "px")
             .style("top", yPosition + "px")
-            .select("#value")
+            .select("#value2")
             .text(d);
 
-            d3.select("#tooltip").classed("hidden", false); //Show the tooltip
+            d3.select("#tooltip2").classed("hidden", false); //Show the tooltip
          })
          .on("mouseout", function() {
-            d3.select("#tooltip").classed("hidden", true); //Hide the tooltip
+            d3.select("#tooltip2").classed("hidden", true); //Hide the tooltip
          });
 
       //Create labels
