@@ -7,12 +7,14 @@
 	var margin, width, height, x0, x1, y0, xAxis, yAxis, svg, chart, electGroup, gasGroup, xPos, yPos;
 
 	//Width and height
-    margin = {top: 20, right: 20, bottom: 30, left: 40};
+  margin = {top: 20, right: 20, bottom: 30, left: 40};
 	width = 600 - margin.left - margin.right;
 	height = 250 - margin.top - margin.bottom;
 
 	d3.csv("./assets/data/bills.csv", function(error, data) {
 		if (error) throw error;
+
+    console.log('data', JSON.stringify(data));
 
 		var dataset = {
 			dates: data.map(function(d) { return d.Date }),
