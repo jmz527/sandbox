@@ -30,14 +30,14 @@
         .append("g")
         .attr("class", "arc");
 
-  arcs.append("path")
-      .attr("d", arc)
-      .attr("fill", function(d) { return color(d.data); });
+      arcs.append("path")
+          .attr("d", arc)
+          .attr("fill", function(d) { return color(d.data); });
 
-  arcs.append("text")
-      .attr("transform", function(d) { return "translate("+arc.centroid(d)+")"})
-      .attr("text-anchor", "middle")
-      .attr("font-size", "1.5em")
-      .text(function(d) { return d.data });
+      arcs.append("text")
+          .attr("transform", function(d) { return "translate("+arc.centroid(d)+")"})
+          .attr("text-anchor", "middle")
+          .attr("font-size", "1.5em")
+          .text(function(d) { return d.data });
 
 })();
