@@ -18,7 +18,7 @@
   // var p = Math.PI * 2;
 
   var arc = d3.svg.arc()
-        .innerRadius(200)
+        .innerRadius(0)
         .outerRadius(r);
 
   var pie = d3.layout.pie()
