@@ -238,7 +238,21 @@
 
     </div>
 
-    <br><hr class="style15"><div id="viz15"></div>
+    <br><hr class="style15"><div id="viz15">
+
+      <div class="stacked-chart-container js-stacked-chart-container">
+          <form class="controls">
+              <label><input type="radio" name="mode" value="stacked" checked>Stacked</label>
+              <label><input type="radio" name="mode" value="grouped">Grouped</label>
+          </form>
+          <svg class="stacked-chart js-stacked-chart"></svg>
+          <div class="tooltip js-tooltip">
+              <div class="tooltip-wrapper">
+                  <table class="tooltip-table js-tooltip-table"></table>
+              </div>
+          </div>
+      </div>
+    </div>
 
     <br><hr class="style16"><div id="viz16"></div>
 
@@ -273,20 +287,21 @@
 
 
 
-  <script src="./assets/js/viz1.js"></script>
-  <script src="./assets/js/viz2.js"></script>
-  <script src="./assets/js/viz3.js"></script>
-  <script src="./assets/js/viz4.js"></script>
-  <script src="./assets/js/viz5.js"></script>
-  <script src="./assets/js/viz6.js"></script>
-  <script src="./assets/js/viz7.js"></script>
-  <script src="./assets/js/viz8.js"></script>
-  <script src="./assets/js/viz9.js"></script>
+  <!-- <script src="./assets/js/viz1.js"></script> -->
+  <!-- <script src="./assets/js/viz2.js"></script> -->
+  <!-- <script src="./assets/js/viz3.js"></script> -->
+  <!-- <script src="./assets/js/viz4.js"></script> -->
+  <!-- <script src="./assets/js/viz5.js"></script> -->
+  <!-- <script src="./assets/js/viz6.js"></script> -->
+  <!-- <script src="./assets/js/viz7.js"></script> -->
+  <!-- <script src="./assets/js/viz8.js"></script> -->
+  <!-- <script src="./assets/js/viz9.js"></script> -->
   <!-- <script src="./assets/js/viz10.js"></script> -->
   <!-- <script src="./assets/js/viz11.js"></script> -->
   <!-- <script src="./assets/js/viz12.js"></script> -->
   <script src="./assets/js/viz13.js"></script>
   <script src="./assets/js/viz14.js"></script>
+  <script src="./assets/js/viz15.js"></script>
 
 
 

@@ -485,5 +485,4 @@
         return a.map(function (d, i) { return {x: i, y: Math.max(0, d)}; });
     }
 
-
 })();

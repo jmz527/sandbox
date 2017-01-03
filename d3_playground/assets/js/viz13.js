@@ -3,14 +3,16 @@
    // your page initialization code here
    // the DOM will be available here
 
-  var n = 3, // number of layers
-      m = 32, // number of samples per layer
+  var n = 4, // number of layers
+      m = 12, // number of samples per layer
       data = d3.layout.stack()(streamLayers(n, m, .1)),
       color = d3.interpolateRgb("#58cfe9", "#9b9cd5");
 
   var margin = 20,
       width = 500,
       height = 500 - .5 - margin;
+
+      debugger;
 
   var mx = m,
       my = d3.max(data, function(d) { return d3.max(d, function(d) { return d.y0 + d.y; }); }),
