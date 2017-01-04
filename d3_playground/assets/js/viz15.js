@@ -186,364 +186,159 @@
    /* DATA AUGMENTATION
    **************************************************************/
 
-  var layers, samples;
-      layers = OGdata.IssuesChart.length;
-      rows = OGdata.IssuesChart[0].DataPoints.length;
+    var layers, samples;
+        layers = OGdata.IssuesChart.length;
+        rows = OGdata.IssuesChart[0].DataPoints.length;
 
-  for (var i = 0; i < rows; i++) {
+    for (var i = 0; i < rows; i++) {
+      var stackMark = 0;
+
+      // console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
+      // console.log(OGdata.IssuesChart[0].DataPoints[i]);
+      // console.log(OGdata.IssuesChart[1].DataPoints[i]);
+      // console.log(OGdata.IssuesChart[2].DataPoints[i]);
+      // console.log(OGdata.IssuesChart[3].DataPoints[i]);
+      // console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
+
+      // console.log(OGdata.IssuesChart[0].DataPoints[i].Value);
+      OGdata.IssuesChart[0].DataPoints[i].x = i;
+      OGdata.IssuesChart[0].DataPoints[i].y = OGdata.IssuesChart[0].DataPoints[i].Value;
+      OGdata.IssuesChart[0].DataPoints[i].y0 = stackMark;
+
+      stackMark += OGdata.IssuesChart[0].DataPoints[i].Value;
+
+      // console.log(OGdata.IssuesChart[1].DataPoints[i].Value);
+      OGdata.IssuesChart[1].DataPoints[i].x = i;
+      OGdata.IssuesChart[1].DataPoints[i].y = OGdata.IssuesChart[1].DataPoints[i].Value;
+      OGdata.IssuesChart[1].DataPoints[i].y0 = stackMark;
+
+      stackMark += OGdata.IssuesChart[1].DataPoints[i].Value;
+
+      // console.log(OGdata.IssuesChart[2].DataPoints[i].Value);
+      OGdata.IssuesChart[2].DataPoints[i].x = i;
+      OGdata.IssuesChart[2].DataPoints[i].y = OGdata.IssuesChart[2].DataPoints[i].Value;
+      OGdata.IssuesChart[2].DataPoints[i].y0 = stackMark;
+
+      stackMark += OGdata.IssuesChart[2].DataPoints[i].Value;
+
+      // console.log(OGdata.IssuesChart[3].DataPoints[i].Value);
+      OGdata.IssuesChart[3].DataPoints[i].x = i;
+      OGdata.IssuesChart[3].DataPoints[i].y = OGdata.IssuesChart[3].DataPoints[i].Value;
+      OGdata.IssuesChart[3].DataPoints[i].y0 = stackMark;
 
 
-    console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
-    console.log(OGdata.IssuesChart[0].DataPoints[i]);
-    console.log(OGdata.IssuesChart[1].DataPoints[i]);
-    console.log(OGdata.IssuesChart[2].DataPoints[i]);
-    console.log(OGdata.IssuesChart[3].DataPoints[i]);
-    console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
-
-    console.log(OGdata.IssuesChart[0].DataPoints[i].Value);
-    console.log(OGdata.IssuesChart[1].DataPoints[i].Value);
-    console.log(OGdata.IssuesChart[2].DataPoints[i].Value);
-    console.log(OGdata.IssuesChart[3].DataPoints[i].Value);
-
-    console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
-  }
+      // console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
+    }
 
 
-
-
-
-
-   /* TEMP MOCK
-   **************************************************************/
     var mock = [
-      [
-        {
-          "x": 1,
-          "y": 0.717,
-          "y0": 0,
-          "Timestamp": "2016-06-30T23:57:45.6497658Z",
-          "UnixTimestamp": 1467331065,
-          "Value": 3
-        },
-        {
-          "x": 2,
-          "y": 0.717,
-          "y0": 0,
-          "Timestamp": "2016-07-30T23:57:45.6497658Z",
-          "UnixTimestamp": 1469923065,
-          "Value": 4
-        },
-        {
-          "x": 3,
-          "y": 0.717,
-          "y0": 0,
-          "Timestamp": "2016-08-30T23:57:45.6497658Z",
-          "UnixTimestamp": 1472601465,
-          "Value": 1
-        },
-        {
-          "x": 4,
-          "y": 0.717,
-          "y0": 0,
-          "Timestamp": "2016-09-30T23:57:45.6497658Z",
-          "UnixTimestamp": 1475279865,
-          "Value": 1
-        },
-        {
-          "x": 5,
-          "y": 0.717,
-          "y0": 0,
-          "Timestamp": "2016-10-30T23:57:45.6497658Z",
-          "UnixTimestamp": 1477871865,
-          "Value": 0
-        },
-        {
-          "x": 6,
-          "y": 0.717,
-          "y0": 0,
-          "Timestamp": "2016-11-30T23:57:45.6497658Z",
-          "UnixTimestamp": 1480550265,
-          "Value": 2
-        }
-      ],
-      [
-        {
-          "x": 1,
-          "y": 0.717,
-          "y0": 0.717,
-          "Timestamp": "2016-06-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1467331065,
-          "Value": 10
-        },
-        {
-          "x": 2,
-          "y": 0.717,
-          "y0": 0.717,
-          "Timestamp": "2016-07-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1469923065,
-          "Value": 9
-        },
-        {
-          "x": 3,
-          "y": 0.717,
-          "y0": 0.717,
-          "Timestamp": "2016-08-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1472601465,
-          "Value": 11
-        },
-        {
-          "x": 4,
-          "y": 0.717,
-          "y0": 0.717,
-          "Timestamp": "2016-09-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1475279865,
-          "Value": 17
-        },
-        {
-          "x": 5,
-          "y": 0.717,
-          "y0": 0.717,
-          "Timestamp": "2016-10-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1477871865,
-          "Value": 7
-        },
-        {
-          "x": 6,
-          "y": 0.717,
-          "y0": 0.717,
-          "Timestamp": "2016-11-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1480550265,
-          "Value": 3
-        }
-      ],
-      [
-        {
-          "x": 1,
-          "y": 0.717,
-          "y0": 1.434,
-          "Timestamp": "2016-06-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1467331065,
-          "Value": 7
-        },
-        {
-          "x": 2,
-          "y": 0.717,
-          "y0": 1.434,
-          "Timestamp": "2016-07-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1469923065,
-          "Value": 8
-        },
-        {
-          "x": 3,
-          "y": 0.717,
-          "y0": 1.434,
-          "Timestamp": "2016-08-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1472601465,
-          "Value": 5
-        },
-        {
-          "x": 4,
-          "y": 0.717,
-          "y0": 1.434,
-          "Timestamp": "2016-09-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1475279865,
-          "Value": 0
-        },
-        {
-          "x": 5,
-          "y": 0.717,
-          "y0": 1.434,
-          "Timestamp": "2016-10-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1477871865,
-          "Value": 0
-        },
-        {
-          "x": 6,
-          "y": 0.717,
-          "y0": 1.434,
-          "Timestamp": "2016-11-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1480550265,
-          "Value": 1
-        }
-      ],
-      [
-        {
-          "x": 1,
-          "y": 0.717,
-          "y0": 2.151,
-          "Timestamp": "2016-06-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1467331065,
-          "Value": 0
-        },
-        {
-          "x": 2,
-          "y": 0.717,
-          "y0": 2.151,
-          "Timestamp": "2016-07-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1469923065,
-          "Value": 0
-        },
-        {
-          "x": 3,
-          "y": 0.717,
-          "y0": 2.151,
-          "Timestamp": "2016-08-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1472601465,
-          "Value": 1
-        },
-        {
-          "x": 4,
-          "y": 0.717,
-          "y0": 2.151,
-          "Timestamp": "2016-09-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1475279865,
-          "Value": 4
-        },
-        {
-          "x": 5,
-          "y": 0.717,
-          "y0": 2.151,
-          "Timestamp": "2016-10-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1477871865,
-          "Value": 3
-        },
-        {
-          "x": 6,
-          "y": 0.717,
-          "y0": 2.151,
-          "Timestamp": "2016-11-30T23:57:45.6502664Z",
-          "UnixTimestamp": 1480550265,
-          "Value": 1
-        }
-      ]
-    ];
+      OGdata.IssuesChart[0].DataPoints,
+      OGdata.IssuesChart[1].DataPoints,
+      OGdata.IssuesChart[2].DataPoints,
+      OGdata.IssuesChart[3].DataPoints
+    ]
+
 
     /* Vars
     **************************************************************/
-    // var w, h, m, data, color, viz, svg;
-    //     w = 600;
-    //     h = 600;
-    //     m = 20;
+    var n, m, data, color, margin, width, height, mx, my, mz, x, xd, y0, y1, y2, wrap, svg, layer, bar;
+        n = 4;
+        m = mock[0].length;
+        data = d3.layout.stack()(mock);
+        color = d3.interpolateRgb("#58cfe9", "#9b9cd5");
+
+        margin = 20;
+        width = 500;
+        height = 500 - .5 - margin;
+
+        mx = m;
+        my = d3.max(data, function(d) { return d3.max(d, function(d) { return d.y0 + d.y; }); });
+        mz = d3.max(data, function(d) { return d3.max(d, function(d) { return d.y; }); });
+        x = function(d) { return d.x * width / mx; };
+        xd = function(d) { var ts = new Date(d.Timestamp); return ts.getMonth().toString()+"/"+ts.getFullYear().toString().slice(2)};
+        y0 = function(d) { return height - d.y0 * height / my; };
+        y1 = function(d) { return height - (d.y + d.y0) * height / my; };
+        y2 = function(d) { return d.y * height / mz; }; // or `my` to not rescale
 
     /* D3
     **************************************************************/
-    // viz = d3.select("#viz15")
-    //         .attr("style", "max-width:"+w+"px;max-height:"+h+"px;")
-    //         .append("div")
-    //         .classed("svg-container", true); //container class to make it responsive
+    wrap = d3.select("#viz15")
+            .attr("style", "max-width:"+width+"px;max-height:"+ (height + margin) +"px;")
+            .append("div")
+            .classed("svg-container", true); //container class to make it responsive
 
-    // svg = viz.append("svg")
-    //         .attr("style", "border: 1px solid red")
-    //         //responsive SVG needs these 2 attributes and no width and height attr
-    //         .attr("preserveAspectRatio", "xMinYMin meet")
-    //         .attr("viewBox", "0 0 600 200")
-    //         //class to make it responsive
-    //         .classed("svg-content-responsive", true);
+    svg = wrap.append("svg")
+            // .attr("style", "border: 1px solid red")
+            //responsive SVG needs these 2 attributes and no width and height attr
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 600 600")
+            //class to make it responsive
+            .classed("svg-content-responsive", true);
 
-    // svg.selectAll("rect")
-    //   .data(data[0])
-    //   .enter()
-    //   .append("rect")
-    //   .attr("x", function(d, i) {
-    //     return i * (w / data[0].length);
-    //     // return i * 21; //Bar width of 20 plus 1 for padding
-    //   })
-    //   .attr("y", 0)
-    //   .attr("width", 20)
-    //   .attr("height", 100);
+    layer = svg.selectAll("#viz15 .layer")
+        .data(data)
+      .enter().append("g")
+        .attr("class", "layer")
+        .style("fill", function(d, i) { return color(i / (n - 1)); });
 
+    bar = layer.selectAll("#viz15 .bar")
+        .data(function(d) { return d; })
+      .enter().append("g")
+        .attr("class", "bar")
+        .attr("transform", function(d) { return "translate(" + x(d) + ",0)"; });
 
+    bar.append("rect")
+        .attr("width", x({x: .9}))
+        .attr("x", 0)
+        .attr("y", height)
+        .attr("height", 0)
+      .transition()
+        .delay(function(d, i) { return i * 10; })
+        .attr("y", y1)
+        .attr("height", function(d) { return y0(d) - y1(d); });
 
+    svg.selectAll("#viz15 .label")
+        .data(data[0])
+      .enter().append("text")
+        .attr("class", "label")
+        .attr("x", x)
+        .attr("y", height + 6)
+        .attr("dx", x({x: .45}))
+        .attr("dy", ".71em")
+        .style("text-anchor", "middle")
+        .text(function(d, i) { return xd(d); });
 
-    //   debugger;
+    svg.append("line")
+        .attr("x1", 0)
+        .attr("x2", width - x({x: .1}))
+        .attr("y1", height)
+        .attr("y2", height);
 
-    // var n = 4,
-    //     m = mock[0].length,
-    //     data = d3.layout.stack()(mock),
-    //     color = d3.interpolateRgb("#58cfe9", "#9b9cd5");
+    d3.selectAll("#viz15 input").on("change", function change() {
+      if (this.value === "grouped") transitionGrouped();
+      else transitionStacked();
+    });
 
-    // var margin = 20,
-    //     width = 500,
-    //     height = 500 - .5 - margin;
+    function transitionGrouped() {
+      d3.selectAll("#viz15 .layer rect").transition()
+          .duration(500)
+          .delay(function(d, i) { return (i % m) * 10; })
+          .attr("x", function(d, i) { return x({x: .9 * Math.floor(i / m) / n}); })
+          .attr("width", x({x: .9 / n}))
+        .transition()
+          .attr("y", function(d) { return height - y2(d); })
+          .attr("height", y2);
+    }
 
-    // var mx = m,
-    //     my = d3.max(data, function(d) { return d3.max(d, function(d) { return d.y0 + d.y; }); }),
-    //     mz = d3.max(data, function(d) { return d3.max(d, function(d) { return d.y; }); }),
-    //     x = function(d) { return d.x * width / mx; },
-    //     y0 = function(d) { return height - d.y0 * height / my; },
-    //     y1 = function(d) { return height - (d.y + d.y0) * height / my; },
-    //     y2 = function(d) { return d.y * height / mz; }; // or `my` to not rescale
-
-    // var svg13 = d3.select("#viz15").append("svg")
-    //     .attr("width", width)
-    //     .attr("height", height + margin);
-
-    // var layer = svg13.selectAll("#viz15 .layer")
-    //     .data(data)
-    //   .enter().append("g")
-    //     .attr("class", "layer")
-    //     .style("fill", function(d, i) { return color(i / (n - 1)); });
-
-    // var bar = layer.selectAll("#viz15 .bar")
-    //     .data(function(d) { return d; })
-    //   .enter().append("g")
-    //     .attr("class", "bar")
-    //     .attr("transform", function(d) { return "translate(" + x(d) + ",0)"; });
-
-    // bar.append("rect")
-    //     .attr("width", x({x: .9}))
-    //     .attr("x", 0)
-    //     .attr("y", height)
-    //     .attr("height", 0)
-    //   .transition()
-    //     .delay(function(d, i) { return i * 10; })
-    //     .attr("y", y1)
-    //     .attr("height", function(d) { return y0(d) - y1(d); });
-
-    // svg13.selectAll("#viz15 .label")
-    //     .data(data[0])
-    //   .enter().append("text")
-    //     .attr("class", "label")
-    //     .attr("x", x)
-    //     .attr("y", height + 6)
-    //     .attr("dx", x({x: .45}))
-    //     .attr("dy", ".71em")
-    //     .style("text-anchor", "middle")
-    //     .text(function(d, i) { return i; });
-
-    // svg13.append("line")
-    //     .attr("x1", 0)
-    //     .attr("x2", width - x({x: .1}))
-    //     .attr("y1", height)
-    //     .attr("y2", height);
-
-    // d3.selectAll("#viz15 input").on("change", function change() {
-    //   if (this.value === "grouped") transitionGrouped();
-    //   else transitionStacked();
-    // });
-
-    // function transitionGrouped() {
-    //   d3.selectAll("#viz15 .layer rect").transition()
-    //       .duration(500)
-    //       .delay(function(d, i) { return (i % m) * 10; })
-    //       .attr("x", function(d, i) { return x({x: .9 * Math.floor(i / m) / n}); })
-    //       .attr("width", x({x: .9 / n}))
-    //     .transition()
-    //       .attr("y", function(d) { return height - y2(d); })
-    //       .attr("height", y2);
-    // }
-
-    // function transitionStacked() {
-    //   d3.selectAll("#viz15 .layer rect").transition()
-    //       .duration(500)
-    //       .delay(function(d, i) { return (i % m) * 10; })
-    //       .attr("y", y1)
-    //       .attr("height", function(d) { return y0(d) - y1(d); })
-    //     .transition()
-    //       .attr("x", 0)
-    //       .attr("width", x({x: .9}));
-    // }
-
-
+    function transitionStacked() {
+      d3.selectAll("#viz15 .layer rect").transition()
+          .duration(500)
+          .delay(function(d, i) { return (i % m) * 10; })
+          .attr("y", y1)
+          .attr("height", function(d) { return y0(d) - y1(d); })
+        .transition()
+          .attr("x", 0)
+          .attr("width", x({x: .9}));
+    }
 
 })();

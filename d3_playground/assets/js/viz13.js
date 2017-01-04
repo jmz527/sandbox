@@ -12,8 +12,6 @@
       width = 500,
       height = 500 - .5 - margin;
 
-      debugger;
-
   var mx = m,
       my = d3.max(data, function(d) { return d3.max(d, function(d) { return d.y0 + d.y; }); }),
       mz = d3.max(data, function(d) { return d3.max(d, function(d) { return d.y; }); }),
