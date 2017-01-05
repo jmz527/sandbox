@@ -193,61 +193,35 @@
     for (var i = 0; i < rows; i++) {
       var stackMark = 0;
 
-      // console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
-      // console.log(OGdata.IssuesChart[0].DataPoints[i]);
-      // console.log(OGdata.IssuesChart[1].DataPoints[i]);
-      // console.log(OGdata.IssuesChart[2].DataPoints[i]);
-      // console.log(OGdata.IssuesChart[3].DataPoints[i]);
-      // console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
+      for (var j = 0; j < layers; j++) {
+        OGdata.IssuesChart[j].DataPoints[i].x = i;
+        OGdata.IssuesChart[j].DataPoints[i].y = OGdata.IssuesChart[j].DataPoints[i].Value;
+        OGdata.IssuesChart[j].DataPoints[i].y0 = stackMark;
 
-      // console.log(OGdata.IssuesChart[0].DataPoints[i].Value);
-      OGdata.IssuesChart[0].DataPoints[i].x = i;
-      OGdata.IssuesChart[0].DataPoints[i].y = OGdata.IssuesChart[0].DataPoints[i].Value;
-      OGdata.IssuesChart[0].DataPoints[i].y0 = stackMark;
+        stackMark += OGdata.IssuesChart[j].DataPoints[i].Value;        
+      }
 
-      stackMark += OGdata.IssuesChart[0].DataPoints[i].Value;
-
-      // console.log(OGdata.IssuesChart[1].DataPoints[i].Value);
-      OGdata.IssuesChart[1].DataPoints[i].x = i;
-      OGdata.IssuesChart[1].DataPoints[i].y = OGdata.IssuesChart[1].DataPoints[i].Value;
-      OGdata.IssuesChart[1].DataPoints[i].y0 = stackMark;
-
-      stackMark += OGdata.IssuesChart[1].DataPoints[i].Value;
-
-      // console.log(OGdata.IssuesChart[2].DataPoints[i].Value);
-      OGdata.IssuesChart[2].DataPoints[i].x = i;
-      OGdata.IssuesChart[2].DataPoints[i].y = OGdata.IssuesChart[2].DataPoints[i].Value;
-      OGdata.IssuesChart[2].DataPoints[i].y0 = stackMark;
-
-      stackMark += OGdata.IssuesChart[2].DataPoints[i].Value;
-
-      // console.log(OGdata.IssuesChart[3].DataPoints[i].Value);
-      OGdata.IssuesChart[3].DataPoints[i].x = i;
-      OGdata.IssuesChart[3].DataPoints[i].y = OGdata.IssuesChart[3].DataPoints[i].Value;
-      OGdata.IssuesChart[3].DataPoints[i].y0 = stackMark;
-
-
-      // console.log(i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i +"+"+i);
     }
 
+    var mock = [];
 
-    var mock = [
-      OGdata.IssuesChart[0].DataPoints,
-      OGdata.IssuesChart[1].DataPoints,
-      OGdata.IssuesChart[2].DataPoints,
-      OGdata.IssuesChart[3].DataPoints
-    ]
+    for (var e = 0; e < layers; e++) {
+      mock.push(OGdata.IssuesChart[e].DataPoints);
+    }
 
 
     /* Vars
     **************************************************************/
-    var n, m, data, color, margin, width, height, mx, my, mz, x, xd, y0, y1, y2, wrap, svg, layer, bar;
+    var n, m, data, colors, maxStackY, maxGroupY, margin, width, height,
+        mx, my, mz, x, xd, y0, y1, y2, xScale, yScale, xAxis, yAxis, wrap, svg, layer, bar;
         n = 4;
         m = mock[0].length;
         data = d3.layout.stack()(mock);
-        color = d3.interpolateRgb("#58cfe9", "#9b9cd5");
+        colors = ["#bbbbbb", "#ffee78", "#58cfe9", "#ff9818"];
+        maxStackY = d3.max(data, function(series) { return d3.max(series, function(d) { return d.y + d.y0 }) });
+        maxGroupY = d3.max(data, function(series) { return d3.max(series, function(d) { return d.y }) });
 
-        margin = 20;
+        margin = 5;
         width = 500;
         height = 500 - .5 - margin;
 
@@ -260,6 +234,24 @@
         y1 = function(d) { return height - (d.y + d.y0) * height / my; };
         y2 = function(d) { return d.y * height / mz; }; // or `my` to not rescale
 
+
+        xScale = d3.scale.linear()
+                  .domain([0, m])
+                  .range([0, width]);
+
+        yScale = d3.scale.linear()
+                  .domain([0, maxStackY])
+                  .range([height, 0]);
+
+        xAxis = d3.svg.axis()
+                  .scale(xScale) //binsScale)
+                  .ticks(m)
+                  .orient("bottom");
+
+        yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient("left");
+
     /* D3
     **************************************************************/
     wrap = d3.select("#viz15")
@@ -268,24 +260,52 @@
             .classed("svg-container", true); //container class to make it responsive
 
     svg = wrap.append("svg")
-            // .attr("style", "border: 1px solid red")
-            //responsive SVG needs these 2 attributes and no width and height attr
-            .attr("preserveAspectRatio", "xMinYMin meet")
-            .attr("viewBox", "0 0 600 600")
-            //class to make it responsive
-            .classed("svg-content-responsive", true);
+        // .attr("style", "border: 1px solid red")
+        //responsive SVG needs these 2 attributes and no width and height attr
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "-30 -30 600 600")
+        //class to make it responsive
+        .classed("svg-content-responsive", true);
+
+    svg.append("g")
+        .attr("class", "grid-lines")
+        .selectAll(".grid-line").data(yScale.ticks(8))
+            .enter().append("line")
+                .attr("class", "grid-line")
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", yScale)
+                .attr("y2", yScale);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", - (height / 3))
+        .attr("y", -13)
+        .attr("dy", -30)
+        .style("text-anchor", "end")
+        .style("font-weight", "bold")
+        .style("font-size", "11px")
+        .text("Issue Occurances");
 
     layer = svg.selectAll("#viz15 .layer")
         .data(data)
       .enter().append("g")
         .attr("class", "layer")
-        .style("fill", function(d, i) { return color(i / (n - 1)); });
+        .style("fill", function(d, i) { return colors[i]; });
 
     bar = layer.selectAll("#viz15 .bar")
         .data(function(d) { return d; })
       .enter().append("g")
         .attr("class", "bar")
-        .attr("transform", function(d) { return "translate(" + x(d) + ",0)"; });
+        .attr("transform", function(d) { return "translate(" + (x(d) + margin) + ",0)"; });
 
     bar.append("rect")
         .attr("width", x({x: .9}))
@@ -328,6 +348,27 @@
         .transition()
           .attr("y", function(d) { return height - y2(d); })
           .attr("height", y2);
+
+      yScale = d3.scale.linear()
+        .domain([0, maxGroupY])
+        .range([height, 0]);
+
+      yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left");
+
+      svg.selectAll(".y.axis")
+          .transition()
+          .delay(500)
+          .call(yAxis);
+
+      svg.selectAll(".grid-line")
+          .transition()
+          .delay(500)
+          .attr("x1", 0)
+          .attr("x2", width)
+          .attr("y1", yScale)
+          .attr("y2", yScale);
     }
 
     function transitionStacked() {
@@ -339,6 +380,26 @@
         .transition()
           .attr("x", 0)
           .attr("width", x({x: .9}));
+
+      yScale = d3.scale.linear()
+        .domain([0, maxStackY])
+        .range([height, 0]);
+
+      yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left");
+
+      svg.selectAll(".y.axis")
+          .transition()
+          .call(yAxis);
+
+      svg.selectAll(".grid-line")
+          .transition()
+          .attr("x1", 0)
+          .attr("x2", width)
+          .attr("y1", yScale)
+          .attr("y2", yScale);
+
     }
 
 })();
