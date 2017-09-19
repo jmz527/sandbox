@@ -51,7 +51,7 @@ Set
 WeakMap
 WeakSet
 
-Block
+// Block
 break
 continue
 Empty
