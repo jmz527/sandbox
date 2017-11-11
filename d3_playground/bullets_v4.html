@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Category Stats Bullet Chart</title>
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<style>
+
+  body {
+    background-color: #fff;
+    text-align: center;
+    padding: 0 20%;
+  }
+
+  svg { padding: 0 2em; }
+
+  #viz { margin: 0 auto; }
+
+
+  /* SVG STYLES - TOOLTIP */
+  #tooltip {
+    position: absolute;
+    width: auto;
+    min-width: 100px;
+    height: auto;
+    min-height: 15px;
+    padding: 10px;
+    background-color: #fff;
+    opacity: 0.9;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    border: solid 1px #aaaaaa;
+  }
+
+  #tooltip.hidden { display: none; }
+
+  #tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  div#tooltip:before {
+    content: "";
+    position: absolute;
+    top: -webkit-calc(100% - 5px); /*may require prefix for old browser support*/
+    top: calc(100% - 5px); /*i.e. half the height*/
+    left: 45px;
+    height: 10px;
+    width: 10px;
+    background: #fff;
+    transform: rotate(45deg);
+    opacity: inherit;
+    border-bottom:inherit;
+    border-right:inherit;
+  }
+
+</style>
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </head>
+  <body>
+
+    <h1>Category Stats Bullet Chart</h1>
+
+    <div id="tooltip" class="hidden">
+      <p><strong id="tooltip-head">Month and Year</strong></p>
+      <div id="tooltip-body"></div>
+    </div>
+
+    <div id="viz"></div>
+
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//d3js.org/d3.v4.min.js"></script>
+
+  <script>
+    
+    /*
+      D3 VISULAIZATION - CATEGORY STATS BULLET CHART
+
+      The D3 code below was created with the help of the fantastic tutorial by Scott Murray, found here: http://alignedleft.com/tutorials/d3/
+
+      Take note, I've used the "react-faux-dom" module by Oliver Caldwell within this component. It's necessary for D3 to work it's magic within React.
+      You can find the module's github repo here: https://github.com/Olical/react-faux-dom.
+
+      Also, for info on integrating D3 with ReactJS check out Oliver's blogpost here: http://oli.me.uk/2015/09/09/d3-within-react-the-right-way/
+    */
+
+
+    (function() { // self executing function here
+
+      d3.json("bullets.json", function(error, json) {
+
+        /* Vars
+        **************************************************************/
+        var dataset, data, color;
+
+        var width, height, x0, xAxis, x1, y0, svg, chart, arc, rects;
+            width = 400;
+            height = 40;
+
+        var devices, values, mark, max, min, roof;
+
+
+        for (key in json) {
+
+          json[key].forEach((set) => { // console.log({set})
+
+           /* DATA AUGMENTATION
+           **************************************************************/
+           // This chart was originally made for a robust react/redux app which would calculate various parameter variables within
+           // the chart's parent component. I didn't care to extract from that mess. So, instead, we do these needed calculations here:
+
+            devices = set.DeviceValues;
+            data = [], values = [], mark = 0;
+            max = Math.max(set.Actual, set.Benchmark, set.CategoryAvg);
+            color = set.Color
+
+            for (var key in devices) {
+                if (devices.hasOwnProperty(key)) {
+                    // console.log("key", key, "value", devices[key]);
+
+                    values.push(devices[key]);
+                    data.push({name: key, value: devices[key], mark: mark });
+                    mark += devices[key];
+                }
+            }
+
+            min = Math.min.apply(null, values);
+
+            roof = max + min
+
+
+            /* D3
+            **************************************************************/
+            // Here's the good stuff
+
+            // Scales
+            x0 = d3.scaleLinear()
+                  .domain([0, roof])
+                  .range([0, width])
+
+            xAxis = d3.axisBottom()
+                  .scale(x0)
+                  .tickValues([0, roof/4, roof/2, roof*3/4, roof])
+                  // .tickSize(1)
+                  // .innerTickSize(- height)
+                  // .outerTickSize(0);
+
+
+            data.forEach((datum) => { // console.log({datum})
+
+              svg = d3.select("#viz").append("div")
+                      .classed("svg-container", true) //container class to make it responsive
+                    .append("svg")
+                      // .attr("preserveAspectRatio", "xMinYMin meet") //responsive SVG needs these 2 attributes and no width and height attr
+                      .attr("preserveAspectRatio", "none") //responsive SVG needs these 2 attributes and no width and height attr
+                      .attr("viewBox", "0 0 400 40")
+                      .classed("svg-content-responsive", true); //class to make it responsive
+
+              svg.append("rect")
+                    .attr("class", "bg")
+                    .attr("transform", "translate(0," + 9 + ")")
+                    .attr("fill", '#ddd')
+                    .attr("y", 0)
+                    .attr("height", 14)
+                    .attr("x", 0)
+                    .attr("width", width);
+
+              svg.append("g")
+                    .attr("class", "axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .call(function(selection) {
+
+                      // console.log(selection);
+                      selection.selectAll('.tick line')
+                        .style("stroke", "#ddd")
+
+                      selection.selectAll('.tick text')
+                        .style("font-size", "10px")
+                        .style("color", "#555")
+                        .style("text-anchor", "end")
+                        .attr('transform', 'translate(-4,-13)');
+
+                    })
+
+              chart = svg.append("g")
+                    .attr("class", "chart")
+                    .attr("transform", "translate(0," + 10 + ")");
+
+              rects = chart.selectAll("rect.actual")
+                    .data(data)
+                .enter().append("rect")
+                    .attr("class", "actual")
+                    .on("mouseover", function(d, i) {
+                        d3.selectAll("#tooltip-head").text(d.name.split("-").join(" ")) // Update the tooltip header
+                        // d3.selectAll("#tooltip-body").append("p").text("Value: "+d.value); // Fill the tooltip body
+                        d3.select("#tooltip")
+                            .style("height", "auto")
+                            .style("width", "auto")
+                            .classed("hidden", false); //Show the tooltip
+                    })
+                    .on("mousemove", function() {
+                        d3.select("#tooltip") //Update the tooltip position
+                          .style("left", (d3.event.clientX - 52) + "px")
+                          .style("top", (d3.event.clientY - 50) + "px")
+                    })
+                      .on("mouseout", function() {
+
+                        // d3.selectAll("#tooltip-body").selectAll("p").remove();
+                        d3.select("#tooltip")
+                        .classed("hidden", true); //Hide the tooltip
+                    })
+                    .attr("fill", color)
+                    .style("stroke", "#777")
+                    .attr("y", 0)
+                    .attr("height", 12)
+                    .attr("x", 0)
+                    .attr("width", 0)
+                  .transition().delay(function(d, i) { return i * 10; })
+                    .attr("x", function (d) { return x0(d.mark) })
+                    .attr("width", function (d) { return x0(d.value) })
+
+              if(set.Benchmark !== null) {
+                chart.append("rect")
+                  .attr("class", "bench")
+                  .attr("fill", "#fff")
+                  .style("stroke", "#777")
+                  .attr("y", -4)
+                  .attr("height", 20)
+                  .attr("x", x0(set.Benchmark))
+                  .attr("width", 6)
+              }
+
+              // arc = d3.symbolTriangle.type('triangle-down').size(30);
+              // arc = d3.symbolDiamond.size(30)
+
+              chart.append("path")
+                  .attr("d", d3.symbol().size(30).type(d3.symbolTriangle))
+                  // .attr("transform", "rotate(180)")
+                  .attr('fill', "#000")
+                  .attr('stroke','#000')
+                  .attr("transform", "translate("+x0(set.CategoryAvg)+",-2)")
+
+            })
+
+          })
+
+        }
+
+      })
+
+    })();
+
+  </script>
+
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>

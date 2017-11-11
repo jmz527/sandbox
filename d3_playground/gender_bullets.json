@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "gender": "F", 
+      "income_avg": 74.47608299825507, 
+      "income_max": 2368, 
+      "income_min": 2, 
+      "sports_leisure_spending_avg": 191.60902255639098, 
+      "sports_leisure_spending_max": 19568, 
+      "sports_leisure_spending_min": 1, 
+      "travel_spending_avg": 146.90535619452243, 
+      "travel_spending_max": 33036, 
+      "travel_spending_min": 1
+    }, 
+    {
+      "gender": "M", 
+      "income_avg": 80.03103054403925, 
+      "income_max": 2822, 
+      "income_min": 2, 
+      "sports_leisure_spending_avg": 228.02282145567034, 
+      "sports_leisure_spending_max": 19568, 
+      "sports_leisure_spending_min": 1, 
+      "travel_spending_avg": 155.3253236314409, 
+      "travel_spending_max": 25176, 
+      "travel_spending_min": 1
+    }
+  ]
+}

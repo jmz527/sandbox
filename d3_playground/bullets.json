@@ -1,7 +1,116 @@
-[
-  {"title":"Shall income","subtitle":"Market","ranges":[20, 50, 65, 80, 90],"measures":[0],"markers":[40,50,60]},
-  {"title":"Profit","subtitle":"%","ranges":[20,25,30],"measures":[21,23],"markers":[26]},
-  {"title":"Order Size","subtitle":"US$, average","ranges":[350,500,600],"measures":[100,320],"markers":[550]},
-  {"title":"New Customers","subtitle":"count","ranges":[1400,2000,2500],"measures":[1000,1650],"markers":[2100]},
-  {"title":"Satisfaction","subtitle":"out of 5","ranges":[3.5,4.25,5],"measures":[3.2,4.7],"markers":[4.4]}
-]
+{
+  "PowerMeterStats":[
+      {
+          "CategoryHeader":"Stat Item 1",
+          "Color": "#faf2b3",
+          "Benchmark":12,
+          "CategoryAvg":15,
+          "Actual":4,
+          "DeviceValues":{
+              "PowerMeter-Main-1":4
+          }
+      },
+      {
+          "CategoryHeader":"Stat Item 2",
+          "Color": "#faf2b3",
+          "Benchmark":2,
+          "CategoryAvg":11,
+          "Actual":3,
+          "DeviceValues":{
+              "PowerMeter-Main-1":3
+          }
+      }
+  ],
+  "ThermostatCategoryStats":[
+      {
+          "CategoryHeader":"Occupied Heating Setpoint Override (hrs)",
+          "Color": "#b2f0f6",
+          "Benchmark":120,
+          "CategoryAvg":130,
+          "Actual":100,
+          "DeviceValues":{
+              "Tstat-Lobby-1":80,
+              "Tstat-Hallway-2":20
+          }
+      },
+      {
+          "CategoryHeader":"Unoccupied Heating Setpoint Override (hrs)",
+          "Color": "#b2f0f6",
+          "Benchmark":10,
+          "CategoryAvg":13,
+          "Actual":14,
+          "DeviceValues":{
+              "Tstat-Lobby-1":12,
+              "Tstat-Hallway-2":2
+          }
+      },
+      {
+          "CategoryHeader":"Hours in Heating Mode",
+          "Color": "#b2f0f6",
+          "Benchmark":987,
+          "CategoryAvg":1233,
+          "Actual":1075,
+          "DeviceValues":{
+              "Tstat-Lobby-1":643,
+              "Tstat-Hallway-2":432
+          }
+      },
+      {
+          "CategoryHeader":"Occupied Cooling Setpoint Override (hrs)",
+          "Color": "#b2f0f6",
+          "Benchmark":52,
+          "CategoryAvg":50,
+          "Actual":44,
+          "DeviceValues":{
+              "Tstat-Lobby-1":12,
+              "Tstat-Hallway-2":32
+          }
+      },
+      {
+          "CategoryHeader":"Unoccupied Cooling Setpoint Override (hrs)",
+          "Color": "#b2f0f6",
+          "Benchmark":6,
+          "CategoryAvg":8,
+          "Actual":7,
+          "DeviceValues":{
+              "Tstat-Lobby-1":4,
+              "Tstat-Hallway-2":3
+          }
+      },
+      {
+          "CategoryHeader":"Hours in Cooling Mode",
+          "Color": "#b2f0f6",
+          "Benchmark":342,
+          "CategoryAvg":238,
+          "Actual":222,
+          "DeviceValues":{
+              "Tstat-Lobby-1":134,
+              "Tstat-Hallway-2":88
+          }
+      }
+  ],
+  "LightingCategoryStats":[
+      {
+          "CategoryHeader":"Unoccupied Hours Saved",
+          "Color": "#b0ea9f",
+          "Benchmark":12,
+          "CategoryAvg":15,
+          "Actual":11,
+          "DeviceValues":{
+              "LightSwitch-Lobby-1":2,
+              "LightSwitch-Hallway-2":9
+          }
+      },
+      {
+          "CategoryHeader":"Hours On After Hours",
+          "Color": "#b0ea9f",
+          "Benchmark":2,
+          "CategoryAvg":11,
+          "Actual":8,
+          "DeviceValues":{
+              "Tstat-Lobby-1":3,
+              "Tstat-Hallway-2":5
+          }
+      }
+  ]
+}

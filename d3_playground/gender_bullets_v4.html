@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Category Stats Bullet Chart</title>
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<style>
+
+  body {
+    background-color: #fff;
+    text-align: center;
+    padding: 0 10%;
+  }
+
+  svg { padding: 0 2em 0 3em; }
+
+  #viz { margin: 0 auto; }
+
+  #viz ul {
+    /*text-align: left;*/
+  }
+
+  #viz ul li {
+    /*border: 1px solid #000;*/
+    list-style-type: none;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .F-income { fill: #F07E91; }
+  .M-income { fill: #5FC2D8; }
+
+  .F-max, .M-max { fill: #B09DB1; }
+
+  .subtitle { font-size: 12px; }
+
+  /*.txt-max { fill: #eee; }*/
+
+</style>
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </head>
+  <body>
+
+    <h2>Gender Income</h2>
+    <div id="viz">
+        <ul></ul>
+    </div>
+
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//d3js.org/d3.v4.min.js"></script>
+
+  <script>
+    
+    /*
+      D3 VISULAIZATION - CATEGORY STATS BULLET CHART
+
+      The D3 code below was created with the help of the fantastic tutorial by Scott Murray, found here: http://alignedleft.com/tutorials/d3/
+
+      Take note, I've used the "react-faux-dom" module by Oliver Caldwell within this component. It's necessary for D3 to work it's magic within React.
+      You can find the module's github repo here: https://github.com/Olical/react-faux-dom.
+
+      Also, for info on integrating D3 with ReactJS check out Oliver's blogpost here: http://oli.me.uk/2015/09/09/d3-within-react-the-right-way/
+    */
+
+
+    (function() { // self executing function here
+
+      d3.json("gender_bullets.json", function(error, json) {
+        if (error) throw error;
+
+        var formatNumber = d3.format("$,");
+        var formatThousand = function(x) { return formatNumber(x / 1e3) + "k"; };
+        var grandify = function(num) { return num * 1000 }
+
+
+        console.log(json.data[0].income_max, json.data[1].income_max)
+        var f_max = grandify(json.data[0].income_max)
+        var m_max = grandify(json.data[1].income_max)
+        var f_avg = grandify(json.data[0].income_avg)
+        var m_avg = grandify(json.data[1].income_avg)
+
+
+        var width, height, margin = {top: 5, right: 40, bottom: 20, left: 120},
+            width = 900 - margin.left - margin.right,
+            height = 100 - margin.top - margin.bottom;
+
+        var max, min, roof;
+            max = d3.max([f_max, m_max])
+            min = 0
+            roof = grandify(3000)
+
+        console.log({max, min, roof})
+
+          // Scales
+        var x0, xAxis, x1, y0, svg, chart, arc, rects;
+            x0 = d3.scaleLinear().domain([0, roof]).range([0, width])
+            xAxis = d3.axisBottom().scale(x0)
+                      .tickSize(1)
+                      .ticks(5)
+                      .tickFormat(formatThousand)
+
+        var listItems = d3.select("#viz ul")
+              .selectAll("li")
+              .data(json.data)
+              .enter()
+              .append("li")
+
+        var svg = listItems.append("svg")
+              .attr("class", "bullet")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+              // .text(function(d) { return d.gender + " : " + d.income_max + " : " + d.income_avg + " : " + d.income_min; });
+
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + height+ ")")
+                .call(xAxis)
+
+            svg.append("rect")
+                .attr("class", "wrap")
+                .attr("fill", '#eee')
+                .attr("y", 0)
+                .attr("height", 70 + margin.top)
+                .attr("x", 0)
+                .attr("width", width);
+
+            svg.append("rect")
+                .attr("class", function(d) { return d.gender + "-max" })
+                .attr("y", 20)
+                .attr("height", 30 + margin.top)
+                .attr("x", 0)
+                .attr("width", function(d) { return x0(grandify(d.income_max)) });
+
+            svg.append("rect")
+                .attr("class", function(d) { return d.gender + "-income" })
+                .attr("y", 20)
+                .attr("height", 30 + margin.top)
+                .attr("x", 0)
+                .attr("width", function(d) { return x0(grandify(d.income_avg)) });
+
+        var title = svg.append("g")
+                .style("text-anchor", "end")
+                .attr("transform", "translate(-6," + height / 2 + ")");
+
+            title.append("text")
+                .attr("class", "title")
+                .text(function(d) { return d.gender; });
+
+            title.append("text")
+                .attr("class", "subtitle")
+                .attr("dy", "1em")
+                .text("income");
+
+
+        var txt = svg.append("g")
+                .style("text-anchor", "end")
+                .attr("class", function(d) { return d.gender + "-txt-max" })
+                .attr("transform", function(d) { return "translate(0,15)" });
+                // .attr("transform", function(d) { return "translate(0,35)" });
+
+            txt.append("text").attr("class", "txt-avg")
+                .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_avg)) + 65) +",0)" })
+                .text(function(d) { return formatThousand(Math.round(grandify(d.income_avg))) });
+
+            txt.append("text").attr("class", "txt-max")
+                .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_max)) - 5) +",0)" })
+                .text(function(d) { return formatThousand(grandify(d.income_max)) });
+
+
+      })
+
+    })();
+
+  </script>
+
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
