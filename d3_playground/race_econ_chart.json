@@ -1,0 +1,1199 @@
+{
+  "data": [
+    {
+      "customer_count": 25, 
+      "economic_stability": "01", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 43, 
+      "economic_stability": "02", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 58, 
+      "economic_stability": "03", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 66, 
+      "economic_stability": "04", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 62, 
+      "economic_stability": "05", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 59, 
+      "economic_stability": "06", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 64, 
+      "economic_stability": "07", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 73, 
+      "economic_stability": "08", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 59, 
+      "economic_stability": "09", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 92, 
+      "economic_stability": "10", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 83, 
+      "economic_stability": "11", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 67, 
+      "economic_stability": "12", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 66, 
+      "economic_stability": "13", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 56, 
+      "economic_stability": "14", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 70, 
+      "economic_stability": "15", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 78, 
+      "economic_stability": "16", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 47, 
+      "economic_stability": "17", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 56, 
+      "economic_stability": "18", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 51, 
+      "economic_stability": "19", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 44, 
+      "economic_stability": "20", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 40, 
+      "economic_stability": "21", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 25, 
+      "economic_stability": "22", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 38, 
+      "economic_stability": "23", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 50, 
+      "economic_stability": "24", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 34, 
+      "economic_stability": "25", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 32, 
+      "economic_stability": "26", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 13, 
+      "economic_stability": "27", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 13, 
+      "economic_stability": "28", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 8, 
+      "economic_stability": "29", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 7, 
+      "economic_stability": "30", 
+      "race_code": "A"
+    }, 
+    {
+      "customer_count": 27, 
+      "economic_stability": "01", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 83, 
+      "economic_stability": "02", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 89, 
+      "economic_stability": "03", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 154, 
+      "economic_stability": "04", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 201, 
+      "economic_stability": "05", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 257, 
+      "economic_stability": "06", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 254, 
+      "economic_stability": "07", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 311, 
+      "economic_stability": "08", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 343, 
+      "economic_stability": "09", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 420, 
+      "economic_stability": "10", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 489, 
+      "economic_stability": "11", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 511, 
+      "economic_stability": "12", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 549, 
+      "economic_stability": "13", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 590, 
+      "economic_stability": "14", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 587, 
+      "economic_stability": "15", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 659, 
+      "economic_stability": "16", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 744, 
+      "economic_stability": "17", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 689, 
+      "economic_stability": "18", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 718, 
+      "economic_stability": "19", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 700, 
+      "economic_stability": "20", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 691, 
+      "economic_stability": "21", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 681, 
+      "economic_stability": "22", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 593, 
+      "economic_stability": "23", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 617, 
+      "economic_stability": "24", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 570, 
+      "economic_stability": "25", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 542, 
+      "economic_stability": "26", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 468, 
+      "economic_stability": "27", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 433, 
+      "economic_stability": "28", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 301, 
+      "economic_stability": "29", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 197, 
+      "economic_stability": "30", 
+      "race_code": "B"
+    }, 
+    {
+      "customer_count": 41, 
+      "economic_stability": "01", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 64, 
+      "economic_stability": "02", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 56, 
+      "economic_stability": "03", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 73, 
+      "economic_stability": "04", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 71, 
+      "economic_stability": "05", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 65, 
+      "economic_stability": "06", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 54, 
+      "economic_stability": "07", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 68, 
+      "economic_stability": "08", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 42, 
+      "economic_stability": "09", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 43, 
+      "economic_stability": "10", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 31, 
+      "economic_stability": "11", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 31, 
+      "economic_stability": "12", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 26, 
+      "economic_stability": "13", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 36, 
+      "economic_stability": "14", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 28, 
+      "economic_stability": "15", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 24, 
+      "economic_stability": "16", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 19, 
+      "economic_stability": "17", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 10, 
+      "economic_stability": "18", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 12, 
+      "economic_stability": "19", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 13, 
+      "economic_stability": "20", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 12, 
+      "economic_stability": "21", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 7, 
+      "economic_stability": "22", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 14, 
+      "economic_stability": "23", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 11, 
+      "economic_stability": "24", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 6, 
+      "economic_stability": "25", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 6, 
+      "economic_stability": "26", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 4, 
+      "economic_stability": "27", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "28", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "29", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "30", 
+      "race_code": "C"
+    }, 
+    {
+      "customer_count": 66, 
+      "economic_stability": "01", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 135, 
+      "economic_stability": "02", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 167, 
+      "economic_stability": "03", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 204, 
+      "economic_stability": "04", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 256, 
+      "economic_stability": "05", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 300, 
+      "economic_stability": "06", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 336, 
+      "economic_stability": "07", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 362, 
+      "economic_stability": "08", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 391, 
+      "economic_stability": "09", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 430, 
+      "economic_stability": "10", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 468, 
+      "economic_stability": "11", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 488, 
+      "economic_stability": "12", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 474, 
+      "economic_stability": "13", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 466, 
+      "economic_stability": "14", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 549, 
+      "economic_stability": "15", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 543, 
+      "economic_stability": "16", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 583, 
+      "economic_stability": "17", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 499, 
+      "economic_stability": "18", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 477, 
+      "economic_stability": "19", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 507, 
+      "economic_stability": "20", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 460, 
+      "economic_stability": "21", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 453, 
+      "economic_stability": "22", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 401, 
+      "economic_stability": "23", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 367, 
+      "economic_stability": "24", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 305, 
+      "economic_stability": "25", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 258, 
+      "economic_stability": "26", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 270, 
+      "economic_stability": "27", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 224, 
+      "economic_stability": "28", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 144, 
+      "economic_stability": "29", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 93, 
+      "economic_stability": "30", 
+      "race_code": "H"
+    }, 
+    {
+      "customer_count": 1, 
+      "economic_stability": "02", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 5, 
+      "economic_stability": "03", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 5, 
+      "economic_stability": "04", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 4, 
+      "economic_stability": "05", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 5, 
+      "economic_stability": "06", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 9, 
+      "economic_stability": "07", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 7, 
+      "economic_stability": "08", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 7, 
+      "economic_stability": "09", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 15, 
+      "economic_stability": "10", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 10, 
+      "economic_stability": "11", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 20, 
+      "economic_stability": "12", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 16, 
+      "economic_stability": "13", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 15, 
+      "economic_stability": "14", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 16, 
+      "economic_stability": "15", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 12, 
+      "economic_stability": "16", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 22, 
+      "economic_stability": "17", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 11, 
+      "economic_stability": "18", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 17, 
+      "economic_stability": "19", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 20, 
+      "economic_stability": "20", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 18, 
+      "economic_stability": "21", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 17, 
+      "economic_stability": "22", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 21, 
+      "economic_stability": "23", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 14, 
+      "economic_stability": "24", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 20, 
+      "economic_stability": "25", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 14, 
+      "economic_stability": "26", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 10, 
+      "economic_stability": "27", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 8, 
+      "economic_stability": "28", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "29", 
+      "race_code": "I"
+    }, 
+    {
+      "customer_count": 8, 
+      "economic_stability": "01", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 9, 
+      "economic_stability": "02", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 8, 
+      "economic_stability": "03", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 6, 
+      "economic_stability": "04", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 15, 
+      "economic_stability": "05", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 8, 
+      "economic_stability": "06", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 11, 
+      "economic_stability": "07", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 7, 
+      "economic_stability": "08", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 12, 
+      "economic_stability": "09", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 11, 
+      "economic_stability": "10", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "11", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 8, 
+      "economic_stability": "12", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 7, 
+      "economic_stability": "13", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 7, 
+      "economic_stability": "14", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 5, 
+      "economic_stability": "15", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 2, 
+      "economic_stability": "16", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 4, 
+      "economic_stability": "17", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 4, 
+      "economic_stability": "18", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 4, 
+      "economic_stability": "19", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 4, 
+      "economic_stability": "20", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "21", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "22", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 2, 
+      "economic_stability": "23", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 5, 
+      "economic_stability": "24", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 5, 
+      "economic_stability": "25", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 1, 
+      "economic_stability": "26", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 3, 
+      "economic_stability": "27", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 1, 
+      "economic_stability": "30", 
+      "race_code": "N"
+    }, 
+    {
+      "customer_count": 594, 
+      "economic_stability": "01", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 986, 
+      "economic_stability": "02", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1138, 
+      "economic_stability": "03", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1372, 
+      "economic_stability": "04", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1360, 
+      "economic_stability": "05", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1429, 
+      "economic_stability": "06", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1440, 
+      "economic_stability": "07", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1448, 
+      "economic_stability": "08", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1455, 
+      "economic_stability": "09", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1398, 
+      "economic_stability": "10", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1278, 
+      "economic_stability": "11", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1342, 
+      "economic_stability": "12", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1265, 
+      "economic_stability": "13", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1170, 
+      "economic_stability": "14", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1072, 
+      "economic_stability": "15", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 983, 
+      "economic_stability": "16", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1011, 
+      "economic_stability": "17", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 920, 
+      "economic_stability": "18", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 811, 
+      "economic_stability": "19", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 770, 
+      "economic_stability": "20", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 699, 
+      "economic_stability": "21", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 600, 
+      "economic_stability": "22", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 531, 
+      "economic_stability": "23", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 459, 
+      "economic_stability": "24", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 352, 
+      "economic_stability": "25", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 318, 
+      "economic_stability": "26", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 276, 
+      "economic_stability": "27", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 221, 
+      "economic_stability": "28", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 130, 
+      "economic_stability": "29", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 84, 
+      "economic_stability": "30", 
+      "race_code": "O"
+    }, 
+    {
+      "customer_count": 1, 
+      "economic_stability": "04", 
+      "race_code": "P"
+    }, 
+    {
+      "customer_count": 2, 
+      "economic_stability": "05", 
+      "race_code": "P"
+    }, 
+    {
+      "customer_count": 1, 
+      "economic_stability": "15", 
+      "race_code": "P"
+    }, 
+    {
+      "customer_count": 432, 
+      "economic_stability": "01", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 895, 
+      "economic_stability": "02", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1351, 
+      "economic_stability": "03", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1737, 
+      "economic_stability": "04", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1795, 
+      "economic_stability": "05", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2014, 
+      "economic_stability": "06", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1971, 
+      "economic_stability": "07", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2305, 
+      "economic_stability": "08", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2328, 
+      "economic_stability": "09", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2443, 
+      "economic_stability": "10", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2359, 
+      "economic_stability": "11", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2492, 
+      "economic_stability": "12", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2460, 
+      "economic_stability": "13", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2446, 
+      "economic_stability": "14", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2206, 
+      "economic_stability": "15", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 2139, 
+      "economic_stability": "16", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1932, 
+      "economic_stability": "17", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1887, 
+      "economic_stability": "18", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1741, 
+      "economic_stability": "19", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1602, 
+      "economic_stability": "20", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1446, 
+      "economic_stability": "21", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1229, 
+      "economic_stability": "22", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 1071, 
+      "economic_stability": "23", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 944, 
+      "economic_stability": "24", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 823, 
+      "economic_stability": "25", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 716, 
+      "economic_stability": "26", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 578, 
+      "economic_stability": "27", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 405, 
+      "economic_stability": "28", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 225, 
+      "economic_stability": "29", 
+      "race_code": "W"
+    }, 
+    {
+      "customer_count": 105, 
+      "economic_stability": "30", 
+      "race_code": "W"
+    }
+  ]
+}

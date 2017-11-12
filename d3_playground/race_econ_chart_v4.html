@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Race + Economic Stability</title>
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<style>
+
+  body {
+    background-color: #fff;
+    text-align: center;
+    padding: 0 5%;
+  }
+
+  svg { padding: 0 2em; }
+
+  #viz { margin: 0 auto; }
+
+  #viz {
+    border: 1px solid #000;
+    height: 650px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+  }
+
+
+
+  /*.bar-A {}*/
+  /*.bar-B {}*/
+  /*.bar-C {}*/
+  /*.bar-H {}*/
+  /*.bar-I {}*/
+  /*.bar-N {}*/
+  /*.bar-O {}*/
+  /*.bar-P {}*/
+  /*.bar-W {}*/
+
+
+</style>
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </head>
+  <body>
+
+    <h2>Race + Economic Stability</h2>
+    <div id="viz"></div>
+
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//d3js.org/d3.v4.min.js"></script>
+
+  <script>
+    
+    /*
+      D3 VISULAIZATION - CATEGORY STATS BULLET CHART
+
+      The D3 code below was created with the help of the fantastic tutorial by Scott Murray, found here: http://alignedleft.com/tutorials/d3/
+
+      Take note, I've used the "react-faux-dom" module by Oliver Caldwell within this component. It's necessary for D3 to work it's magic within React.
+      You can find the module's github repo here: https://github.com/Olical/react-faux-dom.
+
+      Also, for info on integrating D3 with ReactJS check out Oliver's blogpost here: http://oli.me.uk/2015/09/09/d3-within-react-the-right-way/
+    */
+
+
+    (function() { // self executing function here
+
+      var raceCodes = {
+        "A": { "race": "Asian", "offset": 0 },
+        "B": { "race": "Black", "offset": 4 },
+        "C": { "race": "Chinese", "offset": 8 },
+        "H": { "race": "Hispanic", "offset": 12 },
+        "I": { "race": "American I", "offset": 16 },
+        "N": { "race": "Japanese", "offset": 20 },
+        "O": { "race": "Other", "offset": 24 },
+        "P": { "race": "Portuguese", "offset": 28 },
+        "W": { "race": "White", "offset": 32 }
+      }
+
+      d3.json("race_econ_chart.json", function(error, json) {
+        if (error) throw error;
+
+        var width, height, margin = {top: 20, right: 5, bottom: 40, left: 20},
+            width = 1200 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
+
+        var max, min
+            max = d3.max(json.data, function(d) { return d.customer_count })
+            min = 0
+
+        var cell = 40
+
+        var color = d3.scaleOrdinal()
+            .domain(["A","B","C","H","I","N","O","P","W"])
+            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#F07E91", "#5FC2D8"])
+
+        // set the ranges
+        var x = d3.scaleLinear()
+                  .range([0, width])
+                  .domain([0, 31])
+
+        var y = d3.scaleLinear()
+                  .range([height, 0])
+                  .domain([0, max])
+
+        var svg = d3.select("#viz").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+            svg.selectAll(".bar")
+                .data(json.data)
+              .enter().append("rect")
+                .attr("class", "bar")
+                .attr("class", function(d) { return "bar-" + d.race_code})
+                .attr("fill", function(d) { return color(d.race_code) })
+                .attr("x", function(d) { return x(d.economic_stability) - 20; })
+                .attr("transform", function(d) { return "translate("+ raceCodes[d.race_code].offset +",0)"; })
+                .attr("width", 4)
+                .attr("y", function(d) { return y(d.customer_count); })
+                .attr("height", function(d) { return height - y(d.customer_count); });
+
+        // add the x Axis
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).ticks(30));
+
+        // add the y Axis
+        svg.append("g")
+            .call(d3.axisLeft(y))
+
+        svg.append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Customers")
+
+        svg.append("text")
+          .attr("y", height + margin.top + 10)
+          .attr("x", width / 2)
+          .style("text-anchor", "end")
+          .text("Economic Stability")
+
+      var legend = svg.selectAll(".legend")
+          .data(Object.keys(raceCodes).map(function(key) { return Object.assign({}, { 'code': key }, raceCodes[key]) }))
+        .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+      legend.append("rect")
+          .attr("x", width - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", function(d) { return color(d.code) });
+
+      legend.append("text")
+          .attr("x", width - 24)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function(d) { return d.race; });
+
+
+
+      })
+
+    })();
+
+  </script>
+
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>

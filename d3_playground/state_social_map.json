@@ -1,0 +1,463 @@
+{
+  "data": [
+    {
+      "facebook_user_rank_avg": 13.71830985915493, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 2, 
+      "state": "AK", 
+      "youtube_user_rank_avg": 13.43661971830986, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 2
+    }, 
+    {
+      "facebook_user_rank_avg": 8.822324628776242, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "AL", 
+      "youtube_user_rank_avg": 9.097286226318484, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 12.737864077669903, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "AR", 
+      "youtube_user_rank_avg": 12.669902912621358, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.216294859359845, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "AZ", 
+      "youtube_user_rank_avg": 13.156159068865179, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 12.620383172032392, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "CA", 
+      "youtube_user_rank_avg": 10.72624925933241, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 11.852813852813853, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "CO", 
+      "youtube_user_rank_avg": 10.74025974025974, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.37087087087087, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "CT", 
+      "youtube_user_rank_avg": 12.117117117117116, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 8.621052631578948, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "DC", 
+      "youtube_user_rank_avg": 5.021052631578947, 
+      "youtube_user_rank_max": 19, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 11.683333333333334, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "DE", 
+      "youtube_user_rank_avg": 11.566666666666666, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 11.568223017000637, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "FL", 
+      "youtube_user_rank_avg": 10.387438146097692, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 11.60999083409716, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "GA", 
+      "youtube_user_rank_avg": 11.24197983501375, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 11.733333333333333, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "HI", 
+      "youtube_user_rank_avg": 10.613333333333333, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.261324041811847, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "IA", 
+      "youtube_user_rank_avg": 13.45993031358885, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.486956521739131, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "ID", 
+      "youtube_user_rank_avg": 14.11304347826087, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.546064673581451, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "IL", 
+      "youtube_user_rank_avg": 11.574740695546065, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.320388349514563, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "IN", 
+      "youtube_user_rank_avg": 12.910194174757281, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.840864440078585, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "KS", 
+      "youtube_user_rank_avg": 14.200392927308448, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.243494423791821, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "KY", 
+      "youtube_user_rank_avg": 13.652416356877323, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 9.163037409268565, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "LA", 
+      "youtube_user_rank_avg": 8.619207146845337, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.335324869305452, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "MA", 
+      "youtube_user_rank_avg": 12.10455563853622, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 11.158878504672897, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "MD", 
+      "youtube_user_rank_avg": 9.934579439252337, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 15.069148936170214, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "ME", 
+      "youtube_user_rank_avg": 14.882978723404255, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.604311008468052, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "MI", 
+      "youtube_user_rank_avg": 13.421093148575828, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.40976933514247, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "MN", 
+      "youtube_user_rank_avg": 13.078697421981005, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.468785471055618, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "MO", 
+      "youtube_user_rank_avg": 13.480136208853576, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.392559332905709, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "MS", 
+      "youtube_user_rank_avg": 13.711353431686979, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.34, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 3, 
+      "state": "MT", 
+      "youtube_user_rank_avg": 14.34, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 10.684138031027983, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "NC", 
+      "youtube_user_rank_avg": 10.790488618239815, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 11.5625, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "ND", 
+      "youtube_user_rank_avg": 10.625, 
+      "youtube_user_rank_max": 18, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.651515151515152, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "NE", 
+      "youtube_user_rank_avg": 13.848484848484848, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.47766323024055, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "NH", 
+      "youtube_user_rank_avg": 14.29553264604811, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 12.856718634001485, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "NJ", 
+      "youtube_user_rank_avg": 11.074239049740163, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.198598130841122, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 2, 
+      "state": "NM", 
+      "youtube_user_rank_avg": 13.436915887850468, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.822843822843822, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "NV", 
+      "youtube_user_rank_avg": 12.258741258741258, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 12.90572535514421, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "NY", 
+      "youtube_user_rank_avg": 9.914334911752045, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.205951448707909, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "OH", 
+      "youtube_user_rank_avg": 13.179326546593579, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 12.148936170212766, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "OK", 
+      "youtube_user_rank_avg": 11.558510638297872, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.951754385964913, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "OR", 
+      "youtube_user_rank_avg": 12.964912280701755, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.552780016116035, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "PA", 
+      "youtube_user_rank_avg": 12.151490733279614, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.129186602870814, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "RI", 
+      "youtube_user_rank_avg": 13.066985645933014, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 12.868961352657005, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "SC", 
+      "youtube_user_rank_avg": 12.66425120772947, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.372093023255815, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 2, 
+      "state": "SD", 
+      "youtube_user_rank_avg": 13.813953488372093, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.280652418447694, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "TN", 
+      "youtube_user_rank_avg": 13.081552305961754, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.055263925342665, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "TX", 
+      "youtube_user_rank_avg": 12.11023622047244, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.654411764705882, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "UT", 
+      "youtube_user_rank_avg": 12.650735294117647, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 12.896708860759494, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "VA", 
+      "youtube_user_rank_avg": 12.082025316455697, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 15.776699029126213, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 3, 
+      "state": "VT", 
+      "youtube_user_rank_avg": 15.79611650485437, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 3
+    }, 
+    {
+      "facebook_user_rank_avg": 13.671469740634006, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "WA", 
+      "youtube_user_rank_avg": 12.422190201729107, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.88888888888889, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "WI", 
+      "youtube_user_rank_avg": 14.146384479717813, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 14.595800524934383, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "WV", 
+      "youtube_user_rank_avg": 14.742782152230971, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }, 
+    {
+      "facebook_user_rank_avg": 13.525423728813559, 
+      "facebook_user_rank_max": 20, 
+      "facebook_user_rank_min": 1, 
+      "state": "WY", 
+      "youtube_user_rank_avg": 13.40677966101695, 
+      "youtube_user_rank_max": 20, 
+      "youtube_user_rank_min": 1
+    }
+  ]
+}

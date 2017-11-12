@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Category Stats Bullet Chart</title>
+    <title>Gender Bullet Chart</title>
 
 <!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -17,7 +17,7 @@
   body {
     background-color: #fff;
     text-align: center;
-    padding: 0 10%;
+    padding: 0 5%;
   }
 
   svg { padding: 0 2em 0 3em; }
@@ -37,9 +37,15 @@
     align-items: center;
   }
 
-
-  .F-income { fill: #F07E91; }
+/*http://www.colourlovers.com/palette/559682/Boy_and_Girl*/
+  .F-income { fill: #F07E91; } 
   .M-income { fill: #5FC2D8; }
+
+/*#F06491*/
+
+/*243757*/
+
+/*FFEAF4*/
 
   .F-max, .M-max { fill: #B09DB1; }
 
@@ -85,26 +91,23 @@
 
         var formatNumber = d3.format("$,");
         var formatThousand = function(x) { return formatNumber(x / 1e3) + "k"; };
+        var formatMillion = function(x) { return formatNumber(x / 1e6) + "m"; };
         var grandify = function(num) { return num * 1000 }
 
 
-        console.log(json.data[0].income_max, json.data[1].income_max)
-        var f_max = grandify(json.data[0].income_max)
-        var m_max = grandify(json.data[1].income_max)
-        var f_avg = grandify(json.data[0].income_avg)
-        var m_avg = grandify(json.data[1].income_avg)
+        // console.log(json.data[0].income_max, json.data[1].income_max)
+        // var f_avg = grandify(json.data[0].income_avg)
+        // var m_avg = grandify(json.data[1].income_avg)
 
 
-        var width, height, margin = {top: 5, right: 40, bottom: 20, left: 120},
-            width = 900 - margin.left - margin.right,
+        var width, height, margin = {top: 5, right: 20, bottom: 20, left: 20},
+            width = 1200 - margin.left - margin.right,
             height = 100 - margin.top - margin.bottom;
 
         var max, min, roof;
-            max = d3.max([f_max, m_max])
+            max = d3.max([grandify(json.data[0].income_max), grandify(json.data[1].income_max)])
             min = 0
             roof = grandify(3000)
-
-        console.log({max, min, roof})
 
           // Scales
         var x0, xAxis, x1, y0, svg, chart, arc, rects;
@@ -112,7 +115,7 @@
             xAxis = d3.axisBottom().scale(x0)
                       .tickSize(1)
                       .ticks(5)
-                      .tickFormat(formatThousand)
+                      .tickFormat(formatMillion)
 
         var listItems = d3.select("#viz ul")
               .selectAll("li")
@@ -166,7 +169,6 @@
                 .attr("dy", "1em")
                 .text("income");
 
-
         var txt = svg.append("g")
                 .style("text-anchor", "end")
                 .attr("class", function(d) { return d.gender + "-txt-max" })
@@ -179,7 +181,7 @@
 
             txt.append("text").attr("class", "txt-max")
                 .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_max)) - 5) +",0)" })
-                .text(function(d) { return formatThousand(grandify(d.income_max)) });
+                .text(function(d) { return formatMillion(grandify(d.income_max)) });
 
 
       })
