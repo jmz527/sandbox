@@ -27,9 +27,6 @@
     border: 1px solid #000;
     height: 650px;
     position: relative;
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
   }
 
   /* Legend Position Style */
@@ -57,7 +54,12 @@
   <body>
 
     <h2>State + Social Map</h2>
-    <div id="viz"></div>
+    <div id="viz">
+      <form class="controls">
+          <label><input type="radio" name="mode" value="facebook" checked>Facebook</label>
+          <label><input type="radio" name="mode" value="twitter">Twitter</label>
+      </form>
+    </div>
 
 
 <!-- SCRIPTS
@@ -80,6 +82,167 @@
 
     (function() { // self executing function here
 
+      d3.json("state_social_map.json", function(error, json) {
+        if (error) throw error;
+
+        //Width and height of map
+        var width = 960;
+        var height = 500;
+
+        var lowColor = '#f9f9f9'
+        var highColor = '#ccc'
+        var fbHighColor = '#243757' // blue/grey
+        var twHighColor = '#2A044A' // royale purple
+
+        // D3 Projection
+        var projection = d3.geoAlbersUsa()
+          .translate([width / 2, height / 2]) // translate to center of screen
+          .scale([1000]); // scale things down so see entire US
+
+        // Define path generator
+        var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
+          .projection(projection); // tell path generator to use albersUsa projection
+
+        //Create SVG element and append map to the SVG
+        var svg = d3.select("#viz")
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+            svg.append("text")
+              .attr("class", "klout-txt")
+              .attr("transform", "rotate(-90)")
+              .attr("y", -44)
+              .attr("x", - (height / 3))
+              .attr("dy", ".71em")
+              .style("text-anchor", "middle")
+              .text("Social Klout")
+
+        var fbArr = [], ytArr = [];
+        for (var d = 0; d < json.data.length; d++) {
+          fbArr.push(parseFloat(json.data[d].facebook_user_rank_max))
+          ytArr.push(parseFloat(json.data[d].youtube_user_rank_max))
+        }
+        var fbMin = 1
+        var fbMax = d3.max(fbArr)
+        var fbRamp = d3.scaleLinear().domain([fbMin,fbMax]).range([lowColor,fbHighColor])
+
+        var ytMin = 1
+        var ytMax = d3.max(ytArr)
+        var ytRamp = d3.scaleLinear().domain([ytMin,ytMax]).range([lowColor,twHighColor])
+
+        // Load GeoJSON data and merge with states data
+        d3.json("us-states.json", function(GeoJSON) {
+
+          var paths = svg.selectAll("path")
+            .data(GeoJSON.features)
+          .enter()
+            .append("path")
+            .attr("d", path)
+            .style("stroke", "#fff")
+            .style("stroke-width", "1")
+            .style("fill", "#ccc");
+
+          // add a legend
+          var legendW = 140, legendH = 300;
+
+          var y = d3.scaleLinear()
+            .range([legendH, 0])
+            .domain([0, 20]);
+
+          var yAxis = d3.axisRight(y);
+
+          var key = d3.select("#viz")
+            .append("svg")
+            .attr("width", legendW)
+            .attr("height", legendH)
+            .attr("class", "legend");
+
+          var legend = key.append("defs")
+            .append("svg:linearGradient")
+            .attr("id", "gradient")
+            .attr("x1", "100%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "100%")
+            .attr("spreadMethod", "pad");
+
+          var highColStop = legend.append("stop")
+              .attr("class", "highCol")
+              .attr("offset", "0%")
+              .attr("stop-color", highColor)
+              .attr("stop-opacity", 1);
+              
+          legend.append("stop")
+              .attr("class", "lowCol")
+              .attr("offset", "100%")
+              .attr("stop-color", lowColor)
+              .attr("stop-opacity", 1);
+
+            key.append("rect")
+              .attr("width", legendW - 100)
+              .attr("height", legendH)
+              .style("fill", "url(#gradient)")
+              .attr("transform", "translate(0,10)");
+
+            key.append("g")
+              .attr("class", "y axis")
+              .attr("transform", "translate(41,10)")
+              .call(yAxis)
+
+
+          function GeoMapper(ramp, highCol, detail) {
+
+            // Loop through each state data value in the .csv file
+            for (var i = 0; i < json.data.length; i++) {
+
+              var dataState = stateCode[json.data[i].state]; // Grab State Name
+
+              var dataValue = Math.round(json.data[i][detail]); // Grab data value 
+
+              // Find the corresponding state inside the GeoJSON
+              for (var j = 0; j < GeoJSON.features.length; j++) {
+                var jsonState = GeoJSON.features[j].properties.name;
+
+                if (dataState == jsonState) {
+
+                  GeoJSON.features[j].properties.value = dataValue; // Copy the data value into the JSON
+
+                  break; // Stop looking through the JSON
+                }
+              }
+            }
+
+            // transition the paths per GeoJSON feature
+            paths.transition().delay(function(d, i) { return i * 10; })
+                .style("fill", function(d) { return ramp(d.properties.value) });
+
+            highColStop.transition().attr("stop-color", highCol)
+
+          }
+
+          d3.selectAll("#viz input").on("change", function change() {
+            (this.value === "facebook") ? transitionFB() : transitionTW();
+          });
+
+          function transitionFB() { console.log('transitionFB')
+            d3.select("#viz .klout-txt").text("Facebook Klout")
+
+            GeoMapper(fbRamp, fbHighColor, 'facebook_user_rank_avg');
+          }
+
+          function transitionTW() { console.log('transitionTW')
+            d3.select("#viz .klout-txt").text("Twitter Klout")
+
+            GeoMapper(ytRamp, twHighColor, 'youtube_user_rank_avg');
+          }
+
+          transitionFB();
+          // transitionTW();
+
+        });
+
+      })
 
       var stateCode = {
         "AL":"Alabama",
@@ -134,146 +297,6 @@
         "WV":"West Virginia",
         "WY":"Wyoming"
       }
-
-      d3.json("state_social_map.json", function(error, json) {
-        if (error) throw error;
-
-        //Width and height of map
-        var width = 960;
-        var height = 500;
-
-        // var lowColor = '#f9f9f9'
-        // var highColor = '#bc2a66'
-
-        // var lowColor = '#DDFFCC'
-        var lowColor = '#f9f9f9'
-        var highColor = '#30D8F0'
-
-        // var highColor = '#3A5F6F'
-        // var highColor = '#243757'
-
-        // D3 Projection
-        var projection = d3.geoAlbersUsa()
-          .translate([width / 2, height / 2]) // translate to center of screen
-          .scale([1000]); // scale things down so see entire US
-
-        // Define path generator
-        var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
-          .projection(projection); // tell path generator to use albersUsa projection
-
-        //Create SVG element and append map to the SVG
-        var svg = d3.select("#viz")
-          .append("svg")
-          .attr("width", width)
-          .attr("height", height);
-
-
-        var fbArr = [], ytArr = [];
-        for (var d = 0; d < json.data.length; d++) {
-          fbArr.push(parseFloat(json.data[d].facebook_user_rank_max))
-          // ytArr.push(parseFloat(json.data[d].youtube_user_rank_max))
-        }
-        var fbMin = 1
-        var fbMax = d3.max(fbArr)
-        var fbRamp = d3.scaleLinear().domain([fbMin,fbMax]).range([lowColor,highColor])
-
-        // var ytMin = d3.min(ytArr)
-        // var ytMax = d3.max(ytArr)
-        // var ytRamp = d3.scaleLinear().domain([ytMin,ytMax]).range([lowColor,highColor])
-
-
-        console.log({ fbArr, fbMin, fbMax, fbRamp })
-        // console.log({ ytArr, ytMin, ytMax, ytRamp })
-
-
-        // Load GeoJSON data and merge with states data
-        d3.json("us-states.json", function(stateJson) {
-
-          // Loop through each state data value in the .csv file
-          for (var i = 0; i < json.data.length; i++) {
-
-            // Grab State Name
-            var dataState = stateCode[json.data[i].state];
-
-            // Grab data value 
-            var dataValue = Math.round(json.data[i].facebook_user_rank_avg);
-            // var dataValue = json.data[i].youtube_user_rank_avg;
-
-            // Find the corresponding state inside the GeoJSON
-            for (var j = 0; j < stateJson.features.length; j++) {
-              var jsonState = stateJson.features[j].properties.name;
-
-              if (dataState == jsonState) {
-
-                // Copy the data value into the JSON
-                stateJson.features[j].properties.value = dataValue;
-
-                // Stop looking through the JSON
-                break;
-              }
-            }
-          }
-
-          // Bind the data to the SVG and create one path per GeoJSON feature
-          svg.selectAll("path")
-            .data(stateJson.features)
-            .enter()
-            .append("path")
-            .attr("d", path)
-            .style("stroke", "#fff")
-            .style("stroke-width", "1")
-            .style("fill", function(d) { return fbRamp(d.properties.value) });
-
-
-          // add a legend
-          var w = 140, h = 300;
-
-          var key = d3.select("#viz")
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h)
-            .attr("class", "legend");
-
-          var legend = key.append("defs")
-            .append("svg:linearGradient")
-            .attr("id", "gradient")
-            .attr("x1", "100%")
-            .attr("y1", "0%")
-            .attr("x2", "100%")
-            .attr("y2", "100%")
-            .attr("spreadMethod", "pad");
-
-          legend.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", highColor)
-            .attr("stop-opacity", 1);
-            
-          legend.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", lowColor)
-            .attr("stop-opacity", 1);
-
-          key.append("rect")
-            .attr("width", w - 100)
-            .attr("height", h)
-            .style("fill", "url(#gradient)")
-            .attr("transform", "translate(0,10)");
-
-          var y = d3.scaleLinear()
-            .range([h, 0])
-            .domain([fbMin, fbMax]);
-
-          var yAxis = d3.axisRight(y);
-
-          key.append("g")
-            .attr("class", "y axis")
-            .attr("transform", "translate(41,10)")
-            .call(yAxis)
-
-
-        });
-
-      })
 
     })();
 
