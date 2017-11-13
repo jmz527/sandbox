@@ -17,7 +17,7 @@
   body {
     background-color: #fff;
     text-align: center;
-    padding: 0 5%;
+    padding: 0;
   }
 
   svg { padding: 0 2em; }
@@ -25,12 +25,34 @@
   #viz { margin: 0 auto; }
 
   #viz {
+    position: relative;
     border: 1px solid #000;
     height: 650px;
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
+    vertical-align: middle;
   }
+
+  form {
+    position: absolute;
+    top: 0;
+    font-size: 12px;
+    display: inline-block;
+    width: 140px;
+  }
+  form label { display: block; }
+
+  form h4 { text-align: center; }
+
+  form.y-controls {
+    left: 0;
+    float: left;
+    text-align: left;
+  }
+  form.x-controls {
+    right: 0;
+    float: right;
+    text-align: right;
+  }
+
 
 </style>
 
@@ -42,36 +64,30 @@
     <h2>All Chart</h2>
     <div id="viz">
       <form class="y-controls">
-          <label><input type="radio" name="mode" value="economic_stability" checked>Economic Stability</label>
-          <label><input type="radio" name="mode" value="income">Income</label>
+          <h4>Y Axis</h4>
+          <label><input type="radio" name="mode" value="economic_stability">Economic Stability</label>
+          <label><input type="radio" name="mode" value="income" checked>Income</label>
           <label><input type="radio" name="mode" value="sports_leisure_spending">Sports Leisure Spending</label>
           <label><input type="radio" name="mode" value="travel_spending">Travel Spending</label>
           <label><input type="radio" name="mode" value="facebook_user_rank">Facebook User Rank</label>
           <label><input type="radio" name="mode" value="youtube_user_rank">Youtube User Rank</label>
-          <label><input type="radio" name="mode" value="education" checked>Education</label>
-          <label><input type="radio" name="mode" value="gender">Gender</label>
-          <label><input type="radio" name="mode" value="home_owner">Home Owner</label>
-          <label><input type="radio" name="mode" value="has_insurance">Has Insurance</label>
-          <label><input type="radio" name="mode" value="is_exerciser">Is Exerciser</label>
-          <label><input type="radio" name="mode" value="is_smoker">Is Smoker</label>
-          <label><input type="radio" name="mode" value="race">Race</label>
-          <label><input type="radio" name="mode" value="state">State</label>
       </form>
       <form class="x-controls">
-          <label><input type="radio" name="mode" value="economic_stability" checked>Economic Stability</label>
-          <label><input type="radio" name="mode" value="income">Income</label>
-          <label><input type="radio" name="mode" value="sports_leisure_spending">Sports Leisure Spending</label>
-          <label><input type="radio" name="mode" value="travel_spending">Travel Spending</label>
-          <label><input type="radio" name="mode" value="facebook_user_rank">Facebook User Rank</label>
-          <label><input type="radio" name="mode" value="youtube_user_rank">Youtube User Rank</label>
-          <label><input type="radio" name="mode" value="education" checked>Education</label>
-          <label><input type="radio" name="mode" value="gender">Gender</label>
-          <label><input type="radio" name="mode" value="home_owner">Home Owner</label>
-          <label><input type="radio" name="mode" value="has_insurance">Has Insurance</label>
-          <label><input type="radio" name="mode" value="is_exerciser">Is Exerciser</label>
-          <label><input type="radio" name="mode" value="is_smoker">Is Smoker</label>
-          <label><input type="radio" name="mode" value="race">Race</label>
-          <label><input type="radio" name="mode" value="state">State</label>
+          <h4>X Axis</h4>
+          <label>Economic Stability<input type="radio" name="mode" value="economic_stability" checked></label>
+          <label>Income<input type="radio" name="mode" value="income"></label>
+          <label>Sports Leisure Spending<input type="radio" name="mode" value="sports_leisure_spending"></label>
+          <label>Travel Spending<input type="radio" name="mode" value="travel_spending"></label>
+          <label>Facebook User Rank<input type="radio" name="mode" value="facebook_user_rank"></label>
+          <label>Youtube User Rank<input type="radio" name="mode" value="youtube_user_rank"></label>
+          <label>Education<input type="radio" name="mode" value="education"></label>
+          <label>Gender<input type="radio" name="mode" value="gender"></label>
+          <label>Home Owner<input type="radio" name="mode" value="home_owner"></label>
+          <label>Has Insurance<input type="radio" name="mode" value="has_insurance"></label>
+          <label>Is Exerciser<input type="radio" name="mode" value="is_exerciser"></label>
+          <label>Is Smoker<input type="radio" name="mode" value="is_smoker"></label>
+          <label>Race<input type="radio" name="mode" value="race"></label>
+          <label>State<input type="radio" name="mode" value="state"></label>
       </form>
     </div>
 
@@ -103,60 +119,206 @@
             width = 1200 - margin.left - margin.right,
             height = 600 - margin.top - margin.bottom;
 
+        // Scales
+        var x0, x1, y0, xAxis, yAxis, svg, chart;
+            x0 = d3.scaleLinear().domain([0, 1]).range([0, width])
+            x1 = d3.scaleOrdinal().domain(["0", "1", "2", "3"]).range([0, width])
+            y0 = d3.scaleLinear().domain([0, 1]).range([height, 0])
+            xAxis = d3.axisBottom().scale(x0)
+            yAxis = d3.axisLeft().scale(y0)
+            // .tickSizeInner(-width).tickSizeOuter(0)
 
-        // d3.select("#viz")
+        var xParam, yParam;
+            xParam = 'economic_stability'
+            yParam = 'income'
+
+        var maxDict = {
+          economic_stability: d3.max(json.data, function(d) { return d.economic_stability }),
+          facebook_user_rank: d3.max(json.data, function(d) { return d.facebook_user_rank }),
+          income: d3.max(json.data, function(d) { return d.income }),
+          sports_leisure_spending: d3.max(json.data, function(d) { return d.sports_leisure_spending }),
+          travel_spending: d3.max(json.data, function(d) { return d.travel_spending }),
+          youtube_user_rank: d3.max(json.data, function(d) { return d.youtube_user_rank })
+        }
+
+        var domainDict = {
+          education: deriveDom(json.data, 'education'),
+          gender: deriveDom(json.data, 'gender'),
+          home_owner: deriveDom(json.data, 'home_owner'),
+          has_insurance: deriveDom(json.data, 'has_insurance'),
+          is_exerciser: deriveDom(json.data, 'is_exerciser'),
+          is_smoker: deriveDom(json.data, 'is_smoker'),
+          race: deriveDom(json.data, 'race'),
+          state: deriveDom(json.data, 'state')
+        }
+
+        function deriveDom(data, propStr) {
+          return Object.keys(data.reduce(dupeFn(propStr), {}))
+        }
+
+        function dupeFn(propStr) {
+          return function(acc, d) { // console.log(d[propStr])
+            if (d[propStr] && d[propStr].length && d[propStr] !== " ") {
+              acc[d[propStr]] = acc.hasOwnProperty(d[propStr]) ? acc[d[propStr]] + 1 : 1;
+            }
+            return acc
+          }
+        }
+
+        console.log(maxDict)
+        console.log(domainDict)
+
+        var svg = d3.select("#viz").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+            // add the x Axis
+            svg.append("g")
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+
+            // add the y Axis
+            svg.append("g")
+                .attr("class", "y-axis")
+                .call(yAxis)
+
+        var chart = svg.append("g").attr("class", "chart")
 
 
-        d3.selectAll("#viz form.y-controls input").on("change", function change() { console.log(this.value)
-          // switch(this.value):
+        x0.domain([0, maxDict['economic_stability']])
+        xAxis.scale(x0)
+        svg.select(".x-axis").transition().call(xAxis)
 
-          // transitionBar()
-          // transitionScatter()
+        y0.domain([0, maxDict['income']])
+        yAxis.scale(y0)
+        svg.select(".y-axis").transition().call(yAxis)
+
+        var dots = chart.selectAll(".dot")
+                .data(json.data)
+                .enter()
+                .append("circle")
+                .attr("class", "dot")
+                .style("fill", "#000")
+                .attr("r", 3)
+                .attr("cx", function(d) { return x0(d['economic_stability']); })
+                .attr("cy", function(d) { return y0(d['income']); });
+
+
+        d3.selectAll("#viz form.y-controls input").on("change", function change() {
+          yParam = this.value
+
+          switch(this.value) {
+            case 'economic_stability':
+              alterYAxisLinear(maxDict[this.value])
+              break;
+            case 'income':
+              alterYAxisLinear(maxDict[this.value])
+              break;
+            case 'sports_leisure_spending':
+              alterYAxisLinear(maxDict[this.value])
+              break;
+            case 'travel_spending':
+              alterYAxisLinear(maxDict[this.value])
+              break;
+            case 'facebook_user_rank':
+              alterYAxisLinear(maxDict[this.value])
+              break;
+            case 'youtube_user_rank':
+              alterYAxisLinear(maxDict[this.value])
+              break;
+          }
 
         });
 
-        d3.selectAll("#viz form.x-controls input").on("change", function change() { console.log(this.value)
-          // switch(this.value):
+        d3.selectAll("#viz form.x-controls input").on("change", function change() {
+          xParam = this.value
 
-          // transitionBar()
-          // transitionScatter()
+          switch(this.value) {
+            case 'economic_stability':
+              alterXAxisLinear(maxDict[this.value])
+              break;
+            case 'income':
+              alterXAxisLinear(maxDict[this.value])
+              break;
+            case 'sports_leisure_spending':
+              alterXAxisLinear(maxDict[this.value])
+              break;
+            case 'travel_spending':
+              alterXAxisLinear(maxDict[this.value])
+              break;
+            case 'facebook_user_rank':
+              alterXAxisLinear(maxDict[this.value])
+              break;
+            case 'youtube_user_rank':
+              alterXAxisLinear(maxDict[this.value])
+              break;
+            case 'education':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+            case 'gender':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+            case 'home_owner':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+            case 'has_insurance':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+            case 'is_exerciser':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+            case 'is_smoker':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+            case 'race':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+            case 'state':
+              alterXAxisOrdinal(domainDict[this.value])
+              break;
+          }
 
         });
 
-        function transitionBar() { console.log('transitionBar')
-          // d3.select("#viz .klout-txt").text("Facebook Klout")
+        function alterXAxisLinear(max) {
+            x0.domain([0, max])
+            xAxis.scale(x0)
+            svg.select(".x-axis").transition().call(xAxis)
 
+            transitionScatter()
+        }
+        function alterXAxisOrdinal(arr) {
+            x1.domain(arr)
+            xAxis.scale(x1).ticks(arr.length)
+            svg.select(".x-axis").transition().call(xAxis)
+
+            transitionBar()
+        }
+        function alterYAxisLinear(max) {
+            y0.domain([0, max])
+            yAxis.scale(y0)
+            svg.select(".y-axis").transition().call(yAxis)
+
+            transitionScatter()
         }
 
         function transitionScatter() { console.log('transitionScatter')
-          // d3.select("#viz .klout-txt").text("Twitter Klout")
+            dots.transition()
+              .style("opacity", "1")
+              .attr("cx", function(d) { return x0(d[xParam]); })
+              .attr("cy", function(d) { return y0(d[yParam]); });
 
         }
 
+        function transitionBar() { console.log('transitionBar')
+            dots.transition()
+              .style("opacity", "0")
+              .exit().remove()
 
-
-        // d3.select("#viz")
-        //     .selectAll("div")
-        //     .data(json.data)
-        //     .enter()
-        //     .append("div")
-        //     .text(function(d) {
-        //       return d.id +" | "+ d.economic_stability
-        //                   +" | "+ d.insurance_segment
-        //                   +" | "+ d.education
-        //                   +" | "+ d.facebook_user_rank
-        //                   +" | "+ d.gender
-        //                   +" | "+ d.has_insurance
-        //                   +" | "+ d.home_owner
-        //                   +" | "+ d.income
-        //                   +" | "+ d.is_exerciser
-        //                   +" | "+ d.is_smoker
-        //                   +" | "+ d.race
-        //                   +" | "+ d.sports_leisure_spending
-        //                   +" | "+ d.state
-        //                   +" | "+ d.travel_spending
-        //                   +" | "+ d.youtube_user_rank
-            // })
+        }
 
       })
 

@@ -36,18 +36,6 @@
     opacity: 0.2;
   }
 
-
-  /*.bar-A {}*/
-  /*.bar-B {}*/
-  /*.bar-C {}*/
-  /*.bar-H {}*/
-  /*.bar-I {}*/
-  /*.bar-N {}*/
-  /*.bar-O {}*/
-  /*.bar-P {}*/
-  /*.bar-W {}*/
-
-
 </style>
 
 <!-- Primary Page Layout
@@ -79,34 +67,28 @@
 
     (function() { // self executing function here
 
-      var raceCodes = {
-        "A": { "race": "Asian", "offset": 0 },
-        "B": { "race": "Black", "offset": 4 },
-        "C": { "race": "Chinese", "offset": 8 },
-        "H": { "race": "Hispanic", "offset": 12 },
-        "I": { "race": "American I", "offset": 16 },
-        "N": { "race": "Japanese", "offset": 20 },
-        "O": { "race": "Other", "offset": 24 },
-        "P": { "race": "Portuguese", "offset": 28 },
-        "W": { "race": "White", "offset": 32 }
-      }
-
       d3.json("race_econ_chart.json", function(error, json) {
         if (error) throw error;
 
-        var width, height, margin = {top: 20, right: 5, bottom: 40, left: 20},
+        var width, height, max, min, margin = {top: 20, right: 5, bottom: 40, left: 20},
             width = 1200 - margin.left - margin.right,
             height = 600 - margin.top - margin.bottom;
-
-        var max, min
             max = d3.max(json.data, function(d) { return d.customer_count })
             min = 0
 
-        var cell = 40
+        var raceArr = ["A","B","C","H","I","N","O","P","W"]
 
         var color = d3.scaleOrdinal()
-            .domain(["A","B","C","H","I","N","O","P","W"])
+            .domain(raceArr)
             .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#F07E91", "#5FC2D8"])
+
+        var raceCodes = d3.scaleOrdinal()
+            .domain(raceArr)
+            .range(["Asian", "Black", "Chinese", "Hispanic", "American I", "Japanese", "Other", "Portuguese", "White"])
+
+        var offset = d3.scaleOrdinal()
+            .domain(raceArr)
+            .range([0,4,8,12,16,20,24,28,32])
 
         // set the ranges
         var x = d3.scaleLinear()
@@ -140,7 +122,7 @@
                 .attr("class", function(d) { return "bar-" + d.race_code})
                 .attr("fill", function(d) { return color(d.race_code) })
                 .attr("x", function(d) { return x(d.economic_stability) - 20; })
-                .attr("transform", function(d) { return "translate("+ raceCodes[d.race_code].offset +",0)"; })
+                .attr("transform", function(d) { return "translate("+ offset(d.race_code) +",0)"; })
                 .attr("width", 4)
                 .attr("y", height)
                 .attr("height", 0)
@@ -163,7 +145,7 @@
               .text("Economic Stability")
 
       var legend = svg.selectAll(".legend")
-          .data(Object.keys(raceCodes).map(function(key) { return Object.assign({}, { 'code': key }, raceCodes[key]) }))
+          .data(raceArr.map(function(rCode) { return { code: rCode, race: raceCodes(rCode) } }))
         .enter().append("g")
           .attr("class", "legend")
           .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });

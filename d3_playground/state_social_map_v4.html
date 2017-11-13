@@ -94,6 +94,13 @@
         var fbHighColor = '#243757' // blue/grey
         var twHighColor = '#2A044A' // royale purple
 
+        var stateAbrArr = ["AL","AK","AR","AZ","CA","CO","CT","DE","DC","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","ME","MD","MA","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY"]
+        var stateFullArr = ["Alabama","Alaska","Arkansas","Arizona","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Missouri","Mississippi","Montana","North Carolina","North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Vermont","Washington","Wisconsin","West Virginia","Wyoming"]
+
+        var stateScale = d3.scaleOrdinal()
+            .domain(stateAbrArr)
+            .range(stateFullArr)
+
         // D3 Projection
         var projection = d3.geoAlbersUsa()
           .translate([width / 2, height / 2]) // translate to center of screen
@@ -102,21 +109,6 @@
         // Define path generator
         var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
           .projection(projection); // tell path generator to use albersUsa projection
-
-        //Create SVG element and append map to the SVG
-        var svg = d3.select("#viz")
-          .append("svg")
-          .attr("width", width)
-          .attr("height", height);
-
-            svg.append("text")
-              .attr("class", "klout-txt")
-              .attr("transform", "rotate(-90)")
-              .attr("y", -44)
-              .attr("x", - (height / 3))
-              .attr("dy", ".71em")
-              .style("text-anchor", "middle")
-              .text("Social Klout")
 
         var fbArr = [], ytArr = [];
         for (var d = 0; d < json.data.length; d++) {
@@ -130,6 +122,12 @@
         var ytMin = 1
         var ytMax = d3.max(ytArr)
         var ytRamp = d3.scaleLinear().domain([ytMin,ytMax]).range([lowColor,twHighColor])
+
+        //Create SVG element and append map to the SVG
+        var svg = d3.select("#viz")
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height);
 
         // Load GeoJSON data and merge with states data
         d3.json("us-states.json", function(GeoJSON) {
@@ -190,13 +188,21 @@
               .attr("transform", "translate(41,10)")
               .call(yAxis)
 
+            svg.append("text")
+              .attr("class", "klout-txt")
+              .attr("transform", "rotate(-90)")
+              .attr("y", -44)
+              .attr("x", - (height / 3))
+              .attr("dy", ".71em")
+              .style("text-anchor", "middle")
+              .text("Social Klout")
 
           function GeoMapper(ramp, highCol, detail) {
 
             // Loop through each state data value in the .csv file
             for (var i = 0; i < json.data.length; i++) {
 
-              var dataState = stateCode[json.data[i].state]; // Grab State Name
+              var dataState = stateScale(json.data[i].state); // Grab State Name
 
               var dataValue = Math.round(json.data[i][detail]); // Grab data value 
 
@@ -243,60 +249,6 @@
         });
 
       })
-
-      var stateCode = {
-        "AL":"Alabama",
-        "AK":"Alaska",
-        "AR":"Arkansas",
-        "AZ":"Arizona",
-        "CA":"California",
-        "CO":"Colorado",
-        "CT":"Connecticut",
-        "DE":"Delaware",
-        "DC":"District of Columbia",
-        "FL":"Florida",
-        "GA":"Georgia",
-        "HI":"Hawaii",
-        "IA":"Iowa",
-        "ID":"Idaho",
-        "IL":"Illinois",
-        "IN":"Indiana",
-        "KS":"Kansas",
-        "KY":"Kentucky",
-        "LA":"Louisiana",
-        "ME":"Maine",
-        "MD":"Maryland",
-        "MA":"Massachusetts",
-        "MI":"Michigan",
-        "MN":"Minnesota",
-        "MO":"Missouri",
-        "MS":"Mississippi",
-        "MT":"Montana",
-        "NC":"North Carolina",
-        "ND":"North Dakota",
-        "NE":"Nebraska",
-        "NH":"New Hampshire",
-        "NJ":"New Jersey",
-        "NM":"New Mexico",
-        "NV":"Nevada",
-        "NY":"New York",
-        "OH":"Ohio",
-        "OK":"Oklahoma",
-        "OR":"Oregon",
-        "PA":"Pennsylvania",
-        "RI":"Rhode Island",
-        "SC":"South Carolina",
-        "SD":"South Dakota",
-        "TN":"Tennessee",
-        "TX":"Texas",
-        "UT":"Utah",
-        "VA":"Virginia",
-        "VT":"Vermont",
-        "WA":"Washington",
-        "WI":"Wisconsin",
-        "WV":"West Virginia",
-        "WY":"Wyoming"
-      }
 
     })();
 
