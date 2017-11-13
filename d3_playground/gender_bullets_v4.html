@@ -20,21 +20,23 @@
     padding: 0 5%;
   }
 
-  svg { padding: 0 2em 0 3em; }
+  svg { padding: 0 2em 0 4em; }
 
   #viz { margin: 0 auto; }
 
   #viz ul {
+    padding: 0;
     /*text-align: left;*/
   }
 
   #viz ul li {
     /*border: 1px solid #000;*/
     list-style-type: none;
-    height: 150px;
+    height: 250px;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
+    flex-direction: column;
   }
 
 /*http://www.colourlovers.com/palette/559682/Boy_and_Girl*/
@@ -44,26 +46,48 @@
   .F-max { fill: #C25F84; }
   .M-max { fill: #87B0C4; }
 
+  .F-min { fill: purple; }
+  .M-min { fill: purple; }
 
 /*#004853*/
 /*007E80*/
 /*#5C6FF9*/
 /*#59DCE6*/
-
-  .F-min { fill: purple; }
-  .M-min { fill: purple; }
-
 /*#54B9D7*/
-
 /*#5FC2D8*/
-
 /*#F06491*/
-
 /*243757*/
-
 /*FFEAF4*/
 
+  .title { font-size: 14px; font-weight: bold; }
   .subtitle { font-size: 12px; }
+
+  .txt-summary {
+    position: relative;
+    display: block;
+    float: left;
+    text-align: left;
+    width: 1200px;
+    padding: 0 2em 0 4em;
+  }
+
+  .txt-summary h3 {
+    margin: 0;
+    font-style: italic;
+  }
+  .txt-summary p {
+    margin: .5em 0;
+    display: table;
+    text-align: center;
+  }
+  .txt-summary p span {
+    display: table-cell;
+    vertical-align: middle;
+    width: 350px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
 
 </style>
 
@@ -126,7 +150,7 @@
         var listItems = d3.select("#viz ul")
               .selectAll("li")
               .data(json.data)
-              .enter()
+            .enter()
               .append("li")
 
         var svg = listItems.append("svg")
@@ -188,7 +212,7 @@
 
             title.append("text")
                 .attr("class", "title")
-                .text(function(d) { return d.gender; });
+                .text(function(d) { return (d.gender==='F')?'Female':'Male'; });
 
             title.append("text")
                 .attr("class", "subtitle")
@@ -207,6 +231,24 @@
             txt.append("text").attr("class", "txt-avg")
                 .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_avg))) +",0)" })
                 .text(function(d) { return formatThousand(Math.round(grandify(d.income_avg))) })
+
+        var summary = listItems.append("div").attr("class", "txt-summary")
+            summary.append("h3").text(function(d) { return ((d.gender==='F')?'Female':'Male') + " Income Summary"; })
+
+        var p1 = summary.append("p")
+            p1.append("span").text(function(d) { return formatThousand(Math.round(grandify(d.income_avg))) + " Average Income" })
+            p1.append("span").text(function(d) { return formatThousand(grandify(d.income_min)) + " Minimum Income" })
+            p1.append("span").text(function(d) { return formatMillion(grandify(d.income_max)) + " Maximum Income" })
+
+        var p2 = summary.append("p")
+            p2.append("span").text(function(d) { return formatThousand(Math.round(grandify(d.sports_leisure_spending_avg))) + " Average Sports/Leisure Spending" })
+            p2.append("span").text(function(d) { return formatThousand(grandify(d.sports_leisure_spending_min)) + " Minimum Sports/Leisure Spending" })
+            p2.append("span").text(function(d) { return formatMillion(grandify(d.sports_leisure_spending_max)) + " Maximum Sports/Leisure Spending" })
+
+        var p3 = summary.append("p")
+            p3.append("span").text(function(d) { return formatThousand(Math.round(grandify(d.travel_spending_avg))) + " Average Travel Spending" })
+            p3.append("span").text(function(d) { return formatThousand(grandify(d.travel_spending_min)) + " Minimum Travel Spending" })
+            p3.append("span").text(function(d) { return formatMillion(grandify(d.travel_spending_max)) + " Maximum Travel Spending" })
 
       })
 

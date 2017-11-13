@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>All Chart</title>
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<style>
+
+  body {
+    background-color: #fff;
+    text-align: center;
+    padding: 0 5%;
+  }
+
+  svg { padding: 0 2em; }
+
+  #viz { margin: 0 auto; }
+
+  #viz {
+    border: 1px solid #000;
+    height: 650px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+  }
+
+</style>
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </head>
+  <body>
+
+    <h2>All Chart</h2>
+    <div id="viz">
+      <form class="y-controls">
+          <label><input type="radio" name="mode" value="economic_stability" checked>Economic Stability</label>
+          <label><input type="radio" name="mode" value="income">Income</label>
+          <label><input type="radio" name="mode" value="sports_leisure_spending">Sports Leisure Spending</label>
+          <label><input type="radio" name="mode" value="travel_spending">Travel Spending</label>
+          <label><input type="radio" name="mode" value="facebook_user_rank">Facebook User Rank</label>
+          <label><input type="radio" name="mode" value="youtube_user_rank">Youtube User Rank</label>
+          <label><input type="radio" name="mode" value="education" checked>Education</label>
+          <label><input type="radio" name="mode" value="gender">Gender</label>
+          <label><input type="radio" name="mode" value="home_owner">Home Owner</label>
+          <label><input type="radio" name="mode" value="has_insurance">Has Insurance</label>
+          <label><input type="radio" name="mode" value="is_exerciser">Is Exerciser</label>
+          <label><input type="radio" name="mode" value="is_smoker">Is Smoker</label>
+          <label><input type="radio" name="mode" value="race">Race</label>
+          <label><input type="radio" name="mode" value="state">State</label>
+      </form>
+      <form class="x-controls">
+          <label><input type="radio" name="mode" value="economic_stability" checked>Economic Stability</label>
+          <label><input type="radio" name="mode" value="income">Income</label>
+          <label><input type="radio" name="mode" value="sports_leisure_spending">Sports Leisure Spending</label>
+          <label><input type="radio" name="mode" value="travel_spending">Travel Spending</label>
+          <label><input type="radio" name="mode" value="facebook_user_rank">Facebook User Rank</label>
+          <label><input type="radio" name="mode" value="youtube_user_rank">Youtube User Rank</label>
+          <label><input type="radio" name="mode" value="education" checked>Education</label>
+          <label><input type="radio" name="mode" value="gender">Gender</label>
+          <label><input type="radio" name="mode" value="home_owner">Home Owner</label>
+          <label><input type="radio" name="mode" value="has_insurance">Has Insurance</label>
+          <label><input type="radio" name="mode" value="is_exerciser">Is Exerciser</label>
+          <label><input type="radio" name="mode" value="is_smoker">Is Smoker</label>
+          <label><input type="radio" name="mode" value="race">Race</label>
+          <label><input type="radio" name="mode" value="state">State</label>
+      </form>
+    </div>
+
+
+<!-- SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//d3js.org/d3.v4.min.js"></script>
+
+  <script>
+    
+    /*
+      D3 VISULAIZATION - CATEGORY STATS BULLET CHART
+
+      The D3 code below was created with the help of the fantastic tutorial by Scott Murray, found here: http://alignedleft.com/tutorials/d3/
+
+      Take note, I've used the "react-faux-dom" module by Oliver Caldwell within this component. It's necessary for D3 to work it's magic within React.
+      You can find the module's github repo here: https://github.com/Olical/react-faux-dom.
+
+      Also, for info on integrating D3 with ReactJS check out Oliver's blogpost here: http://oli.me.uk/2015/09/09/d3-within-react-the-right-way/
+    */
+
+
+    (function() { // self executing function here
+
+      d3.json("all.json", function(error, json) {
+        if (error) throw error;
+
+        var width, height, margin = {top: 20, right: 5, bottom: 40, left: 20},
+            width = 1200 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
+
+
+        // d3.select("#viz")
+
+
+        d3.selectAll("#viz form.y-controls input").on("change", function change() { console.log(this.value)
+          // switch(this.value):
+
+          // transitionBar()
+          // transitionScatter()
+
+        });
+
+        d3.selectAll("#viz form.x-controls input").on("change", function change() { console.log(this.value)
+          // switch(this.value):
+
+          // transitionBar()
+          // transitionScatter()
+
+        });
+
+        function transitionBar() { console.log('transitionBar')
+          // d3.select("#viz .klout-txt").text("Facebook Klout")
+
+        }
+
+        function transitionScatter() { console.log('transitionScatter')
+          // d3.select("#viz .klout-txt").text("Twitter Klout")
+
+        }
+
+
+
+        // d3.select("#viz")
+        //     .selectAll("div")
+        //     .data(json.data)
+        //     .enter()
+        //     .append("div")
+        //     .text(function(d) {
+        //       return d.id +" | "+ d.economic_stability
+        //                   +" | "+ d.insurance_segment
+        //                   +" | "+ d.education
+        //                   +" | "+ d.facebook_user_rank
+        //                   +" | "+ d.gender
+        //                   +" | "+ d.has_insurance
+        //                   +" | "+ d.home_owner
+        //                   +" | "+ d.income
+        //                   +" | "+ d.is_exerciser
+        //                   +" | "+ d.is_smoker
+        //                   +" | "+ d.race
+        //                   +" | "+ d.sports_leisure_spending
+        //                   +" | "+ d.state
+        //                   +" | "+ d.travel_spending
+        //                   +" | "+ d.youtube_user_rank
+            // })
+
+      })
+
+    })();
+
+  </script>
+
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
