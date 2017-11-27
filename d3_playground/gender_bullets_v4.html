@@ -49,7 +49,13 @@
   .F-min { fill: purple; }
   .M-min { fill: purple; }
 
-/*#004853*/
+  .F-leisure { fill: pink; }
+  .M-leisure { fill: lightsteelblue; }
+
+  .F-travel { fill: lightpink; }
+  .M-travel { fill: lightblue; }
+
+
 /*007E80*/
 /*#5C6FF9*/
 /*#59DCE6*/
@@ -98,7 +104,11 @@
 
     <h2>Gender Income</h2>
     <div id="viz">
-        <ul></ul>
+      <form class="controls">
+          <label><input type="radio" name="mode" value="inequality">Inequality</label>
+          <label><input type="radio" name="mode" value="averages" checked>Averages</label>
+      </form>
+      <ul></ul>
     </div>
 
 
@@ -134,18 +144,26 @@
             width = 1200 - margin.left - margin.right,
             height = 100 - margin.top - margin.bottom;
 
-        var max, min, roof;
+        var max, min, roof0, roof1;
             max = d3.max([grandify(json.data[0].income_max), grandify(json.data[1].income_max)])
             min = 0
-            roof = grandify(3000)
+            roof0 = grandify(3000)
+            roof1 = grandify(300)
 
-          // Scales
-        var x0, xAxis, x1, y0, svg, chart, arc, rects;
-            x0 = d3.scaleLinear().domain([0, roof]).range([0, width])
-            xAxis = d3.axisBottom().scale(x0)
+        // Scales
+        var x0, x1, xAxis, x1, y0, svg, chart, arc, rects;
+            x0 = d3.scaleLinear().domain([0, roof0]).range([0, width])
+            x1 = d3.scaleLinear().domain([0, roof1]).range([0, width])
+            // xAxis = d3.axisBottom().scale(x0)
+            //           .tickSize(1)
+            //           .ticks(5)
+            //           .tickFormat(formatMillion)
+
+            xAxis = d3.axisBottom().scale(x1)
                       .tickSize(1)
                       .ticks(5)
                       .tickFormat(formatMillion)
+
 
         var listItems = d3.select("#viz ul")
               .selectAll("li")
@@ -157,6 +175,19 @@
               .attr("class", "bullet")
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
+
+        var title = svg.append("g")
+                .style("text-anchor", "end")
+                .attr("transform", "translate(-6," + height / 2 + ")");
+
+            title.append("text")
+                .attr("class", "title")
+                .text(function(d) { return (d.gender==='F')?'Female':'Male'; });
+
+            title.append("text")
+                .attr("class", "subtitle")
+                .attr("dy", "1em")
+                .text("income");
 
             svg.append("g")
                 .attr("class", "axis")
@@ -179,14 +210,64 @@
                 .attr("x", 0)
                 .attr("width", width);
 
-            svg.append("rect")
-                .attr("class", function(d) { return d.gender + "-max" })
+
+        // var rectIncomeMax, rectIncomeAvg, rectIncomeMin
+
+        //     rectIncomeMax = svg.append("rect")
+        //         .attr("class", function(d) { return d.gender + "-max" })
+        //         .attr("y", 20)
+        //         .attr("height", 30 + margin.top)
+        //         .attr("x", 0)
+        //         .attr("width", 0)
+
+        //     rectIncomeMax.transition().delay(function(d, i) { return i * 10; })
+        //           .attr("width", function(d) { return x0(grandify(d.income_max)) })
+
+        //     rectIncomeAvg = svg.append("rect")
+        //         .attr("class", function(d) { return d.gender + "-income" })
+        //         .attr("y", 20)
+        //         .attr("height", 30 + margin.top)
+        //         .attr("x", 0)
+        //         .attr("width", 0)
+
+        //     rectIncomeAvg.transition().delay(function(d, i) { return i * 10; })
+        //           .attr("width", function(d) { return x0(grandify(d.income_avg)) })
+
+        //     rectIncomeMin = svg.append("rect")
+        //         .attr("class", function(d) { return d.gender + "-min" })
+        //         .attr("y", 20)
+        //         .attr("height", 30 + margin.top)
+        //         .attr("x", 0)
+        //         .attr("width", 0)
+
+        //     rectIncomeMin.transition().delay(function(d, i) { return i * 10; })
+        //           .attr("width", function(d) { return x0(grandify(d.income_min)) })
+
+
+
+        var rectLeisureAvg, rectTravelAvg
+
+            rectLeisureAvg = svg.append("rect")
+                .attr("class", function(d) { return d.gender + "-leisure" })
+                .attr("fill", "lightgreen")
                 .attr("y", 20)
                 .attr("height", 30 + margin.top)
                 .attr("x", 0)
                 .attr("width", 0)
-                .transition().delay(function(d, i) { return i * 10; })
-                  .attr("width", function(d) { return x0(grandify(d.income_max)) })
+
+            rectLeisureAvg.transition().delay(function(d, i) { return i * 10; })
+                  .attr("width", function(d) { return x1(grandify(d.sports_leisure_spending_avg)) })
+
+            rectTravelAvg = svg.append("rect")
+                .attr("class", function(d) { return d.gender + "-travel" })
+                .attr("fill", "lightblue")
+                .attr("y", 20)
+                .attr("height", 30 + margin.top)
+                .attr("x", 0)
+                .attr("width", 0)
+
+            rectTravelAvg.transition().delay(function(d, i) { return i * 10; })
+                  .attr("width", function(d) { return x1(grandify(d.travel_spending_avg)) })
 
             svg.append("rect")
                 .attr("class", function(d) { return d.gender + "-income" })
@@ -195,42 +276,40 @@
                 .attr("x", 0)
                 .attr("width", 0)
                 .transition().delay(function(d, i) { return i * 10; })
-                  .attr("width", function(d) { return x0(grandify(d.income_avg)) })
+                  .attr("width", function(d) { return x1(grandify(d.income_avg)) })
 
-            svg.append("rect")
-                .attr("class", function(d) { return d.gender + "-min" })
-                .attr("y", 20)
-                .attr("height", 30 + margin.top)
-                .attr("x", 0)
-                .attr("width", 0)
-                .transition().delay(function(d, i) { return i * 10; })
-                  .attr("width", function(d) { return x0(grandify(d.income_min)) })
 
-        var title = svg.append("g")
-                .style("text-anchor", "end")
-                .attr("transform", "translate(-6," + height / 2 + ")");
 
-            title.append("text")
-                .attr("class", "title")
-                .text(function(d) { return (d.gender==='F')?'Female':'Male'; });
 
-            title.append("text")
-                .attr("class", "subtitle")
-                .attr("dy", "1em")
-                .text("income");
 
         var txt = svg.append("g")
                 .style("text-anchor", "middle")
                 .attr("class", function(d) { return d.gender + "-txt-max" })
                 .attr("transform", function(d) { return "translate(0,15)" });
 
-            txt.append("text").attr("class", "txt-max")
-                .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_max))) +",0)" })
-                .text(function(d) { return formatMillion(grandify(d.income_max)) })
+            // txt.append("text").attr("class", "txt-max")
+            //     .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_max))) +",0)" })
+            //     .text(function(d) { return formatMillion(grandify(d.income_max)) })
+
+            // txt.append("text").attr("class", "txt-avg")
+            //     .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_avg))) +",0)" })
+            //     .text(function(d) { return formatThousand(Math.round(grandify(d.income_avg))) })
+
+
+            txt.append("text").attr("class", "txt-leisure")
+                .attr("transform", function(d) { return "translate("+ (x1(grandify(d.sports_leisure_spending_avg))) +",0)" })
+                .text(function(d) { return formatThousand(Math.round(grandify(d.sports_leisure_spending_avg))) + " leisure avg" })
+
+            txt.append("text").attr("class", "txt-travel")
+                .attr("transform", function(d) { return "translate("+ (x1(grandify(d.travel_spending_avg))) +",0)" })
+                .text(function(d) { return formatThousand(Math.round(grandify(d.travel_spending_avg))) + " travel avg" })
 
             txt.append("text").attr("class", "txt-avg")
-                .attr("transform", function(d) { return "translate("+ (x0(grandify(d.income_avg))) +",0)" })
-                .text(function(d) { return formatThousand(Math.round(grandify(d.income_avg))) })
+                .attr("transform", function(d) { return "translate("+ (x1(grandify(d.income_avg))) +",0)" })
+                .text(function(d) { return formatThousand(Math.round(grandify(d.income_avg))) + " income avg" })
+
+
+
 
         var summary = listItems.append("div").attr("class", "txt-summary")
             summary.append("h3").text(function(d) { return ((d.gender==='F')?'Female':'Male') + " Income Summary"; })
